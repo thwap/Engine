@@ -9,8 +9,9 @@ namespace Engine
     {
         #region MEMBERS
         public float x, y, z;
+
         /// <summary>
-        /// Returns the magnitude or length of teh vector
+        /// Returns the magnitude of the vector
         /// </summary>
         public float magnitude
         {
@@ -18,45 +19,32 @@ namespace Engine
             {
                 return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
             }
-            //Removed the setter to make it private
+            // Omitted set for a read-only property
         }
+
         /// <summary>
-        /// Returns the squared magnitude or squared length of the vector
+        /// Returns the square of magnitude of the vector
         /// </summary>
         public float sqrMagnitude
         {
             get
             {
-                return (float)(x * x) + (y * y) + (z * z);
+                return (float)((x * x) + (y * y) + (z * z));
             }
-            //remove the setter setter to make it private
+            // Omitted set for a read-only property
         }
+
         /// <summary>
-        /// 
+        /// Returns an unit vector with the same direction
         /// </summary>
         /// <returns></returns>
         public Vector3 Normalized()
         {
-            /*Vector3 TempVector;
-            
-            TempVector.x = (float)(x/(Math.Sqrt((x * x) + (y * y) + (z * z))));
-            TempVector.y = (float)(y/(Math.Sqrt((x * x) + (y * y) + (z * z))));
-            TempVector.z = (float)(z/(Math.Sqrt((x * x) + (y * y) + (z * z))));
-                  
-            return TempVector;*/
-            //The idea was right but the way is not.
-            // TempVector is just a pointer that goes nowhere and you ry assigning something to it
-            // You would get a runtime error saying you are trying to assign to something non-initialized
-            // Also you may store the magnitude to call it only once.
-            float mag = (float)(x / (Math.Sqrt((x * x) + (y * y) + (z * z))));
-            float _x = x / mag;
-            float _y = y / mag;
-            float _z = z / mag;
-            // return a new vector with the value
-            return new Vector3(_x, _y, _z);
-
+            float mag = magnitude;
+            return new Vector3(x / mag, y / mag, z / mag);
         }
         #endregion
+
         #region STATIC_VECTOR
         // Declaration for vector zero, one, right, left, up, down, forward, back
         public static readonly Vector3 LEFT     = new Vector3(-1, 0, 0);
@@ -66,10 +54,7 @@ namespace Engine
         public static readonly Vector3 FORWARD  = new Vector3(0, 0, 1);
         public static readonly Vector3 BACK     = new Vector3(0, 0, -1);
         public static readonly Vector3 ZERO     = new Vector3(0, 0, 0);
-        //public static readonly Vector3 ONE = new Vector3(0.57735f, 0.57735f, 0.57735f);
-        //Vector.ONE is a vector with all ones, not length one.
-        public static readonly Vector3 ONE = new Vector3(1, 1, 1);
-
+        public static readonly Vector3 ONE      = new Vector3(1, 1, 1);
         #endregion
 
         #region CONSTRUCTOR
@@ -88,6 +73,7 @@ namespace Engine
             this.z = vector.z;
         }
         #endregion
+
         #region OVERRIDE
         // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
         public override string ToString()
@@ -145,7 +131,6 @@ namespace Engine
         public static Vector3 operator *(Vector3 v1, Vector3 v2)
         {
             //return Cross(v1, v2);
-
         }*/
 
         public static Vector3 operator *(Vector3 v1, float number)
@@ -176,7 +161,14 @@ namespace Engine
                 return true;
         }
         #endregion
+
         #region ARITHMETIC
+
+        /// <summary>
+        /// Returns the sum vector of this and the parameter
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
         public Vector3 Add(Vector3 vector)
         {
             float _x = x + vector.x;
@@ -185,94 +177,137 @@ namespace Engine
 
             return new Vector3(_x, _y, _z);
         }
+
+        /// <summary>
+        /// Returns a vector that is this minus the parameter
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
         public Vector3 Subtract(Vector3 vector)
         {
-            Vector3 TempVector;
-            TempVector.x = x - vector.x;
-            TempVector.y = y - vector.y;
-            TempVector.z = z - vector.z;
+            float _x = x - vector.x;
+            float _y = y - vector.y;
+            float _z = z - vector.z;
 
-            return TempVector;
-            //throw new NotImplementedException();
+            return new Vector3(_x, _y, _z);
         }
+
+        /// <summary>
+        /// Scales this vector by given amount
+        /// </summary>
+        /// <param name="scale"></param>
         public void Scale(float scale)
         {
-
             x = x * scale;
             y = y * scale;
             z = z * scale; 
-
-            //throw new NotImplementedException();
         }
+
         #endregion
+
+        /// <summary>
+        /// Normalizes this vector to unity length
+        /// </summary>
         public void Normalize()
         {
-
-            float TempX = x, TempY = y, TempZ = z;
-
-            x = (float)(TempX / (Math.Sqrt((TempX * TempX) + (TempY * TempY) + (TempZ * TempZ))));
-            y = (float)(TempY / (Math.Sqrt((TempX * TempX) + (TempY * TempY) + (TempZ * TempZ))));
-            z = (float)(TempZ / (Math.Sqrt((TempX * TempX) + (TempY * TempY) + (TempZ * TempZ))));
-
+            float previousMagnitude = magnitude;
+            x = x / previousMagnitude;
+            y = y / previousMagnitude;
+            z = z / previousMagnitude;
         }
+
+        /// <summary>
+        /// Returns the dot product of two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static float Dot(Vector3 v1, Vector3 v2)
         {
-            float result = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-            return result;
+            return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
         }
+
+        /// <summary>
+        /// Returns the cross product of two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static Vector3 Cross(Vector3 v1, Vector3 v2)
         {
-            Vector3 TempVector;
-
-           TempVector.x = v1.y * v2.z - v2.y * v1.z;
-           TempVector.y = v1.z * v2.x - v2.z * v1.x;
-           TempVector.z = v1.x * v2.y - v2.x * v1.y; 
-
-            return TempVector;
-            
-            //throw new NotImplementedException();
+            float _x = v1.y * v2.z - v2.y * v1.z;
+            float _y = v1.z * v2.x - v2.z * v1.x;
+            float _z = v1.x * v2.y - v2.x * v1.y; 
+            return new Vector3(_x, _y, _z);
         }
+
+
+        /// <summary>
+        /// Interpolates between current and target, 0 being
+        /// equal to current and 1 being equal to target
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="target"></param>
+        /// <param name="ratio"></param>
+        /// <returns></returns>
         public static Vector3 Interpolate(Vector3 current, Vector3 target, float ratio)
         {
-            Vector3 TempVector;
-
-            TempVector.x = current.x + (target.x - current.x) * ratio;
-            TempVector.y = current.y + (target.y - current.y) * ratio;
-            TempVector.z = current.z + (target.z - current.z) * ratio;
-
-            return TempVector;
-            //throw new NotImplementedException();
+            float _x = current.x + (target.x - current.x) * ratio;
+            float _y = current.y + (target.y - current.y) * ratio;
+            float _z = current.z + (target.z - current.z) * ratio;
+            return new Vector3(_x, _y, _z);
         }
-      
-       /* public static Vector3 MoveStep(Vector3 current, Vector3 target, float step)
+
+        /// <summary>
+        /// Returns a vector that is closer to target from current by an amount
+        /// defined by step. If step is greater than distance, target is returned.
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="target"></param>
+        /// <param name="step"></param>
+        /// <returns></returns>
+        public static Vector3 MoveStep(Vector3 current, Vector3 target, float step)
         {
-            Vector3 TempVector;
+            Vector3 TempVector = new Vector3(target - current);
+            if (TempVector.magnitude > step)
+                return (current + (TempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+            else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
+        }
 
-             
-
-
-            return TempVector;
-
-            //throw new NotImplementedException();
-        }*/
+        /// <summary>
+        /// Returns a reflection of incoming off a plane defined by normal
+        /// </summary>
+        /// <param name="incoming"></param>
+        /// <param name="normal"></param>
+        /// <returns></returns>
         public static Vector3 Reflect(Vector3 incoming, Vector3 normal)
         {
-            throw new NotImplementedException();
+            // Any ideas to optimize this? -- K.S.
+            return new Vector3(2 * (Dot(incoming, normal) / Dot(normal, normal) * normal.Normalized()) + incoming);
         }
+
         public static Vector3 Projection(Vector3 target, Vector3 position, Vector3 direction)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();       
         }
+        
         public static float Angle(Vector3 v1, Vector3 v2)
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Returns the distance between two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static float Distance(Vector3 v1, Vector3 v2)
         {
-            
-            throw new NotImplementedException();
+            return (v1 - v2).magnitude;
         }
     }
+
     // Same for Vector2 and Vector4
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector4
