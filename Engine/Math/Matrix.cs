@@ -9,18 +9,24 @@ namespace Engine
 {
     public class Matrix
     {
-        float _m11, _m12, _m13; 
-        float _m21, _m22, _m23;
-        float _m31, _m32, _m33;
+        // I made it a 4x4 matrix. even though there are more values, some are barely used
+        // But 4x4 makes transition from 2D to 3D easier
+        float _m11, _m12, _m13, _m14; 
+        float _m21, _m22, _m23, _m24;
+        float _m31, _m32, _m33, _m34;
+        float _m41, _m42, _m43, _m44;
 
         // Identity matrix declaration
-
+        public static readonly Matrix Identity = new Matrix(new Vector4(1, 0, 0, 0),
+                                                             new Vector4(0, 1, 0, 0),
+                                                             new Vector4(0, 0, 1, 0),
+                                                             new Vector4(0, 0, 0, 1));
+        
         public Matrix()
-            : this(Identity)
+            : this(Matrix.Identity)
         {
-
+            throw new NotImplementedException();
         }
-
         public Matrix(Matrix m)
         {
             this._m11 = m._m11;
@@ -36,11 +42,12 @@ namespace Engine
             this._m33 = m._m33;
         }
 
-        public Matrix(Vector3 x, Vector3 y, Vector3 z, Vector3 o)
+        public Matrix(Vector4 x, Vector4 y, Vector4 z, Vector4 w)
         {
-            this._m11 = x.x; this._m12 = x.y; this._m13 = x.z;
-            this._m21 = x.x; this._m22 = x.y; this._m23 = x.z;
-            this._m31 = x.x; this._m32 = x.y; this._m33 = x.z;
+            this._m11 = x.x; this._m12 = x.y; this._m13 = x.z; this._m14 = x.w;
+            this._m21 = y.x; this._m22 = y.y; this._m23 = y.z; this._m24 = y.w;
+            this._m31 = z.x; this._m32 = z.y; this._m33 = z.z; this._m34 = z.w;
+            this._m41 = w.x; this._m32 = w.y; this._m33 = w.z; this._m44 = w.w;
         }
 
         public static Matrix operator *(Matrix mA, Matrix mB)
@@ -81,11 +88,13 @@ namespace Engine
             _m23 = y;
             _m33 = z;
         }
+        // Needs to return a Vector3
         public Vector3 GetTranslation()
         {
             float mX = _m11;
             float mY = _m22;
             float mZ = _m33;
+            throw new NotImplementedException();
         }
 
         public void SetScale(Vector3 scale)
@@ -96,24 +105,27 @@ namespace Engine
         }
 		public void SetScale(float x, float y, float z)
 		{
+            // Those are not the values for the scaling
             _m11 = x;
             _m21 = y;
             _m31 = z;
 		}
+        // You do not want to return the length of the vector here
+        // You just want to return the vector3 containing the scale values _m11, _m22, _m33
         public Vector3 GetScale()
         {
             Vector3 result = new Vector3();
 
-            result.x = (new Vector3(_m11, _m12, _m13)).Length();
+            /*result.x = (new Vector3(_m11, _m12, _m13)).Length();
             result.y = (new Vector3(_m21, _m22, _m23)).Length();
-            result.z = (new Vector3(_m31, _m32, _m33)).Length();
+            result.z = (new Vector3(_m31, _m32, _m33)).Length();*/
             
             return result;
         }
 
         public void SetRotate(Vector3 axis, float angle)
         {
-            double angleSin = Math.Sin(angle);
+            /*double angleSin = Math.Sin(angle);
             double angleCos = Math.Cos(angle);
             double a = 1.0 - angleCos;
             double ax = a * axis.x;
@@ -130,45 +142,36 @@ namespace Engine
             
             _m31 = az * axis.x + axis.y * angleSin;
             _m32 = az * axis.y - axis.x * angleSin;
-            _m33 = az * axis.z + angleCos;
+            _m33 = az * axis.z + angleCos;*/
+            /* Make it simple, you only need to use cos and sin once actually since we are rotating around the z axis only
+            * cos sin  0 0
+            * -sin cos 0 0
+             * 0    0  1 0
+             * 0    0  0 1
+             * */
         }
 		
         public void SetRotate(float x, float y, float z, float angle)
 		{
-            double angleSin = Math.Sin(angle);
-            double angleCos = Math.Cos(angle);
-            double a = 1.0 - angleCos;
-            double ax = a * x;
-            double ay = a * y;
-            double az = a * z;
-
-            _m11 = ax * x + angleCos;
-            _m12 = ax * y + z * angleSin;
-            _m13 = ax * z - y * angleSin;
-
-            _m21 = ay * x - z * angleSin;
-            _m22 = ay * y + angleCos;
-            _m23 = ay * z + x * angleSin;
-
-            _m31 = az * x + y * angleSin;
-            _m32 = az * y - x * angleSin;
-            _m33 = az * z + angleCos;
+            //Same as above
 		}
         public float Determinate()
         {
-            
+            throw new NotImplementedException();
         }
 
         public Matrix Inverse()
         {
-            
+            throw new NotImplementedException();
         }
 
         public static Vector3 operator *(Vector3 v, Matrix m)
         {
-            return new Vector3(v.X * m._m11 + v.Y * m._m21 + v.Z * m._m31 + m._m41,
-                               v.X * m._m12 + v.Y * m._m22 + v.Z * m._m32 + m._m42,
-                               v.X * m._m13 + v.Y * m._m23 + v.Z * m._m33 + m._m43);
+            // review for 4x4 matrix
+            /*return new Vector3(v.x * m._m11 + v.Y * m._m21 + v.Z * m._m31 + m._m41,
+                               v.x * m._m12 + v.Y * m._m22 + v.Z * m._m32 + m._m42,
+                               v.x * m._m13 + v.Y * m._m23 + v.Z * m._m33 + m._m43);*/
+            throw new NotImplementedException();
         }
     }
 }

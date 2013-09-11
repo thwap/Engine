@@ -9,23 +9,27 @@ namespace Engine
     {
         #region MEMBERS
         public float x, y, z;
-
+        /// <summary>
+        /// Returns the magnitude or length of teh vector
+        /// </summary>
         public float magnitude
         {
             get
             {
                 return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
             }
-            set { this.magnitude = value; }
-
+            //Removed the setter to make it private
         }
+        /// <summary>
+        /// Returns the squared magnitude or squared length of the vector
+        /// </summary>
         public float sqrMagnitude
         {
             get
             {
                 return (float)(x * x) + (y * y) + (z * z);
             }
-            set { this.sqrMagnitude = value; }
+            //remove the setter setter to make it private
         }
         /// <summary>
         /// 
@@ -33,26 +37,38 @@ namespace Engine
         /// <returns></returns>
         public Vector3 Normalized()
         {
-            Vector3 TempVector;
+            /*Vector3 TempVector;
             
             TempVector.x = (float)(x/(Math.Sqrt((x * x) + (y * y) + (z * z))));
             TempVector.y = (float)(y/(Math.Sqrt((x * x) + (y * y) + (z * z))));
             TempVector.z = (float)(z/(Math.Sqrt((x * x) + (y * y) + (z * z))));
                   
-            return TempVector;
+            return TempVector;*/
+            //The idea was right but the way is not.
+            // TempVector is just a pointer that goes nowhere and you ry assigning something to it
+            // You would get a runtime error saying you are trying to assign to something non-initialized
+            // Also you may store the magnitude to call it only once.
+            float mag = (float)(x / (Math.Sqrt((x * x) + (y * y) + (z * z))));
+            float _x = x / mag;
+            float _y = y / mag;
+            float _z = z / mag;
+            // return a new vector with the value
+            return new Vector3(_x, _y, _z);
 
         }
         #endregion
         #region STATIC_VECTOR
         // Declaration for vector zero, one, right, left, up, down, forward, back
-        public static readonly Vector3 LEFT = new Vector3(-1, 0, 0);
-        public static readonly Vector3 RIGHT = new Vector3(1, 0, 0);
-        public static readonly Vector3 UP = new Vector3(0, 1, 0);
-        public static readonly Vector3 DOWN = new Vector3(0, -1, 0);
-        public static readonly Vector3 FORWARD = new Vector3(0, 0, 1);
-        public static readonly Vector3 BACK = new Vector3(0, 0, -1);
-        public static readonly Vector3 ZERO = new Vector3(0, 0, 0);
-        public static readonly Vector3 ONE = new Vector3(0.57735f, 0.57735f, 0.57735f);
+        public static readonly Vector3 LEFT     = new Vector3(-1, 0, 0);
+        public static readonly Vector3 RIGHT    = new Vector3(1, 0, 0);
+        public static readonly Vector3 UP       = new Vector3(0, 1, 0);
+        public static readonly Vector3 DOWN     = new Vector3(0, -1, 0);
+        public static readonly Vector3 FORWARD  = new Vector3(0, 0, 1);
+        public static readonly Vector3 BACK     = new Vector3(0, 0, -1);
+        public static readonly Vector3 ZERO     = new Vector3(0, 0, 0);
+        //public static readonly Vector3 ONE = new Vector3(0.57735f, 0.57735f, 0.57735f);
+        //Vector.ONE is a vector with all ones, not length one.
+        public static readonly Vector3 ONE = new Vector3(1, 1, 1);
 
         #endregion
 
@@ -76,7 +92,8 @@ namespace Engine
         // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
         public override string ToString()
         {
-            return x + "i+"+ y + "j+"+ z + "k";
+            //ijk sounds more like complex numbers
+            return x + ", "+ y + ", "+ z;
         }
 
         public override bool Equals(object o)
@@ -99,26 +116,37 @@ namespace Engine
         #region OPERATOR
         
         // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
+        // Here in order to gain efficiency you may want to perform the action inside
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
-            return v1.Subtract(v2);
+           // return v1.Subtract(v2);
+            float _x = v1.x - v2.x;
+            float _y = v1.y - v2.y;
+            float _z = v1.z - v2.z;
+            return new Vector3(_x, _y, _z);
         }
 
         public static Vector3 operator -(Vector3 v1)
         {
             return new Vector3(-v1.x, -v1.y, -v1.z);
-
         }
-
+        // Same here
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
-            return v1.Add(v2);
+            //return v1.Add(v2);
+            float _x = v1.x + v2.x;
+            float _y = v1.y + v2.y;
+            float _z = v1.z + v2.z;
+            return new Vector3(_x, _y, _z);
         }
 
+        /* Here Multiply and Cross are not the same thing
+         * Actually there should not be two vectors multiplied together...
         public static Vector3 operator *(Vector3 v1, Vector3 v2)
         {
-            return Cross(v1, v2);
-        }
+            //return Cross(v1, v2);
+
+        }*/
 
         public static Vector3 operator *(Vector3 v1, float number)
         {
@@ -151,13 +179,11 @@ namespace Engine
         #region ARITHMETIC
         public Vector3 Add(Vector3 vector)
         {
-            Vector3 TempVector;
-            TempVector.x = x + vector.x;
-            TempVector.y = y + vector.y;
-            TempVector.z = z + vector.z;
+            float _x = x + vector.x;
+            float _y = y + vector.y;
+            float _z = z + vector.z;
 
-            return TempVector;
-            //throw new NotImplementedException();
+            return new Vector3(_x, _y, _z);
         }
         public Vector3 Subtract(Vector3 vector)
         {
@@ -248,4 +274,18 @@ namespace Engine
         }
     }
     // Same for Vector2 and Vector4
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Vector4
+    {
+        #region MEMBERS
+        public float x, y, z, w;
+        public Vector4(float x, float y, float z, float w) 
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.w = w;
+        }
+    #endregion
+    }
 }
