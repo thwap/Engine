@@ -400,7 +400,7 @@ namespace Engine
         public override bool Equals(object o)
         {
             Vector3 v3 = (Vector3)o;
-            if (v3 != null)
+            if ((System.Object)v3 != null)
             {
                 // Is castable to Vector3
                 if (v3.x == x && v3.y == y && v3.z == 0)
@@ -412,7 +412,7 @@ namespace Engine
             {
                 // Is not castable to Vector3
                 Vector4 v4 = (Vector4)o;
-                if (v4 != null)
+                if ((System.Object)v4 != null)
                 {
                     // Is castable to Vector4
                     if (v4.x == x && v4.y == y && v4.z == 0 && v4.w == 0)
@@ -510,7 +510,7 @@ namespace Engine
         {
             float _x = x + vector.x;
             float _y = y + vector.y;
-            return new Vector2(_x, _y, _z);
+            return new Vector2(_x, _y);
         }
 
         /// <summary>
@@ -891,7 +891,7 @@ namespace Engine
         /// <returns></returns>
         public static Vector4 Reflect(Vector4 incoming, Vector4 normal)
         {
-            // Fixed this. Had the direction of incoming reversed. -- K.S.
+            // Fixed this too. Had the direction of incoming reversed. -- K.S.
             float _dot = Dot(incoming, normal) * 2f;
             Vector4 _reflection = incoming - (normal * _dot);
             return _reflection;
