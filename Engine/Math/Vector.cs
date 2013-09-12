@@ -82,7 +82,31 @@ namespace Engine
 
         public override bool Equals(object o)
         {
-            return base.Equals(o);
+            // A real gamble if there ever was one, does this make any sense?
+            Vector2 v2 = (Vector2)o;
+            if ((System.Object)v2 != null)
+            {
+                // Is castable to Vector2
+                if (v2.x == x && v2.y == y && z == 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                // Is not castable to Vector3
+                Vector4 v4 = (Vector4)o;
+                if ((System.Object)v4 != null)
+                {
+                    // Is castable to Vector4
+                    if (v4.x == x && v4.y == y && v4.z == z && v4.w == 0)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
         }
 
         public bool Equals(Vector3 vec)
@@ -123,13 +147,6 @@ namespace Engine
             float _z = v1.z + v2.z;
             return new Vector3(_x, _y, _z);
         }
-
-        /* Here Multiply and Cross are not the same thing
-         * Actually there should not be two vectors multiplied together...
-        public static Vector3 operator *(Vector3 v1, Vector3 v2)
-        {
-            //return Cross(v1, v2);
-        }*/
 
         public static Vector3 operator *(Vector3 v1, float number)
         {
@@ -200,8 +217,6 @@ namespace Engine
             y = y * scale;
             z = z * scale; 
         }
-
-        #endregion
 
         /// <summary>
         /// Normalizes this vector to unity length
@@ -280,12 +295,6 @@ namespace Engine
         /// <returns></returns>
         public static Vector3 Reflect(Vector3 incoming, Vector3 normal)
         {
-            // Any ideas to optimize this? -- K.S.
-            // This is actually not the equation. 
-            // Dot(normal, normal)-> dot product return the ratio of a onto b and in this case a is b so this is 1.
-            // Division by 1 yields 1. Also, a normal is already normalized.
-            //return new Vector3(2 * (Dot(incoming, normal) / Dot(normal, normal) * normal.Normalized()) + incoming);
-            // the equation is reflection = incoming - 2 * normal * (dot(incoming.normal))
             float _dot = Dot(incoming, normal) * 2f;
             Vector3 _reflection = incoming - (normal * _dot);
             return _reflection;
@@ -298,7 +307,8 @@ namespace Engine
         
         public static float Angle(Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException();
+            float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
+            return Mathf.Acos(prod);
         }
 
         /// <summary>
@@ -310,11 +320,325 @@ namespace Engine
         public static float Distance(Vector3 v1, Vector3 v2)
         {
             // I would perform the arithmetic inside the method to gain a couple of cycle
-            return (v1 - v2).magnitude;
+            // return (v1 - v2).magnitude; // Here comes:
+            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z));
         }
+
+        #endregion
     }
 
     // Same for Vector2 and Vector4
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Vector2
+    {
+        #region MEMBERS
+
+        public float x, y;
+
+        public float magnitude
+        {
+            get
+            {
+                return (float)(Math.Sqrt((x * x) + (y * y));
+            }
+        }
+
+        public float sqrMagnitude
+        {
+            get
+            {
+                return (float)((x * x) + (y * y));
+            }
+        }
+
+        public Vector2 Normalized()
+        {
+            float mag = magnitude;
+            return new Vector2(x / mag, y / mag);
+        }
+
+        #endregion
+
+        #region CONSTURCTORS
+
+        public Vector2(float x, float y) 
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public Vector2(Vector2 vector)
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+        }
+
+        #endregion
+
+        #region STATIC_VECTOR
+        // Declaration for vector zero, one, right, left, up, down, forward, back
+        public static readonly Vector2 LEFT = new Vector2(-1, 0);
+        public static readonly Vector2 RIGHT = new Vector2(1, 0);
+        public static readonly Vector2 UP = new Vector2(0, 1);
+        public static readonly Vector2 DOWN = new Vector2(0, -1);
+        public static readonly Vector2 FORWARD = new Vector2(0, 0); // Keep or remove?
+        public static readonly Vector2 BACK = new Vector2(0, 0);    // Keep or remove?
+        public static readonly Vector2 ZERO = new Vector2(0, 0);
+        public static readonly Vector2 ONE = new Vector2(1, 1);
+
+        #endregion
+
+        #region OVERRIDE
+        // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
+        public override string ToString()
+        {
+            // Decided that some units are better than nothing
+            return x + "x, " + y + "y";
+        }
+
+        public override bool Equals(object o)
+        {
+            Vector3 v3 = (Vector3)o;
+            if (v3 != null)
+            {
+                // Is castable to Vector3
+                if (v3.x == x && v3.y == y && v3.z == 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                // Is not castable to Vector3
+                Vector4 v4 = (Vector4)o;
+                if (v4 != null)
+                {
+                    // Is castable to Vector4
+                    if (v4.x == x && v4.y == y && v4.z == 0 && v4.w == 0)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public bool Equals(Vector2 vec)
+        {
+            // Tests value equality, should I test reference equality instead?
+            if ((System.Object)vec == null)
+                return false;
+            else if (vec.GetHashCode() == GetHashCode())
+                return true;
+            else
+                return false;
+        }
+
+        public override int GetHashCode()
+        {
+            // I truly, really, honestly assume that this is supposed to work like md5,
+            // without the need of being cryptographically valid
+            Int64 number = x.GetHashCode() + y.GetHashCode();
+            return (int)(number % Int32.MaxValue);
+        }
+
+        #endregion
+
+        #region OPERATOR
+
+        // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
+        // Here in order to gain efficiency you may want to perform the action inside
+        public static Vector2 operator -(Vector2 v1, Vector2 v2)    // Difference
+        {
+            float _x = v1.x - v2.x;
+            float _y = v1.y - v2.y;
+            return new Vector2(_x, _y);
+        }
+
+        public static Vector2 operator -(Vector2 v1)                // Negation
+        {
+            return new Vector2(-v1.x, -v1.y);
+        }
+
+        public static Vector2 operator +(Vector2 v1, Vector2 v2)    // Sum
+        {
+            float _x = v1.x + v2.x;
+            float _y = v1.y + v2.y;
+            return new Vector2(_x, _y);
+        }
+
+        public static Vector2 operator *(Vector2 v1, float number)  // Vector times scalar
+        {
+            v1.Scale(number);
+            return v1;
+        }
+
+        public static Vector2 operator *(float number, Vector2 v1)  // Scalar times vector
+        {
+            v1.Scale(number);
+            return v1;
+        }
+
+        public static bool operator ==(Vector2 v1, Vector2 v2)      // Equality
+        {
+            if (v1.x == v2.x && v1.y == v2.y)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator !=(Vector2 v1, Vector2 v2)      // Inequality
+        {
+            if (v1.x == v2.x && v1.y == v2.y)
+                return false;
+            else
+                return true;
+        }
+
+        #endregion
+
+        #region ARITHMETIC
+
+        /// <summary>
+        /// Returns the sum vector of this and the parameter
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public Vector2 Add(Vector2 vector)
+        {
+            float _x = x + vector.x;
+            float _y = y + vector.y;
+            return new Vector2(_x, _y, _z);
+        }
+
+        /// <summary>
+        /// Returns a vector that is this minus the parameter
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public Vector2 Subtract(Vector2 vector)
+        {
+            float _x = x - vector.x;
+            float _y = y - vector.y;
+            return new Vector2(_x, _y);
+        }
+
+        /// <summary>
+        /// Scales this vector by given amount
+        /// </summary>
+        /// <param name="scale"></param>
+        public void Scale(float scale)
+        {
+            x = x * scale;
+            y = y * scale;
+        }
+
+        /// <summary>
+        /// Normalizes this vector to unity length
+        /// </summary>
+        public void Normalize()
+        {
+            float previousMagnitude = magnitude;
+            x = x / previousMagnitude;
+            y = y / previousMagnitude;
+        }
+
+        /// <summary>
+        /// Returns the dot product of two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
+        public static float Dot(Vector2 v1, Vector2 v2)
+        {
+            return v1.x * v2.x + v1.y * v2.y;
+        }
+
+        /// <summary>
+        /// Returns the cross product of two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
+        public static Vector2 Cross(Vector2 v1)
+        {
+            // This rotates it exactly 90 degrees CCW
+            return new Vector2(v1.y, -v1.x);
+        }
+
+        /// <summary>
+        /// Interpolates between current and target, 0 being
+        /// equal to current and 1 being equal to target
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="target"></param>
+        /// <param name="ratio"></param>
+        /// <returns></returns>
+        public static Vector2 Interpolate(Vector2 current, Vector2 target, float ratio)
+        {
+            float _x = current.x + (target.x - current.x) * ratio;
+            float _y = current.y + (target.y - current.y) * ratio;
+            return new Vector2(_x, _y);
+        }
+
+        /// <summary>
+        /// Returns a vector that is closer to target from current by an amount
+        /// defined by step. If step is greater than distance, target is returned.
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="target"></param>
+        /// <param name="step"></param>
+        /// <returns></returns>
+        public static Vector2 MoveStep(Vector2 current, Vector2 target, float step)
+        {
+            Vector2 tempVector = new Vector2(target - current);
+            if (tempVector.magnitude > step)
+                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+            else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
+        }
+
+        /// <summary>
+        /// Returns a reflection of incoming off a plane defined by normal
+        /// </summary>
+        /// <param name="incoming"></param>
+        /// <param name="normal"></param>
+        /// <returns></returns>
+        public static Vector2 Reflect(Vector2 incoming, Vector2 normal)
+        {
+            float _dot = Dot(incoming, normal) * 2f;
+            Vector2 _reflection = incoming - (normal * _dot);
+            return _reflection;
+        }
+
+        public static Vector3 Projection(Vector3 target, Vector3 position, Vector3 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static float Angle(Vector2 v1, Vector2 v2)
+        {
+            float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
+            return Mathf.Acos(prod);
+        }
+
+        /// <summary>
+        /// Returns the distance between two vectors
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
+        public static float Distance(Vector3 v1, Vector3 v2)
+        {
+            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y));
+        }
+
+        #endregion
+
+
+
+    }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector4
@@ -503,10 +827,6 @@ namespace Engine
             w = w * scale;
         }
 
-        #endregion
-
-        #region MISC
-
         /// <summary>
         /// Normalizes this vector to unity length
         /// </summary>
@@ -571,8 +891,21 @@ namespace Engine
         /// <returns></returns>
         public static Vector4 Reflect(Vector4 incoming, Vector4 normal)
         {
-            // Could not see any reason why this would not work in 4D -- K.S.
-            return new Vector4(2 * (Dot(incoming, normal) / Dot(normal, normal) * normal.Normalized()) + incoming);
+            // Fixed this. Had the direction of incoming reversed. -- K.S.
+            float _dot = Dot(incoming, normal) * 2f;
+            Vector4 _reflection = incoming - (normal * _dot);
+            return _reflection;
+        }
+
+        public static Vector4 Projection(Vector4 target, Vector4 position, Vector4 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static float Angle(Vector4 v1, Vector4 v2)
+        {
+            float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
+            return Mathf.Acos(prod);
         }
 
         /// <summary>
@@ -583,7 +916,8 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector4 v1, Vector4 v2)
         {
-            return (v1 - v2).magnitude;
+            // return (v1 - v2).magnitude;
+            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z) + (v1.w - v2.w));
         }
 
         #endregion
