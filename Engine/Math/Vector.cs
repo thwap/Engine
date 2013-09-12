@@ -19,7 +19,6 @@ namespace Engine
             {
                 return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
             }
-            // Omitted set for a read-only property
         }
 
         /// <summary>
@@ -31,7 +30,6 @@ namespace Engine
             {
                 return (float)((x * x) + (y * y) + (z * z));
             }
-            // Omitted set for a read-only property
         }
 
         /// <summary>
@@ -268,9 +266,9 @@ namespace Engine
         /// <returns></returns>
         public static Vector3 MoveStep(Vector3 current, Vector3 target, float step)
         {
-            Vector3 TempVector = new Vector3(target - current);
-            if (TempVector.magnitude > step)
-                return (current + (TempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+            Vector3 tempVector = new Vector3(target - current);
+            if (tempVector.magnitude > step)
+                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
             else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
         }
 
@@ -283,7 +281,14 @@ namespace Engine
         public static Vector3 Reflect(Vector3 incoming, Vector3 normal)
         {
             // Any ideas to optimize this? -- K.S.
-            return new Vector3(2 * (Dot(incoming, normal) / Dot(normal, normal) * normal.Normalized()) + incoming);
+            // This is actually not the equation. 
+            // Dot(normal, normal)-> dot product return the ratio of a onto b and in this case a is b so this is 1.
+            // Division by 1 yields 1. Also, a normal is already normalized.
+            //return new Vector3(2 * (Dot(incoming, normal) / Dot(normal, normal) * normal.Normalized()) + incoming);
+            // the equation is reflection = incoming - 2 * normal * (dot(incoming.normal))
+            float _dot = Dot(incoming, normal) * 2f;
+            Vector3 _reflection = incoming - (normal * _dot);
+            return _reflection;
         }
 
         public static Vector3 Projection(Vector3 target, Vector3 position, Vector3 direction)
@@ -304,6 +309,7 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector3 v1, Vector3 v2)
         {
+            // I would perform the arithmetic inside the method to gain a couple of cycle
             return (v1 - v2).magnitude;
         }
     }
@@ -403,8 +409,6 @@ namespace Engine
 
         #region OPERATOR
 
-        // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
-
         public static Vector4 operator -(Vector4 v1, Vector4 v2)
         {
             float _x = v1.x - v2.x;
@@ -448,7 +452,7 @@ namespace Engine
                 return false;
         }
 
-        public static bool operator !=(Vector3 v1, Vector3 v2)
+        public static bool operator !=(Vector4 v1, Vector4 v2)
         {
             if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w)
                 return false;
