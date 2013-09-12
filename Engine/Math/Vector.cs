@@ -76,14 +76,18 @@ namespace Engine
         // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
         public override string ToString()
         {
-            //ijk sounds more like complex numbers
             return x + ", "+ y + ", "+ z;
         }
 
         public override bool Equals(object o)
         {
             // A real gamble if there ever was one, does this make any sense?
+            // Actually , guess what? not.
+            // Fact is you are casting to Vector2 even though this is for V3
+            // Also if the cast is not possible, it will crash at the cast for cast exception
+            // This is the difference between prefix and suffix casting (we will see later)
             Vector2 v2 = (Vector2)o;
+            // so from here either it is castable or your program stopped already
             if ((System.Object)v2 != null)
             {
                 // Is castable to Vector2
@@ -124,10 +128,8 @@ namespace Engine
         #region OPERATOR
         
         // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
-        // Here in order to gain efficiency you may want to perform the action inside
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
-           // return v1.Subtract(v2);
             float _x = v1.x - v2.x;
             float _y = v1.y - v2.y;
             float _z = v1.z - v2.z;
@@ -138,10 +140,9 @@ namespace Engine
         {
             return new Vector3(-v1.x, -v1.y, -v1.z);
         }
-        // Same here
+
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
-            //return v1.Add(v2);
             float _x = v1.x + v2.x;
             float _y = v1.y + v2.y;
             float _z = v1.z + v2.z;
@@ -304,11 +305,22 @@ namespace Engine
         {
             throw new NotImplementedException();       
         }
-        
+        /// <summary>
+        /// Returns the angle between v1 and v2
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static float Angle(Vector3 v1, Vector3 v2)
         {
-            float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
-            return Mathf.Acos(prod);
+            // Yes, but proper way would be:
+
+            Vector3 v1Norm = v1.Normalized();
+            Vector3 v2Norm = v2.Normalized();
+            //float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
+            float dot = Dot(v1Norm, v2Norm);
+            return Mathf.Acos(dot);
+            // Actually here, best would be to benchmark (test for speed) to see which one goes faster.
         }
 
         /// <summary>
@@ -340,7 +352,7 @@ namespace Engine
         {
             get
             {
-                return (float)(Math.Sqrt((x * x) + (y * y));
+                return (float)(Math.Sqrt((x * x) + (y * y)));
             }
         }
 
@@ -440,8 +452,11 @@ namespace Engine
         {
             // I truly, really, honestly assume that this is supposed to work like md5,
             // without the need of being cryptographically valid
+           
             Int64 number = x.GetHashCode() + y.GetHashCode();
             return (int)(number % Int32.MaxValue);
+            // Indeed, this is supposedely creating some kind of cryptographic version
+            // We actually won't need it.
         }
 
         #endregion
@@ -566,6 +581,8 @@ namespace Engine
         {
             // This rotates it exactly 90 degrees CCW
             return new Vector2(v1.y, -v1.x);
+            // Cross product is only defined in 3D. 
+            // 2D version is just a 3D with z = 0
         }
 
         /// <summary>
@@ -619,6 +636,7 @@ namespace Engine
 
         public static float Angle(Vector2 v1, Vector2 v2)
         {
+            // here same as 3D
             float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
             return Mathf.Acos(prod);
         }
