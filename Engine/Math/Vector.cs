@@ -81,46 +81,29 @@ namespace Engine
 
         public override bool Equals(object o)
         {
-            // A real gamble if there ever was one, does this make any sense?
-            // Actually , guess what? not.
-            // Fact is you are casting to Vector2 even though this is for V3
-            // Also if the cast is not possible, it will crash at the cast for cast exception
-            // This is the difference between prefix and suffix casting (we will see later)
-            Vector2 v2 = (Vector2)o;
-            // so from here either it is castable or your program stopped already
-            if ((System.Object)v2 != null)
+            if(o is Vector3) // Check if object is Vector3
             {
-                // Is castable to Vector2
-                if (v2.x == x && v2.y == y && z == 0)
-                    return true;
-                else
-                    return false;
+                return Equals((Vector3)o);
             }
-            else
-            {
-                // Is not castable to Vector3
-                Vector4 v4 = (Vector4)o;
-                if ((System.Object)v4 != null)
-                {
-                    // Is castable to Vector4
-                    if (v4.x == x && v4.y == y && v4.z == z && v4.w == 0)
-                        return true;
-                    else
-                        return false;
-                }
-                else
-                    return false;
-            }
+            return base.Equals(o);
         }
 
         public bool Equals(Vector3 vec)
         {
-            return this == vec;
+            return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z);
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                // Suitable nullity checks etc, of course :)
+                hash = hash * 23 + x.GetHashCode();
+                hash = hash * 23 + y.GetHashCode();
+                hash = hash * 23 + z.GetHashCode();
+                return hash;
+            }
         }
 
         #endregion
@@ -163,10 +146,22 @@ namespace Engine
 
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+            // Missing some details here for safety
+            /*if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
                 return true;
             else
+                return false;*/
+            if (Object.ReferenceEquals(v1, v2)) // both are actually the same object
+            {
+                return true;
+            }
+            //now check if one of them is not null
+            if (v1 == null || v2 == null)
+            {
                 return false;
+            }
+            // Finally perform verification
+            return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z);
         }
 
         public static bool operator !=(Vector3 v1, Vector3 v2)
@@ -467,7 +462,6 @@ namespace Engine
                 int hash = 17;
                 // Suitable nullity checks etc, of course :)
                 hash = hash * 23 + x.GetHashCode();
-                Console.WriteLine("Here");
                 hash = hash * 23 + y.GetHashCode();
                 return hash;
             }

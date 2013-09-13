@@ -27,7 +27,7 @@ namespace Engine
                 
                 ClientSize = new Size(width, height);
             }
-            App.SetProjection2D(width, height, OriginPosition.MiddleLeft);
+            App.SetProjection2D(width, height);
         }
 
         private void GameLoop()
