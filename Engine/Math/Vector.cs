@@ -453,10 +453,24 @@ namespace Engine
             // I truly, really, honestly assume that this is supposed to work like md5,
             // without the need of being cryptographically valid
            
-            Int64 number = x.GetHashCode() + y.GetHashCode();
-            return (int)(number % Int32.MaxValue);
+            //Int64 number = x.GetHashCode() + y.GetHashCode();
+            //return (int)(number % Int32.MaxValue);
             // Indeed, this is supposedely creating some kind of cryptographic version
-            // We actually won't need it.
+            // In fact, the method is used for Dictionary so we should come up with something fast and providing a chance of avoiding collision
+            // We probably won't use directly though but avoiding collision is important.
+            // For instance, I would think your way would get (1,0,0) and (0,1,0) to return the same value 
+            // Then the dictionary would get teh same value and store both object in the same "bucket"
+            // Let's make it so that it won't happen
+            // This is based on Jon Skeet answer on StackOverflow
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                // Suitable nullity checks etc, of course :)
+                hash = hash * 23 + x.GetHashCode();
+                Console.WriteLine("Here");
+                hash = hash * 23 + y.GetHashCode();
+                return hash;
+            }
         }
 
         #endregion

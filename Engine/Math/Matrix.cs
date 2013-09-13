@@ -25,21 +25,29 @@ namespace Engine
         public Matrix()
             : this(Matrix.Identity)
         {
-            throw new NotImplementedException();
+
         }
         public Matrix(Matrix m)
         {
             this._m11 = m._m11;
             this._m12 = m._m12;
             this._m13 = m._m13;
+            this._m14 = m._m14;
 
             this._m21 = m._m21;
             this._m22 = m._m22;
             this._m23 = m._m23;
+            this._m24 = m._m24;
 
             this._m31 = m._m31;
             this._m32 = m._m32;
             this._m33 = m._m33;
+            this._m34 = m._m34;
+            
+            this._m41 = m._m41;
+            this._m42 = m._m42;
+            this._m43 = m._m43;
+            this._m44 = m._m44;
         }
 
         public Matrix(Vector4 x, Vector4 y, Vector4 z, Vector4 w)

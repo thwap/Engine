@@ -9,8 +9,11 @@ namespace Engine
     {
         Loop _loop;
         bool _fullScreen = false;
+        int width = 400;
+        int height = 400;
         public Form1()
         {
+
             Loop _loop = new Loop(GameLoop);
             InitializeComponent();
             _openGLControl.InitializeContexts();
@@ -21,18 +24,19 @@ namespace Engine
             }
             else
             {
-                int width = 800;
-                int height = 600;
+                
                 ClientSize = new Size(width, height);
             }
-            App.SetProjection2D(100, 50);
+            App.SetProjection2D(width, height, OriginPosition.MiddleLeft);
         }
 
         private void GameLoop()
         {
             Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
-
+            Vector2 vec = new Vector2(1, 0);
+            int i = vec.GetHashCode();
+            Console.WriteLine("Out");
             _openGLControl.Refresh();
         }
         protected override void OnClientSizeChanged(EventArgs e)
