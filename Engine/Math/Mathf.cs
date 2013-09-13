@@ -116,35 +116,30 @@ namespace Engine
 
         public static float Atan(float angle)
         {
+            /*
+            arctan(x) = y/x * (1 + (2/3)*y + ((2*4)/(3*5))*y^2 + ((2*4*6)/(3*5*7))*y^3 ...)
+            where y = (x^2)/(1+x^2)
+            */
+            float iterationCount = 1000;
+            float y = (angle * angle) / (1 + (angle * angle));
 
-            int sign = 0;
-            float temp = angle;
-            float final = 0;
-            for (int i = 1; i <= 65; i += 2)
+            float result = 1 + ((2.0f / 3.0f) * y);
+            //the first two iterations but simpler to insert them here rather than the loop itself
+
+            for (int i = 1; i < iterationCount; ++i)
             {
-                float tempVal = temp;
-                if (i > 1)
+                float tempY = y;
+                float tempVal = 2.0f / 3.0f;
+                for (int i2 = 1; i2 <= i; ++i2)
                 {
-                    for (int y = 1; y < i; ++y)
-                    {
-                        tempVal *= temp;
-                    }
-                    tempVal /= i;
+                    tempVal *= ((2.0f + (i2 * 2)) / (3.0f + (i2 * 2)));
+                    tempY *= y;
                 }
-                if (sign == 0)
-                {
-                    final += tempVal;
-                    sign = 1;
-                }
-                else
-                {
-                    final -= tempVal;
-                    sign = 0;
-                }
-                temp = angle;
-                Console.WriteLine(final);
+                tempVal *= tempY;
+                result += tempVal;
             }
-            return final;
+            result *= y / angle;
+            return result;
         }
 
         public static float Atan2(float y, float x)
@@ -250,11 +245,30 @@ namespace Engine
 
         }
 
+        private static float Ex(float x) //e to the power of x. Created for the Pow function
+        {
+            float iterationCount = 10;
+            //Cannot handle many iterations. Probably because of the factorial function.
+
+            float result = 1.0f + x;
+            //Simpler to input the first two iterations here.
+
+            for(int i = 1; i <= iterationCount; ++i)
+            {
+                float tempVal = x;
+                for(int y = 1; y <= i; ++y)
+                {
+                    tempVal *= x;
+                }
+                tempVal /= factorial(i+1);
+                result += tempVal;
+            }
+            return result;
+        }
 
         public static float Pow(float value, float exp)
         {
-            float final = exp * Log(value, 10);
-            return final;
+            return Ex(exp * Ln(value));
         }
 
         public static float Log(float value, float baseLog)
@@ -263,27 +277,54 @@ namespace Engine
             if (baseLog == 10) return (float)(Ln(value) / 2.30258509299);
             if (baseLog == Math.E) return Ln(value);
             else return Ln(value) / Ln(baseLog);
-           
-
         }
 
         private static float Ln(float value)
         {
-
-            float result = (value - 1) / (value + 1);
-            float multi = result;
-            float coeff = result * result;
-            for (int i = 3; i < 65; i += 2)
+            int iterationCount = 1000;
+            float result = 0;
+            float multi;
+            if (value <= 2 && value > 0) //0 < x <= 2. Supposedly more effective in this range but is certainly less accurate even with a thousand iterations.
             {
-                multi *= coeff;
-                result += (1.0f / i) * multi;
+                int signSwitch = 0; 
+                //signSwitch controls whether the value from each iteration is added or subtracted from the final result. Switches on every loop.
+
+                for (int i = 1; i <= iterationCount; ++i)
+                {
+                    multi = value - 1; 
+
+                    for (int y = 2; y <= i; ++y) //(x-1) to the power of i.
+                    {
+                        multi *= (value - 1);
+                    }
+                    if (signSwitch == 0)
+                    {
+                        result += multi / i; // The result from the loop is either added or subtracted from the final result.
+                        signSwitch = 1; //Switching sign
+                    }
+                    else
+                    {
+                        result -= multi / i;
+                        signSwitch = 0; //Switching sign
+                    }
+                }
             }
-            return 2 * result;
+            else if (value > 0)
+            {
+
+                result = (value - 1) / (value + 1);
+                multi = result;
+                float coeff = result * result;
+                for (int i = 3; i < iterationCount; i += 2)
+                {
+                    multi *= coeff;
+                    result += multi / i;
+                }
+                result *= 2;
+            }
+            return result;
         }
         
-
-        
-
         public static float Sqrt(float value)
         {
             float x = value / 2;
