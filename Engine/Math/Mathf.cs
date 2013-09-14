@@ -9,11 +9,17 @@ namespace Engine
     public static class Mathf
     {
         #region CLASS_VARIABLE
+        static Dictionary<float, float> sinList = new Dictionary<float, float>();
+        static Dictionary<float, float> cosList = new Dictionary<float, float>();
+        static Mathf()
+        {
+            // Adding to tables
+        }
         //PI, PiOver2, PiOver4, Epsilon,Infinity, NegInfinity, Deg2Rad, Rad2Deg
         public const float PI = (float)Math.PI;
         public const float PiOver2 = PI / 2;
         public const float PiOver4 = PI / 4;
-        public const float Epsilon = 0.0000001f;
+        public const float Epsilon = 0.00001f;
         public const float Infinity = float.PositiveInfinity;
         public const float NegInfinity = float.NegativeInfinity;
         public const float Deg2Rad = PI / 180f;
@@ -39,12 +45,24 @@ namespace Engine
 
         public static float Sin(float angle)
         {
-            angle = parseAngle(angle);
-
+            /*angle = parseAngle(angle);
+            // Will likely never happen
             if (angle == 0 || angle == PI) return 0;
             if (angle == PiOver2) return 1;
-            if (angle == 3 * PiOver4) return -1;
+            if (angle == 3 * PiOver4) return -1;*/
+            
+            angle = angle < Epsilon ? 0.0f : angle;
+            if (angle == 0) return 0.0f;
 
+            float _angle = 1 - angle;
+            _angle = _angle < 0 ? -_angle : _angle; 
+            angle = _angle < Epsilon ? 1.0f : angle;
+            if (angle == 1) return 1.0f;
+            
+            if (sinList.ContainsKey(angle))
+            {
+                return sinList[angle];
+            }
 
             float value = angle, divisor = 6, xpower = -angle * angle;
             float dividend = xpower * angle;
@@ -66,7 +84,7 @@ namespace Engine
             if (angle == 0) return 1;
             if (angle == PI) return -1;
             if (angle == PiOver2 || angle == PiOver4 * 3) return 0;
-
+            
 
             float value = 1, divisor = 1, xpower = -angle * angle;
             float dividend = 1;
@@ -74,7 +92,12 @@ namespace Engine
             {
                 dividend *= i * (i + 1);
                 divisor *= xpower;
-                value += divisor / dividend;
+                float _temp = divisor / dividend;
+                
+                if (Abs(_temp) > Epsilon)
+                    value += divisor / dividend;
+                else
+                    return value;
             }
             return value;
 

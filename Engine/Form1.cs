@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Tao.OpenGl;
@@ -34,9 +35,8 @@ namespace Engine
         {
             Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
-            Vector2 vec = new Vector2(1, 0);
-            int i = vec.GetHashCode();
-            Console.WriteLine("Out");
+
+            
             _openGLControl.Refresh();
         }
         protected override void OnClientSizeChanged(EventArgs e)
