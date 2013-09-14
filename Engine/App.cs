@@ -10,6 +10,15 @@ namespace Engine
 {
     public class App
     {
+        public enum Projection
+        {
+            Center,
+            UpperLeft,
+            UpperRight,
+            LowerLeft,
+            LowerRight
+            
+        }
         public static OpenGLControl Init()
         {
             OpenGLControl _openGLControl = new OpenGLControl();
@@ -29,19 +38,39 @@ namespace Engine
             _openGLControl.TabIndex = 0;
             return _openGLControl;
         }
-        public static void SetProjection2D(float width, float height)
+        public static void SetProjection2D(float width, float height, Projection projection = Projection.Center)
         {
-            float halfWidth = width / 2;
-            float halfHeight = height / 2;
+            switch (projection)
+            {
+                case Projection.Center:
+                    float halfWidth = width / 2;
+                    float halfHeight = height / 2;
+                    SetProjection2D(-halfWidth, halfWidth, -halfHeight, halfHeight);
+                    break;
+                case Projection.UpperLeft:
+                    SetProjection2D(0, width, height, 0);
+                    break;
+                case Projection.UpperRight:
+                    SetProjection2D(width, 0, height, 0);
+                    break;
+                case Projection.LowerLeft:
+                    SetProjection2D(0, width, 0, height);
+                    break;
+                case Projection.LowerRight:
+                    SetProjection2D(width, 0, 0, height);
+                    break;
+            }
+        }
+        public static void SetProjection2D(float left, float right, float bottom, float top)
+        {
             // Set a new matrix mode
             Gl.glMatrixMode(Gl.GL_PROJECTION);
             // Clear the matrix
             Gl.glLoadIdentity();
             // Create the viewing box
-            Gl.glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, -100, 100);
+            Gl.glOrtho(left, right, bottom, top, -100, 100);
             Gl.glMatrixMode(Gl.GL_MODELVIEW);
             Gl.glLoadIdentity();
-            //Glu.gluOrtho2D(-halfWidth, halfWidth, -halfHeight, halfHeight);
         }
     }
     public class Screen
