@@ -8,17 +8,19 @@ using Tao.OpenGl;
 
 namespace Engine
 {
+    // I put it outside to save one level
+    // from App.Projection.Value t Projection.Value
+    public enum Projection
+    {
+        Center,
+        UpperLeft,
+        UpperRight,
+        LowerLeft,
+        LowerRight
+
+    }
     public class App
     {
-        public enum Projection
-        {
-            Center,
-            UpperLeft,
-            UpperRight,
-            LowerLeft,
-            LowerRight
-            
-        }
         public static OpenGLControl Init()
         {
             OpenGLControl _openGLControl = new OpenGLControl();
