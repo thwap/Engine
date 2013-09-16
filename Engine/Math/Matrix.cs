@@ -99,10 +99,8 @@ namespace Engine
         // Needs to return a Vector3
         public Vector3 GetTranslation()
         {
-            float mX = _m11;
-            float mY = _m22;
-            float mZ = _m33;
-            throw new NotImplementedException();
+            Vector3 translationResult = new Vector3(_m11, _m22, _m33);
+            return translationResult;
         }
 
         public void SetScale(Vector3 scale)
