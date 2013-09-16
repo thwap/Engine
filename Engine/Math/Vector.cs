@@ -299,8 +299,7 @@ namespace Engine
         public static Vector3 Projection(Vector3 target, Vector3 direction)
         {
 
-            return Dot(target, direction) * target.Normalized();
-            //throw new NotImplementedException();       
+            return Dot(target.Normalized(), direction) * target.Normalized();    
         }
         /// <summary>
         /// Returns the angle between v1 and v2
@@ -639,9 +638,9 @@ namespace Engine
             return _reflection;
         }
 
-        public static Vector3 Projection(Vector3 target, Vector3 position, Vector3 direction)
+        public static Vector2 Projection(Vector2 target, Vector2 direction)
         {
-            throw new NotImplementedException();
+			return Dot(target.Normalized(), direction) * target.Normalized(); 
         }
 
         public static float Angle(Vector2 v1, Vector2 v2)
