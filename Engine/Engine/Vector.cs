@@ -73,12 +73,20 @@ namespace Engine
         #endregion
 
         #region OVERRIDE
-        // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
+        /// <summary>
+        /// Returns the vector information as a string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return x + ", "+ y + ", "+ z;
         }
 
+        /// <summary>
+        /// Returns true if the Vector is equal to the parameter
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public override bool Equals(object o)
         {
             if(o is Vector3) // Check if object is Vector3
@@ -215,7 +223,7 @@ namespace Engine
         }
 
         /// <summary>
-        /// Normalizes this vector to unity length
+        /// Normalizes this vector to unit length
         /// </summary>
         public void Normalize()
         {
