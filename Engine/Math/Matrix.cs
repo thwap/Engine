@@ -113,24 +113,15 @@ namespace Engine
         }
 		public void SetScale(float x, float y, float z)
 		{
-            // Those are not the values for the scaling
             _m11 = x;
-            _m21 = y;
-            _m31 = z;
+            _m22 = y;
+            _m33 = z;
 		}
-        // You do not want to return the length of the vector here
-        // You just want to return the vector3 containing the scale values _m11, _m22, _m33
         public Vector3 GetScale()
         {
-            Vector3 result = new Vector3();
-
-            /*result.x = (new Vector3(_m11, _m12, _m13)).Length();
-            result.y = (new Vector3(_m21, _m22, _m23)).Length();
-            result.z = (new Vector3(_m31, _m32, _m33)).Length();*/
-            
+            Vector3 result = new Vector3(_m11, _m22, _m33);
             return result;
         }
-
         public void SetRotate(Vector3 axis, float angle)
         {
             /*double angleSin = Math.Sin(angle);
