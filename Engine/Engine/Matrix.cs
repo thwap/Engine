@@ -86,21 +86,20 @@ namespace Engine
 		}
         public void SetTranslation(Vector3 translation)
         {
-            _m13 = translation.x;
-            _m23 = translation.y;
-            _m33 = translation.z;
+            _m14 = translation.x;
+            _m24 = translation.y;
+            _m34 = translation.z;
         }
 		public void SetTranslation(float x, float y, float z)
         {
-            _m13 = x;
-            _m23 = y;
-            _m33 = z;
+            _m14 = x;
+            _m24 = y;
+            _m34 = z;
         }
         // Needs to return a Vector3
         public Vector3 GetTranslation()
         {
-            Vector3 translationResult = new Vector3(_m11, _m22, _m33);
-            return translationResult;
+            return new Vector3(_m14, _m24, _m34);
         }
 
         public void SetScale(Vector3 scale)
@@ -117,41 +116,21 @@ namespace Engine
 		}
         public Vector3 GetScale()
         {
-            Vector3 result = new Vector3(_m11, _m22, _m33);
-            return result;
+            return new Vector3(_m11, _m22, _m33);
         }
-        public void SetRotate(Vector3 axis, float angle)
+        public void SetRotateZ(float angle, Matrix compositeMatrix)
         {
-            /*double angleSin = Math.Sin(angle);
-            double angleCos = Math.Cos(angle);
-            double a = 1.0 - angleCos;
-            double ax = a * axis.x;
-            double ay = a * axis.y;
-            double az = a * axis.z;
-
-            _m11 = ax * axis.x + angleCos;
-            _m12 = ax * axis.y + axis.z * angleSin;
-            _m13 = ax * axis.z - axis.y * angleSin;
-
-            _m21 = ay * axis.x - axis.z * angleSin;
-            _m22 = ay * axis.y + angleCos;
-            _m23 = ay * axis.z + axis.x * angleSin;
-            
-            _m31 = az * axis.x + axis.y * angleSin;
-            _m32 = az * axis.y - axis.x * angleSin;
-            _m33 = az * axis.z + angleCos;*/
-            /* Make it simple, you only need to use cos and sin once actually since we are rotating around the z axis only
-            * cos sin  0 0
-            * -sin cos 0 0
-             * 0    0  1 0
-             * 0    0  0 1
-             * */
+            Matrix m = new Matrix();
+            angle = angle * Mathf.Deg2Rad;
+            float c = Mathf.Cos(angle);
+            float s = Mathf.Sin(angle);
+            m._m11 = c;
+            m._m12 = -s;
+            m._m21 = s;
+            m._m22 = c;
+            compositeMatrix =  MulMatrix(m, compositeMatrix);
         }
-		
-        public void SetRotate(float x, float y, float z, float angle)
-		{
-            //Same as above
-		}
+
         public float Determinate()
         {
             throw new NotImplementedException();
