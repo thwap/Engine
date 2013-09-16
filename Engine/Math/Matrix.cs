@@ -108,8 +108,8 @@ namespace Engine
         public void SetScale(Vector3 scale)
         {
             _m11 = scale.x;
-            _m21 = scale.y;
-            _m31 = scale.z;
+            _m22 = scale.y;
+            _m33 = scale.z;
         }
 		public void SetScale(float x, float y, float z)
 		{
