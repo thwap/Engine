@@ -27,7 +27,13 @@ namespace Engine
         #endregion
 
         #region CLASS_METHODS
+        /// <summary>
+        /// Calculates the absolute value of f
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public static float Abs(float f)
+
         {
             if (f >= 0) return f;
             return -f;
@@ -43,6 +49,11 @@ namespace Engine
             return angle;
         }
 
+        /// <summary>
+        /// Calculates sin(angle)
+        /// </summary>
+        /// <param name="angle">Angle in radians</param>
+        /// <returns></returns>
         public static float Sin(float angle)
         {
             /*angle = parseAngle(angle);
@@ -77,7 +88,11 @@ namespace Engine
             return value;
         }
 
-
+        /// <summary>
+        /// Calculates cos(angle)
+        /// </summary>
+        /// <param name="angle">Angle in radians</param>
+        /// <returns></returns>
         public static float Cos(float angle)
         {
             angle = parseAngle(angle);
@@ -103,6 +118,11 @@ namespace Engine
 
         }
 
+        /// <summary>
+        /// Calculates tan(angle)
+        /// </summary>
+        /// <param name="angle">Angle in radians</param>
+        /// <returns></returns>
         public static float Tan(float angle)
         {
             float cos = Cos(angle);
@@ -115,6 +135,11 @@ namespace Engine
             return sin / cos;
         }
 
+        /// <summary>
+        /// Calculates arcsin(angle)
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns>Angle in radians</returns>
         public static float Asin(float angle)
         {
             angle = parseAngle(angle);
@@ -132,11 +157,21 @@ namespace Engine
             return result;
         }
 
+        /// <summary>
+        /// Calculates arccos(angle)
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns>Angle in radians</returns>
         public static float Acos(float angle)
         {
             return PiOver2 - Asin(angle);
         }
 
+        /// <summary>
+        /// Calculates arctan(angle)
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns>Angle in radians</returns>
         public static float Atan(float angle)
         {
             /*
@@ -181,18 +216,34 @@ namespace Engine
         }
 
         #region MIN_MAX
+        /// <summary>
+        /// Checks which parameter is greater
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Value of greater parameter</returns>
         public static float Max(float a, float b)
         {
             if (a > b) return a;
             return b;
         }
 
+        /// <summary>
+        /// Rounds a float into nearest integer
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Rounded integer value</returns>
         public static int Round(float value)
         {
             value += 0.5f;
             return (int)value;
         }
 
+        /// <summary>
+        /// Finds the greatest value in an array of values
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns>Greatest value</returns>
         public static float Max(params float[] values)
         {
             float max = values[0];
@@ -203,14 +254,23 @@ namespace Engine
             return max;
         }
 
-
+        /// <summary>
+        /// Checks which parameter is smaller
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Smaller parameter</returns>
         public static float Min(float a, float b)
         {
             if (a < b) return a;
             return b;
         }
 
-
+        /// <summary>
+        /// Finds the smallest value in an array of values
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns>Smallest value</returns>
         public static float Min(params float[] values)
         {
             float min = values[0];
@@ -289,6 +349,7 @@ namespace Engine
             return result;
         }
 
+        
         public static float Pow(float value, float exp)
         {
             return Ex(exp * Ln(value));
@@ -355,10 +416,18 @@ namespace Engine
             return x;
         }
 
+        /// <summary>
+        /// Calculates the next value from current value towards target value with specified step size.
+        /// Negative step size moves away from target.
+        /// </summary>
+        /// <param name="current">Current value</param>
+        /// <param name="target">Target value</param>
+        /// <param name="step">Step size</param>
+        /// <returns></returns>
         public static float MoveTowards(float current, float target, float step)
         {
-            if (Math.Abs(current - target) < step) return target;
-            return current + (current - target) / Math.Abs(current - target) * step;
+            if (Abs(current - target) < step) return target;
+            return current + (current - target) / Abs(current - target) * step;
         }
 
 
