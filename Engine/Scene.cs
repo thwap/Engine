@@ -8,17 +8,18 @@ namespace Engine
 {
     class Scene : EngineObject
     {
+        private List<GameObject> _gameobjects;
         public virtual void initScene()
         {  
 
         }
-        public virtual void Run()
+        private void Run()
         {
-
+            // loops trought list and updates objects
         }
         public virtual void Render()
         {
-
+            // loops trough objects and if object has "updated" rendedrs it
         }
     }
 }
