@@ -415,38 +415,15 @@ namespace Engine
 
         public override bool Equals(object o)
         {
-            Vector3 v3 = (Vector3)o;
-            if ((System.Object)v3 != null)
-            {
-                // Is castable to Vector3
-                if (v3.x == x && v3.y == y && v3.z == 0)
-                    return true;
-                else
-                    return false;
-            }
+            if (o is Vector2)
+                return o.Equals(this);
             else
-            {
-                // Is not castable to Vector3
-                Vector4 v4 = (Vector4)o;
-                if ((System.Object)v4 != null)
-                {
-                    // Is castable to Vector4
-                    if (v4.x == x && v4.y == y && v4.z == 0 && v4.w == 0)
-                        return true;
-                    else
-                        return false;
-                }
-                else
-                    return false;
-            }
+                return base.Equals(o);
         }
 
         public bool Equals(Vector2 vec)
         {
-            // Tests value equality, should I test reference equality instead?
-            if ((System.Object)vec == null)
-                return false;
-            else if (vec.GetHashCode() == GetHashCode())
+            if (this.x == vec.x && this.y == vec.y)
                 return true;
             else
                 return false;
@@ -454,18 +431,6 @@ namespace Engine
 
         public override int GetHashCode()
         {
-            // I truly, really, honestly assume that this is supposed to work like md5,
-            // without the need of being cryptographically valid
-           
-            //Int64 number = x.GetHashCode() + y.GetHashCode();
-            //return (int)(number % Int32.MaxValue);
-            // Indeed, this is supposedely creating some kind of cryptographic version
-            // In fact, the method is used for Dictionary so we should come up with something fast and providing a chance of avoiding collision
-            // We probably won't use directly though but avoiding collision is important.
-            // For instance, I would think your way would get (1,0,0) and (0,1,0) to return the same value 
-            // Then the dictionary would get teh same value and store both object in the same "bucket"
-            // Let's make it so that it won't happen
-            // This is based on Jon Skeet answer on StackOverflow
             unchecked // Overflow is fine, just wrap
             {
                 int hash = 17;
@@ -744,7 +709,6 @@ namespace Engine
         // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
         public override string ToString()
         {
-            // Decided that some units are better than nothing
             return x + "x, " + y + "y, " + z + "z, " + w + "w";
         }
 
@@ -753,7 +717,7 @@ namespace Engine
             return base.Equals(o);
         }
 
-        public bool Equals(Vector3 vec)
+        public bool Equals(Vector4 vec)
         {
             throw new NotImplementedException();
         }
@@ -823,7 +787,7 @@ namespace Engine
         #region ARITHMETIC
 
         /// <summary>
-        /// Returns the sum vector of this and the parameter
+        /// Returns the sum vector of this vector and the parameter
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
@@ -837,7 +801,7 @@ namespace Engine
         }
 
         /// <summary>
-        /// Returns a vector that is this minus the parameter
+        /// Returns a vector that is this vector minus the parameter
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
@@ -926,7 +890,6 @@ namespace Engine
         /// <returns></returns>
         public static Vector4 Reflect(Vector4 incoming, Vector4 normal)
         {
-            // Fixed this too. Had the direction of incoming reversed. -- K.S.
             float _dot = Dot(incoming, normal) * 2f;
             Vector4 _reflection = incoming - (normal * _dot);
             return _reflection;
@@ -934,7 +897,6 @@ namespace Engine
 
         public static Vector4 Projection(Vector4 target, Vector4 position, Vector4 direction)
         {
-
             throw new NotImplementedException();
         }
 
@@ -952,7 +914,6 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector4 v1, Vector4 v2)
         {
-            // return (v1 - v2).magnitude;
             return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z) + (v1.w - v2.w));
         }
 
