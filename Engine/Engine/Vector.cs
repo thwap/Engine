@@ -79,7 +79,7 @@ namespace Engine
         /// <returns></returns>
         public override string ToString()
         {
-            return x + ", "+ y + ", "+ z;
+            return x + "x, "+ y + "y, "+ z + "z";
         }
 
         /// <summary>
@@ -174,10 +174,17 @@ namespace Engine
 
         public static bool operator !=(Vector3 v1, Vector3 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+            if (Object.ReferenceEquals(v1, v2))
+            {
                 return false;
-            else
+            }
+
+            if (v1 == null || v2 == null)
+            {
                 return true;
+            }
+
+            return !((v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z));
         }
         #endregion
 
@@ -335,8 +342,6 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector3 v1, Vector3 v2)
         {
-            // I would perform the arithmetic inside the method to gain a couple of cycle
-            // return (v1 - v2).magnitude; // Here comes:
             return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z));
         }
 
@@ -398,8 +403,8 @@ namespace Engine
         public static readonly Vector2 RIGHT = new Vector2(1, 0);
         public static readonly Vector2 UP = new Vector2(0, 1);
         public static readonly Vector2 DOWN = new Vector2(0, -1);
-        public static readonly Vector2 FORWARD = new Vector2(0, 0); // Keep or remove?
-        public static readonly Vector2 BACK = new Vector2(0, 0);    // Keep or remove?
+        public static readonly Vector2 FORWARD = new Vector2(0, 0);
+        public static readonly Vector2 BACK = new Vector2(0, 0);
         public static readonly Vector2 ZERO = new Vector2(0, 0);
         public static readonly Vector2 ONE = new Vector2(1, 1);
 
@@ -409,7 +414,6 @@ namespace Engine
         // Override for ToString(), Equals(object o), Equals(Vector3 vec) GetHashCode()
         public override string ToString()
         {
-            // Decided that some units are better than nothing
             return x + "x, " + y + "y";
         }
 
@@ -478,20 +482,32 @@ namespace Engine
             return v1;
         }
 
-        public static bool operator ==(Vector2 v1, Vector2 v2)      // Equality
+        public static bool operator ==(Vector2 v1, Vector2 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y)
+            if (Object.ReferenceEquals(v1, v2))
+            {
                 return true;
-            else
+            }
+            if (v1 == null || v2 == null)
+            {
                 return false;
+            }
+            return (v1.x == v2.x) && (v1.y == v2.y);
         }
 
-        public static bool operator !=(Vector2 v1, Vector2 v2)      // Inequality
+        public static bool operator !=(Vector2 v1, Vector2 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y)
+            if (Object.ReferenceEquals(v1, v2))
+            {
                 return false;
-            else
+            }
+
+            if (v1 == null || v2 == null)
+            {
                 return true;
+            }
+
+            return !((v1.x == v2.x) && (v1.y == v2.y));
         }
 
         #endregion
@@ -559,12 +575,19 @@ namespace Engine
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static Vector2 Cross(Vector2 v1)
+        public static Vector3 Cross(Vector2 v1, Vector2 v2)
         {
             // This rotates it exactly 90 degrees CCW
-            return new Vector2(v1.y, -v1.x);
+            // return new Vector2(v1.y, -v1.x);
             // Cross product is only defined in 3D. 
             // 2D version is just a 3D with z = 0
+            
+            // OK, here comes:
+            float _x = 0;
+            float _y = 0;
+            float _z = v1.x * v2.y - v2.x * v1.y;
+            return new Vector3(_x, _y, _z);
+ 
         }
 
         /// <summary>
