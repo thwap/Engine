@@ -133,21 +133,56 @@ namespace Engine
 
         public float Determinate()
         {
-            throw new NotImplementedException();
+            float determinate =
+                _m11 * _m22 * _m33 * _m44 + _m11 * _m23 * _m34 * _m42 + _m11 * _m24 * _m32 * _m43
+                + _m12 * _m21 * _m34 * _m43 + _m12 * _m23 * _m31 * _m44 + _m12 * _m24 * _m33 * _m41
+                + _m13 * _m21 * _m32 * _m44 + _m13 * _m22 * _m34 * _m41 + _m13 * _m24 * _m31 * _m42
+                + _m14 * _m21 * _m33 * _m42 + _m14 * _m22 * _m31 * _m43 + _m14 * _m23 * _m32 * _m41
+                - _m11 * _m22 * _m34 * _m43 - _m11 * _m23 * _m32 * _m44 - _m11 * _m24 * _m33 * _m42
+                - _m12 * _m21 * _m33 * _m44 - _m12 * _m23 * _m34 * _m41 - _m12 * _m24 * _m31 * _m43
+                - _m13 * _m21 * _m34 * _m42 - _m13 * _m22 * _m31 * _m44 - _m13 * _m24 * _m32 * _m41
+                - _m14 * _m21 * _m32 * _m43 - _m14 * _m22 * _m33 * _m41 - _m14 * _m23 * _m31 * _m42;
+            return determinate;
         }
 
         public Matrix Inverse()
         {
-            throw new NotImplementedException();
+            Matrix m = new Matrix();
+      
+            float determinant = Determinate();
+
+
+            if (determinant != 0)
+            {
+                m._m11 = _m22 * _m33 * _m44 + _m23 * _m34 * _m42 + _m24 * _m32 * _m43 - _m22 * _m34 * _m43 - _m23 * _m32 * _m44 - _m24 * _m33 * _m42;
+                m._m12 = _m12 * _m34 * _m43 + _m13 * _m32 * _m44 + _m14 * _m33 * _m42 - _m12 * _m33 * _m44 - _m13 * _m34 * _m42 - _m14 * _m32 * _m43;
+                m._m13 = _m12 * _m23 * _m44 + _m13 * _m24 * _m42 + _m14 * _m22 * _m43 - _m12 * _m24 * _m43 - _m13 * _m22 * _m44 - _m14 * _m23 * _m42;
+                m._m14 = _m12 * _m24 * _m33 + _m13 * _m22 * _m34 + _m14 * _m23 * _m32 - _m12 * _m23 * _m34 - _m13 * _m24 * _m32 - _m14 * _m22 * _m33;
+                m._m21 = _m21 * _m34 * _m43 + _m23 * _m31 * _m44 + _m24 * _m33 * _m41 - _m21 * _m33 * _m44 - _m23 * _m34 * _m41 - _m24 * _m31 * _m43;
+                m._m22 = _m11 * _m33 * _m44 + _m13 * _m34 * _m41 + _m14 * _m31 * _m43 - _m11 * _m34 * _m43 - _m13 * _m31 * _m44 - _m14 * _m33 * _m41;
+                m._m23 = _m11 * _m24 * _m43 + _m13 * _m21 * _m44 + _m14 * _m23 * _m41 - _m11 * _m23 * _m44 - _m13 * _m24 * _m41 - _m14 * _m21 * _m43;
+                m._m24 = _m11 * _m23 * _m34 + _m13 * _m24 * _m31 + _m14 * _m21 * _m33 - _m11 * _m24 * _m33 - _m13 * _m21 * _m34 - _m14 * _m23 * _m31;
+                m._m31 = _m21 * _m32 * _m44 + _m22 * _m34 * _m41 + _m24 * _m31 * _m42 - _m21 * _m34 * _m42 - _m22 * _m31 * _m44 - _m24 * _m32 * _m41;
+                m._m32 = _m11 * _m34 * _m42 + _m12 * _m31 * _m44 + _m14 * _m32 * _m41 - _m11 * _m32 * _m44 - _m12 * _m34 * _m41 - _m14 * _m31 * _m42;
+                m._m33 = _m11 * _m22 * _m44 + _m12 * _m24 * _m41 + _m14 * _m21 * _m42 - _m11 * _m24 * _m42 - _m12 * _m21 * _m44 - _m14 * _m22 * _m41;
+                m._m34 = _m11 * _m24 * _m32 + _m12 * _m21 * _m34 + _m14 * _m22 * _m31 - _m11 * _m22 * _m34 - _m12 * _m24 * _m31 - _m14 * _m21 * _m32;
+                m._m41 = _m21 * _m33 * _m42 + _m22 * _m31 * _m43 + _m23 * _m32 * _m41 - _m21 * _m32 * _m43 - _m22 * _m33 * _m41 - _m23 * _m31 * _m42;
+                m._m42 = _m11 * _m32 * _m43 + _m12 * _m33 * _m41 + _m13 * _m31 * _m42 - _m11 * _m33 * _m42 - _m12 * _m31 * _m43 - _m13 * _m32 * _m41;
+                m._m43 = _m11 * _m23 * _m42 + _m12 * _m21 * _m43 + _m13 * _m22 * _m41 - _m11 * _m22 * _m43 - _m12 * _m23 * _m41 - _m13 * _m21 * _m42;
+                m._m44 = _m11 * _m22 * _m33 + _m12 * _m23 * _m31 + _m13 * _m21 * _m32 - _m11 * _m23 * _m32 - _m12 * _m21 * _m33 - _m13 * _m22 * _m31;
+            }
+
+            return m;
         }
 
-        public static Vector3 operator *(Vector3 v, Matrix m)
+        public static Vector4 operator *(Vector4 v, Matrix m)
         {
-            // review for 4x4 matrix
-            /*return new Vector3(v.x * m._m11 + v.Y * m._m21 + v.Z * m._m31 + m._m41,
-                               v.x * m._m12 + v.Y * m._m22 + v.Z * m._m32 + m._m42,
-                               v.x * m._m13 + v.Y * m._m23 + v.Z * m._m33 + m._m43);*/
-            throw new NotImplementedException();
+            return new Vector4(v.x * m._m11 + v.y * m._m21 + v.z * m._m31 + m._m41,
+                               v.x * m._m12 + v.y * m._m22 + v.z * m._m32 + m._m42,
+                               v.x * m._m13 + v.y * m._m23 + v.z * m._m33 + m._m43,
+                               v.x * m._m14 + v.y * m._m24 + v.z * m._m34 + m._m44
+                               );
+
         }
     }
 }
