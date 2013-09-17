@@ -222,6 +222,13 @@ namespace Engine
             return a == b;
         }
 
+        /// <summary>
+        /// Checks if two given float values are in a given tolerance of each other.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="tolerance"></param>
+        /// <returns>True if the values are in a given tolerance of each other, false if not.</returns>
         public static bool Approximate(float a, float b, float tolerance)
         {
             return (Abs(a - b) <= tolerance);
