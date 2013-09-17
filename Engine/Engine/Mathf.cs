@@ -338,7 +338,7 @@ namespace Engine
         /// <summary>
         /// E to the power of x
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">Exponent</param>
         /// <returns>E to the power of x</returns>
         private static float Ex(float x) //e to the power of x. Created for the Pow function
         {
@@ -364,9 +364,9 @@ namespace Engine
         /// <summary>
         /// Power function
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="exp"></param>
-        /// <returns>Power</returns>
+        /// <param name="value">Value to be raised</param>
+        /// <param name="exp">Exponent</param>
+        /// <returns></returns>
         public static float Pow(float value, float exp)
         {
             return Ex(exp * Ln(value));
@@ -377,7 +377,7 @@ namespace Engine
         /// </summary>
         /// <param name="value"></param>
         /// <param name="baseLog"></param>
-        /// <returns>Positive values, base value</returns>
+        /// <returns></returns>
         public static float Log(float value, float baseLog)
         {
 
@@ -386,6 +386,11 @@ namespace Engine
             else return Ln(value) / Ln(baseLog);
         }
 
+        /// <summary>
+        /// Natural logarithm for the given value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private static float Ln(float value)
         {
             int iterationCount = 1000;
@@ -431,7 +436,11 @@ namespace Engine
             }
             return result;
         }
-        
+        /// <summary>
+        /// Calculates squareroot for the given value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static float Sqrt(float value)
         {
             float x = value / 2;
@@ -453,13 +462,26 @@ namespace Engine
             return current + (current - target) / Abs(current - target) * step;
         }
 
-
+        /// <summary>
+        /// Performs linear interpolation with the give ratio
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="target"></param>
+        /// <param name="ratio"></param>
+        /// <returns></returns>
         public static float Lerp(float current, float target, float ratio)
         {
             return current + (target - current) * ratio;
 
         }
 
+        /// <summary>
+        /// Clamps the value for the given minimum and maximum
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static int Clamp(int value, int min, int max)
         {
             if (value > max)
@@ -472,7 +494,13 @@ namespace Engine
             }
             return value;
         }
-
+        /// <summary>
+        /// Clamps the value for the given minimum and maximum
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static float Clamp(float value, float min, float max)
         {
             if (value > max)
