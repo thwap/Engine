@@ -76,13 +76,14 @@ namespace Engine
 
             return result;
         }
-			
-		public static Matrix MulMatrix(Matrix mA, Matrix mB)
+		/// <summary>
+		/// Multiply mA by mB and stores into mB
+		/// </summary>
+		/// <param name="mA"></param>
+		/// <param name="mB"></param>
+		public static void MulMatrix(Matrix mA, Matrix mB)
 		{
-            Matrix matrixResult = mA * mB;
-            // Matrix matrixResult2 = Matrix.Multiply(mA, mB);
-
-            return matrixResult;   
+            mB = mA * mB; 
 		}
         public void SetTranslation(Vector3 translation)
         {
@@ -118,7 +119,7 @@ namespace Engine
         {
             return new Vector3(_m11, _m22, _m33);
         }
-        public void SetRotateZ(float angle, Matrix compositeMatrix)
+        public void SetRotateZ(float angle)
         {
             Matrix m = new Matrix();
             angle = angle * Mathf.Deg2Rad;
@@ -128,7 +129,7 @@ namespace Engine
             m._m12 = -s;
             m._m21 = s;
             m._m22 = c;
-            compositeMatrix =  MulMatrix(m, compositeMatrix);
+            MulMatrix(m, this);
         }
 
         public float Determinate()
