@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine
+namespace Engine.Engine
 {
-    class Component
+    class EngineObject
     {
-        public virtual void initComponent()
-        {
-
-        }
     }
 }
