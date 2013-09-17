@@ -22,7 +22,13 @@ namespace Engine
         public const float Epsilon = 0.00001f;
         public const float Infinity = float.PositiveInfinity;
         public const float NegInfinity = float.NegativeInfinity;
+        /// <summary>
+        /// How to use: Degvalue * Deg2Rad
+        /// </summary>
         public const float Deg2Rad = PI / 180f;
+        /// <summary>
+        /// How to use: Radvalue * Rad2Deg
+        /// </summary>
         public const float Rad2Deg = 180f / PI;
         #endregion
 
@@ -33,7 +39,7 @@ namespace Engine
         /// <param name="f"></param>
         /// <returns></returns>
         public static float Abs(float f)
-
+            
         {
             if (f >= 0) return f;
             return -f;
@@ -134,7 +140,7 @@ namespace Engine
             }
             return sin / cos;
         }
-
+        
         /// <summary>
         /// Calculates arcsin(angle)
         /// </summary>
@@ -156,7 +162,7 @@ namespace Engine
             }
             return result;
         }
-
+        
         /// <summary>
         /// Calculates arccos(angle)
         /// </summary>
@@ -282,6 +288,7 @@ namespace Engine
         }
         #endregion
 
+        //Redundant, does not work
         public static float Expe(int x)
         {
             if (x > 0)
@@ -328,6 +335,11 @@ namespace Engine
 
         }
 
+        /// <summary>
+        /// E to the power of x
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns>E to the power of x</returns>
         private static float Ex(float x) //e to the power of x. Created for the Pow function
         {
             float iterationCount = 10;
@@ -349,12 +361,23 @@ namespace Engine
             return result;
         }
 
-        
+        /// <summary>
+        /// Power function
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="exp"></param>
+        /// <returns>Power</returns>
         public static float Pow(float value, float exp)
         {
             return Ex(exp * Ln(value));
         }
 
+        /// <summary>
+        /// Return the logarithm for the value with the given base value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="baseLog"></param>
+        /// <returns>Positive values, base value</returns>
         public static float Log(float value, float baseLog)
         {
 
