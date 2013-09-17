@@ -463,6 +463,11 @@ namespace Engine
             return value;
         }
 
+        /// <summary>
+        /// Calculates the factorial n! (1*2*..*n)
+        /// </summary>
+        /// <param name="factor"></param>
+        /// <returns></returns>
         public static float factorial(float factor)
         {
 
