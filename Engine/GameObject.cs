@@ -13,11 +13,11 @@ namespace Engine
         public virtual void initGameObject()
         {
         }
-        public void Render()
+        public virtual void Render()
         {
 
         }
-        public void Update()
+        public virtual void Update()
         {
 
         }
