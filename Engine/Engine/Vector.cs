@@ -98,6 +98,8 @@ namespace Engine
 
         public bool Equals(Vector3 vec)
         {
+            if (vec == null)
+                return false;
             return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z);
         }
 
@@ -322,19 +324,7 @@ namespace Engine
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static float AngleA(Vector3 v1, Vector3 v2)
-        {
-            // Yes, but proper way would be:
-
-            Vector3 v1Norm = v1.Normalized();
-            Vector3 v2Norm = v2.Normalized();
-            //float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
-            float dot = Dot(v1Norm, v2Norm);
-            return Mathf.Acos(dot);
-            // Actually here, best would be to benchmark (test for speed) to see which one goes faster.
-        }
-
-        public static float AngleB(Vector3 v1, Vector3 v2)
+        public static float Angle(Vector3 v1, Vector3 v2)
         {
             float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
             return Mathf.Acos(prod);
@@ -434,6 +424,8 @@ namespace Engine
 
         public bool Equals(Vector2 vec)
         {
+            if (vec == null)
+                return false;
             if (this.x == vec.x && this.y == vec.y)
                 return true;
             else
@@ -665,9 +657,6 @@ namespace Engine
         }
 
         #endregion
-
-
-
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -744,18 +733,29 @@ namespace Engine
 
         public override bool Equals(object o)
         {
+            if (o is Vector4) // Check if object is Vector4
+            {
+                return Equals((Vector4)o);
+            }
             return base.Equals(o);
         }
 
         public bool Equals(Vector4 vec)
         {
-            throw new NotImplementedException();
+            return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z) && (this.w == vec.w);
         }
 
         public override int GetHashCode()
         {
-            Int64 number = x.GetHashCode() + y.GetHashCode() + z.GetHashCode() + w.GetHashCode();
-            return (int)(number % Int32.MaxValue);
+            unchecked
+            {
+                int hash = 37;
+                hash = hash * 29 * x.GetHashCode();
+                hash = hash * 29 * y.GetHashCode();
+                hash = hash * 29 * z.GetHashCode();
+                hash = hash * 29 * w.GetHashCode();
+                return hash;
+            }
         }
 
         #endregion
@@ -799,19 +799,32 @@ namespace Engine
 
         public static bool operator ==(Vector4 v1, Vector4 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w)
+            if (Object.ReferenceEquals(v1, v2))
+            {
                 return true;
-            else
+            }
+            if (v1 == null || v2 == null)
+            {
                 return false;
+            }
+            return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z) && (v1.w == v2.w);
         }
 
         public static bool operator !=(Vector4 v1, Vector4 v2)
         {
-            if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w)
+            if (Object.ReferenceEquals(v1, v2))
+            {
                 return false;
-            else
+            }
+
+            if (v1 == null || v2 == null)
+            {
                 return true;
+            }
+
+            return !((v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z) && (v1.w == v2.w));
         }
+        
         #endregion
 
         #region ARITHMETIC
