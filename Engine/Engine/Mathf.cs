@@ -294,53 +294,7 @@ namespace Engine
         }
         #endregion
 
-        //Redundant, does not work
-        public static float Expe(int x)
-        {
-            if (x > 0)
-            {
-
-                float result = 1 + x;
-                int i = 2;
-                while (i <= x)
-                {
-                    i++;
-                    int x2 = x;
-                    for (int y = 2; y <= i; y++)
-                    {
-                        x2 *= x;
-                    }
-                    result += x2 / factorial(i);
-                }
-                return result;
-
-            }
-            else if (x == 0)
-            {
-                return 1;
-            }
-            else
-            {
-
-                x = (int)Abs((float)x);
-                float result = 1 + x;
-                int i = 2;
-                while (i <= x)
-                {
-                    i++;
-                    int x2 = x;
-                    for (int y = 2; y <= i; y++)
-                    {
-                        x2 *= x;
-                    }
-                    result += x2 / factorial(i);
-                }
-
-                return 1 / result;
-            }
-
-        }
-
+        
         /// <summary>
         /// E to the power of x
         /// </summary>
