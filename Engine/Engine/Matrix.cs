@@ -27,6 +27,7 @@ namespace Engine
         {
 
         }
+
         public Matrix(Matrix m)
         {
             this._m11 = m._m11;
@@ -58,6 +59,12 @@ namespace Engine
             this._m41 = w.x; this._m32 = w.y; this._m33 = w.z; this._m44 = w.w;
         }
 
+        /// <summary>
+        /// Multiplies two matrices
+        /// </summary>
+        /// <param name="mA">Matrix</param>
+        /// <param name="mB">Matrix</param>
+        /// <returns>Matrix</returns>
         public static Matrix operator *(Matrix mA, Matrix mB)
         {
              Matrix result = new Matrix();
@@ -76,49 +83,88 @@ namespace Engine
 
             return result;
         }
+
 		/// <summary>
 		/// Multiply mA by mB and stores into mB
 		/// </summary>
-		/// <param name="mA"></param>
-		/// <param name="mB"></param>
+		/// <param name="mA">Matrix</param>
+		/// <param name="mB">Matrix</param>
 		public static void MulMatrix(Matrix mA, Matrix mB)
 		{
             mB = mA * mB; 
 		}
+
+        /// <summary>
+        /// Translates Matrix
+        /// </summary>
+        /// <param name="translation">Vector3</param>
         public void SetTranslation(Vector3 translation)
         {
             _m14 = translation.x;
             _m24 = translation.y;
             _m34 = translation.z;
         }
-		public void SetTranslation(float x, float y, float z)
+
+		/// <summary>
+		/// Translates Matrix
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="z"></param>
+        public void SetTranslation(float x, float y, float z)
         {
             _m14 = x;
             _m24 = y;
             _m34 = z;
         }
-        // Needs to return a Vector3
+
+        
+        /// <summary>
+        /// Gets translation of matrix
+        /// </summary>
+        /// <returns>Vector3</returns>
         public Vector3 GetTranslation()
         {
             return new Vector3(_m14, _m24, _m34);
         }
 
+        /// <summary>
+        /// Creates a scaling matrix
+        /// </summary>
+        /// <param name="scale">Vector3</param>
         public void SetScale(Vector3 scale)
         {
             _m11 = scale.x;
             _m22 = scale.y;
             _m33 = scale.z;
         }
+        
+        /// <summary>
+        /// Creates a scaling matrix
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
 		public void SetScale(float x, float y, float z)
 		{
             _m11 = x;
             _m22 = y;
             _m33 = z;
 		}
+
+        /// <summary>
+        /// Get scale of matrix
+        /// </summary>
+        /// <returns>Vector3</returns>
         public Vector3 GetScale()
         {
             return new Vector3(_m11, _m22, _m33);
         }
+
+        /// <summary>
+        /// Rotates the matrix in z-axis
+        /// </summary>
+        /// <param name="angle"></param>
         public void SetRotateZ(float angle)
         {
             Matrix m = new Matrix();
@@ -132,6 +178,10 @@ namespace Engine
             MulMatrix(m, this);
         }
 
+        /// <summary>
+        /// Returns determinate
+        /// </summary>
+        /// <returns>float</returns>
         public float Determinate()
         {
             float determinate =
@@ -146,6 +196,10 @@ namespace Engine
             return determinate;
         }
 
+        /// <summary>
+        /// The inverse of this matrix
+        /// </summary>
+        /// <returns>Matrix</returns>
         public Matrix Inverse()
         {
             Matrix m = new Matrix();
@@ -176,6 +230,12 @@ namespace Engine
             return m;
         }
 
+        /// <summary>
+        /// Multiplies Vector4 and Matrix
+        /// </summary>
+        /// <param name="v">Vector4</param>
+        /// <param name="m">Matrix</param>
+        /// <returns>Vector4</returns>
         public static Vector4 operator *(Vector4 v, Matrix m)
         {
             return new Vector4(v.x * m._m11 + v.y * m._m21 + v.z * m._m31 + m._m41,

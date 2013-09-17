@@ -211,6 +211,12 @@ namespace Engine
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Checks if two given floats have the same value or not.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>True if the values are same, false if not.</returns>
         public static bool Approximate(float a, float b)
         {
             return a == b;
