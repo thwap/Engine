@@ -322,7 +322,7 @@ namespace Engine
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static float Angle(Vector3 v1, Vector3 v2)
+        public static float AngleA(Vector3 v1, Vector3 v2)
         {
             // Yes, but proper way would be:
 
@@ -331,6 +331,13 @@ namespace Engine
             //float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
             float dot = Dot(v1Norm, v2Norm);
             return Mathf.Acos(dot);
+            // Actually here, best would be to benchmark (test for speed) to see which one goes faster.
+        }
+
+        public static float AngleB(Vector3 v1, Vector3 v2)
+        {
+            float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
+            return Mathf.Acos(prod);
             // Actually here, best would be to benchmark (test for speed) to see which one goes faster.
         }
 
