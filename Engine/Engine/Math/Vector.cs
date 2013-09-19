@@ -4,6 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace Engine
 {
+    /// <summary>
+    /// Class for Vector3
+    /// Used for all 3D vector.
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector3
     {
@@ -346,7 +350,10 @@ namespace Engine
     }
 
     // Same for Vector2 and Vector4
-
+    /// <summary>
+    /// The class for Vector2. 
+    /// Used for 2D vector and UV vector
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector2
     {
@@ -658,7 +665,10 @@ namespace Engine
 
         #endregion
     }
-
+    /// <summary>
+    /// Class for Vector4 
+    /// Mainly used in computation with the 4x4 Matrix
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector4
     {

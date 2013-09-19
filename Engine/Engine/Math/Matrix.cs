@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 
 
-
 namespace Engine
 {
+    /// <summary>
+    /// Class for Matrix
+    /// The matrix is defined to be 4x4 to simplified manipulation between 2D and 3D
+    /// The class contains teh constructor and method to modify the Matrix
+    /// Contains Identity and Inverse matrix methods. 
+    /// Transform methods like Translate, Rotate and Scale.
+    /// Multiplication Matrix * Matrix and Matrix * Vector4
+    /// </summary>
     public class Matrix
     {
         // I made it a 4x4 matrix. even though there are more values, some are barely used
@@ -236,7 +243,7 @@ namespace Engine
         /// <param name="v">Vector4</param>
         /// <param name="m">Matrix</param>
         /// <returns>Vector4</returns>
-        public static Vector4 operator *(Vector4 v, Matrix m)
+        public static Vector4 operator *(Matrix m, Vector4 v)
         {
             return new Vector4(v.x * m._m11 + v.y * m._m21 + v.z * m._m31 + m._m41,
                                v.x * m._m12 + v.y * m._m22 + v.z * m._m32 + m._m42,

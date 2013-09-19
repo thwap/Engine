@@ -6,6 +6,10 @@ using System.Runtime.InteropServices;
 
 namespace Engine
 {
+    /// <summary>
+    /// The Time class
+    /// Provides information on the Time
+    /// </summary>
     public class Time
     {
         [System.Security.SuppressUnmanagedCodeSecurity]
@@ -19,6 +23,10 @@ namespace Engine
         long _ticksPerSecond = 0;
         long _previousElapsedTime = 0;
 
+        /// <summary>
+        /// Gives the time in seconds between this frame and the previous frame
+        /// </summary>
+        
         public static float deltaTime;
         public static float time;
         public static float timeScale;

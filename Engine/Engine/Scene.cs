@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Engine
 {
-    class Scene
+    class Scene:EngineObject
     {
     }
 }

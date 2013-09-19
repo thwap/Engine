@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public static class Mathf
+    /// <summary>
+    /// The Mathf class contains variables and methods for mathematic and trigonometry.
+    /// </summary>
+    public class Mathf
     {
         #region CLASS_VARIABLE
         static Dictionary<float, float> sinList = new Dictionary<float, float>();
