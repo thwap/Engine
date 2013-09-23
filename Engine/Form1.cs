@@ -35,7 +35,6 @@ namespace Engine
         {
             Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
-
             
             _openGLControl.Refresh();
         }
