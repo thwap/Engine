@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Engine
 {
-    class Scene:EngineObject,IDisposable
+    public class Scene:EngineObject,IDisposable
     {
         protected List<GameObject> GameObjects;
 
@@ -21,9 +21,12 @@ namespace Engine.Engine
               //  GO.Update();
             }
         }
-        public virtual void Render()
+        public virtual void Draw()
         {
-            // do nothing.
+            foreach (GameObject GO in GameObjects)
+            {
+               // if (GO.Sprite != null) GO.Render();
+            }
         }
         
         
