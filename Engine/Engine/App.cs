@@ -28,7 +28,7 @@ namespace Engine
     public class App
     {
         private static Scene current;
-        public static Dictionary<string, Scene> scenes;
+        public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
 
         public static Scene GetCurrentScene()
         {
