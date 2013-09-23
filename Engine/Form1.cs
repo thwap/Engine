@@ -9,26 +9,13 @@ namespace Engine
     public partial class Form1 : Form
     {
         Loop _loop;
-        bool _fullScreen = false;
-        int width = 400;
-        int height = 400;
         public Form1()
         {
-
             Loop _loop = new Loop(GameLoop);
             InitializeComponent();
             _openGLControl.InitializeContexts();
-            if (_fullScreen)
-            {
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                
-                ClientSize = new Size(width, height);
-            }
-            App.SetProjection2D(width, height, Projection.Center);
+
+            App.SetProjection2D(Screen.Width, Screen.Height, Projection.Center);
         }
 
         private void GameLoop()

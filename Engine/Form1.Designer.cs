@@ -31,15 +31,14 @@ namespace Engine
         {
             this.SuspendLayout();
             this.components = new System.ComponentModel.Container();
-
             this.Text = "Form1";
-            _openGLControl = App.Init();
+
+            _openGLControl = App.Init(400, 200, false, this, "EBIN GAEM ENGINEER!!11one"); // Initializing the Form and OpenGL
+           
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 300);
+            //this.ClientSize = new System.Drawing.Size(300, 300);
             this.Controls.Add(this._openGLControl);
-            this.Name = "GameEngine";
-            this.Text = "GameEngine";
             this.ResumeLayout(false);
         }
 
