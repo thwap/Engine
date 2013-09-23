@@ -12,14 +12,11 @@ namespace Engine.Engine
     /// </summary>
     public class Component:EngineObject
     {
-        public GameObject gObj;
-        public void Update()
+        public GameObject gameObject;
+        public virtual void Update()
         { 
         }
-        public void Start()
-        {
-        }
-        Component()
+        public virtual void Start()
         {
         }
     }
