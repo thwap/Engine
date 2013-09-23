@@ -27,15 +27,15 @@ namespace Engine
     /// </summary>
     public class App
     {
-        private Scene current;
-        Dictionary<string, Scene> scenes;
+        private static Scene current;
+        static Dictionary<string, Scene> scenes;
 
-        public Scene GetCurrentScene()
+        public static Scene GetCurrentScene()
         {
             return current;
         }
 
-        public void LoadScene(string scene)
+        public static void LoadScene(string scene)
         {
             if (scenes.ContainsKey(scene))
             {
