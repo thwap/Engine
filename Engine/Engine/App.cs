@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tao.Platform.Windows;
 using Tao.OpenGl;
+using Engine.Engine;
 
 namespace Engine
 {
@@ -26,6 +27,25 @@ namespace Engine
     /// </summary>
     public class App
     {
+        private static Scene current;
+        static Dictionary<string, Scene> scenes;
+
+        public static Scene GetCurrentScene()
+        {
+            return current;
+        }
+
+        public static void LoadScene(string scene)
+        {
+            if (scenes.ContainsKey(scene))
+            {
+                current = scenes[scene];
+            }
+            else {
+                string error = "The scene " + scene + " does not exist";
+                System.Diagnostics.Debug.Assert(false, error);
+            }
+        }
         /// <summary>
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
