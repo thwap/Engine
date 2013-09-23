@@ -41,6 +41,7 @@ namespace Engine.Engine
             {
                 sprite = (Sprite)((object)component);
             }
+            else
             compList.Add(component);
             return component;
         }
