@@ -10,8 +10,17 @@ namespace Engine.Engine
     /// Component inherits from EngineObject
     /// It is the base class for all user created scripts attached to a GameObject
     /// </summary>
-    class Component:EngineObject
+    public class Component:EngineObject
     {
-        
+        public GameObject gObj;
+        public void Update()
+        { 
+        }
+        public void Start()
+        {
+        }
+        Component()
+        {
+        }
     }
 }

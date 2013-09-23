@@ -12,6 +12,37 @@ namespace Engine.Engine
     /// </summary>
     public class GameObject:EngineObject
     {
-
+        List<Component>compList;
+        public Sprite sprite;
+        void Update()
+        {
+            foreach (Component comp in compList)
+            {
+                comp.Update();
+            }
+        }
+        void Render()
+        {
+            if(sprite!=null)
+            sprite.Draw();
+        }
+        GameObject()
+        {
+            foreach (Component comp in compList)
+            {
+                comp.Start();
+            }
+        }
+        T addComp<T>() where T : Component, new()
+        {
+            T component = new T();
+            component.gObj = this;
+            if (component is Sprite)
+            {
+                sprite = (Sprite)((object)component);
+            }
+            compList.Add(component);
+            return component;
+        }
     }
 }
