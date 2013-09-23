@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Engine
+namespace Engine
 {
     /// <summary>
     /// The GameObject class
@@ -36,7 +36,7 @@ namespace Engine.Engine
         T addComp<T>() where T : Component, new()
         {
             T component = new T();
-            component.gObj = this;
+            component.gameObject = this;
             if (component is Sprite)
             {
                 sprite = (Sprite)((object)component);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Engine
+namespace Engine
 {
     /// <summary>
     /// The base class for all objects created in the framework

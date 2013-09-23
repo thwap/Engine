@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Engine.Texture {
+namespace Engine {
    
     public struct Texture {
         int OpenGLID;
