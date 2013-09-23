@@ -12,7 +12,7 @@ namespace Engine
     /// </summary>
     public class GameObject:EngineObject
     {
-        List<Component>compList;
+        List<Component>compList = new List<Component>(); 
         public Sprite sprite;
         void Update()
         {
