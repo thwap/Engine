@@ -12,7 +12,7 @@ namespace Engine.Engine
 
         public Scene(String name)
         {
-            App.scenes.add(name, this);
+            App.scenes.Add(name, this);
         }
 
         public virtual void Update()
