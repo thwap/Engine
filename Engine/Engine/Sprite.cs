@@ -7,15 +7,16 @@ using Tao.DevIl;
 using Tao.OpenGl;
 using Tao.Platform.Windows;
 
+
 namespace Engine
 {
     public class Sprite : Component
     {
         Transform transform;
-        Vector3 vertex;
-        Vector2 vertexUVs;
+        Vector3[] vertex;
+        Vector2[] vertexUVs;
         Texture texture;
-        Colorf vertexColor;
+        Colorf[] vertexColor;
         int vertexAmount;
 
 
@@ -29,6 +30,10 @@ namespace Engine
 
         public void ApplyMatrix(Matrix compositeMatrix)
         {
+            foreach (Vector3 v in vertex)
+            {
+
+            }
         }
 
         public void SetPosition(Vector3 position)
