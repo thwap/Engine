@@ -9,8 +9,7 @@ namespace Engine
     public class Scene:EngineObject,IDisposable
     {
         protected List<GameObject> gameObjectList;
-        protected List<EngineObject> listToDestroy;
-
+        
         public Scene(String name)
         {
             App.scenes.Add(name, this);
@@ -23,10 +22,11 @@ namespace Engine
                 GO.Update();
             }
 
-            foreach (GameObject GO in GameObjects)
+            if (App.listToDestroy.Count != 0)
             {
-                //check for destroyed
+
             }
+
 
         }
         public virtual void Draw()

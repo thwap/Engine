@@ -31,6 +31,7 @@ namespace Engine
     {
         private static Scene current;
         public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
+        public static List<EngineObject> listToDestroy;
 
         public static Scene GetCurrentScene()
         {
@@ -118,7 +119,7 @@ namespace Engine
             _openGLControl.StencilBits = ((byte)(0));
             _openGLControl.TabIndex = 0;
             return _openGLControl;
-        }
+        }g
         /// <summary>
         /// SetProjection2D defines the size and origin position of the viewport
         /// </summary>
