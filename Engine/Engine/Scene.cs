@@ -9,6 +9,8 @@ namespace Engine
     public class Scene:EngineObject,IDisposable
     {
         protected List<GameObject> gameObjectList;
+        protected List<EngineObject> listToDestroy;
+
         public Scene(String name)
         {
             App.scenes.Add(name, this);
@@ -18,7 +20,7 @@ namespace Engine
         {
             foreach(GameObject GO in gameObjectList)
             {
-              //  GO.Update();
+                GO.Update();
             }
 
             foreach (GameObject GO in GameObjects)
@@ -31,9 +33,15 @@ namespace Engine
         {
             foreach (GameObject GO in gameObjectList)
             {
-               // if (GO.Sprite != null) GO.Render();
+                if (GO.Sprite != null) GO.Render();
             }
         }
+
+        public void QueueDestroy(EngineObject e)
+        {
+            listToDestroy.Add(e);
+        }
+
         public void Dispose() 
         {
         
