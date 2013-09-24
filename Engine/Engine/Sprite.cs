@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tao.DevIl;
+using Tao.OpenGl;
+using Tao.Platform.Windows;
 
 namespace Engine
 {
@@ -23,11 +26,11 @@ namespace Engine
         public void Draw()
         {
         }
-/*
-        public void ApplyMatrix(compositeMatrix)
+
+        public void ApplyMatrix(Matrix compositeMatrix)
         {
         }
-*/
+
         public void SetPosition(Vector3 position)
         {
         }
