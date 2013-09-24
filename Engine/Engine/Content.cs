@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Tao.DevIl;
 
 
 namespace Engine
@@ -33,7 +34,7 @@ namespace Engine
                     switch (CheckExtension(file))
                     {
                         case FileType.Texture:
-                            LoadTexture();
+                            assetList.Add(Path.GetFileName(file), LoadTexture(file));
                             break;
                         case FileType.NotSupported:
                             break;
@@ -53,8 +54,29 @@ namespace Engine
                 return default(T);
         }
 
-        static Texture LoadTexture() {
-            throw new NotImplementedException();
+        static Texture LoadTexture(string file) {
+            int devilId = 0;
+            Il.ilGenImages(0, out devilId);
+            Il.ilBindImage(devilId);
+
+            if (!Il.ilLoadImage(file))
+            {
+                string error = "Could not open file: " + file;
+                System.Diagnostics.Debug.Assert(false, error);
+            }
+
+            int width = Il.ilGetInteger(Il.IL_IMAGE_WIDTH);
+            int height = Il.ilGetInteger(Il.IL_IMAGE_HEIGHT);
+            int openglId = Ilut.ilutGLBindTexImage();
+
+            if (openglId == 0)
+            {
+                string error = "Something went wrong";
+                System.Diagnostics.Debug.Assert(false, error);
+            }
+
+            Il.ilDeleteImages(1, ref devilId);
+            return new Texture(openglId, devilId, width, height);
         }
 
         static FileType CheckExtension(string file)
