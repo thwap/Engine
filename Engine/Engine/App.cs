@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Tao.Platform.Windows;
 using Tao.OpenGl;
-using Engine.Engine;
+using Engine;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Engine
 {
@@ -46,12 +48,36 @@ namespace Engine
                 System.Diagnostics.Debug.Assert(false, error);
             }
         }
+
         /// <summary>
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
         /// <returns></returns>
-        public static OpenGLControl Init()
+        public static OpenGLControl Init(int Width, int Height, bool Fullscreen, Form1 F, string ProjectName = "GameEngine")
         {
+
+            // Form1 Initialization
+
+            // Set the global screen size
+            Screen.Width = Width;
+            Screen.Height = Height;
+
+            F.Name = ProjectName;
+            F.Text = ProjectName;
+
+            if (Fullscreen == true)
+            {
+                F.FormBorderStyle = FormBorderStyle.None;
+                F.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                Console.WriteLine("{0}, {1}", Screen.Width, Screen.Height);
+                F.ClientSize = new Size(Screen.Width, Screen.Height);
+                Console.WriteLine("{0}, {1}", F.ClientSize.Width, F.ClientSize.Height);
+            }
+
+            // OpenGL Initialization
             OpenGLControl _openGLControl = new OpenGLControl();
             _openGLControl.AccumBits = ((byte)(0));
             _openGLControl.AutoCheckErrors = false;
@@ -146,37 +172,4 @@ namespace Engine
     /// The static members allow easy access.
     /// Values are read-only.
     /// </summary>
-    public class Screen
-    {
-        private static int _width;
-        private static int _height;
-        /// <summary>
-        /// The width of the screen
-        /// </summary>
-        public static int Width
-        {
-            get
-            {
-                return _width;
-            }
-            internal set
-            {
-                _width = value;
-            }
-        }
-        /// <summary>
-        /// The height of the screen
-        /// </summary>
-        public static int Height
-        {
-            get
-            {
-                return _height;
-            }
-            internal set
-            {
-                _height = value;
-            }
-        }
-    }
 }

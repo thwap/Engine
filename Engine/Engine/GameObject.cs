@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Engine
+namespace Engine
 {
     /// <summary>
     /// The GameObject class
@@ -12,6 +12,38 @@ namespace Engine.Engine
     /// </summary>
     public class GameObject:EngineObject
     {
-
+        List<Component>compList = new List<Component>(); 
+        public Sprite sprite;
+        void Update()
+        {
+            foreach (Component comp in compList)
+            {
+                comp.Update();
+            }
+        }
+        void Render()
+        {
+            if(sprite!=null)
+            sprite.Draw();
+        }
+        GameObject()
+        {
+            foreach (Component comp in compList)
+            {
+                comp.Start();
+            }
+        }
+        T addComp<T>() where T : Component, new()
+        {
+            T component = new T();
+            component.gameObject = this;
+            if (component is Sprite)
+            {
+                sprite = (Sprite)((object)component);
+            }
+            else
+            compList.Add(component);
+            return component;
+        }
     }
 }

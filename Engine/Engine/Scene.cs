@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Engine
+namespace Engine
 {
     public class Scene:EngineObject,IDisposable
     {
-        protected List<GameObject> GameObjects;
-
+        protected List<GameObject> gameObjectList;
         public Scene(String name)
         {
             App.scenes.Add(name, this);
@@ -17,7 +16,8 @@ namespace Engine.Engine
 
         public virtual void Update()
         {
-            foreach(GameObject GO in GameObjects){
+            foreach(GameObject GO in gameObjectList)
+            {
               //  GO.Update();
             }
 
@@ -29,10 +29,14 @@ namespace Engine.Engine
         }
         public virtual void Draw()
         {
-            foreach (GameObject GO in GameObjects)
+            foreach (GameObject GO in gameObjectList)
             {
                // if (GO.Sprite != null) GO.Render();
             }
+        }
+        public void Dispose() 
+        {
+        
         }
         
         
@@ -53,8 +57,10 @@ namespace Engine.Engine
         }
     }
 
-    class Scene2 : Scene
+    public class Scene2 : Scene
     {
-
+        public Scene2()
+            : base("Scene2")
+        { }
     }
 }
