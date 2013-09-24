@@ -75,6 +75,7 @@
     <Compile Include="Engine\App.cs" />
     <Compile Include="Engine\Color.cs" />
     <Compile Include="Engine\Component.cs" />
+    <Compile Include="Engine\Content.cs" />
     <Compile Include="Engine\EngineObject.cs" />
     <Compile Include="Engine\Font\Font.cs" />
     <Compile Include="Engine\GameObject.cs" />
