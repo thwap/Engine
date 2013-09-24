@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\App.cs" />
+    <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\Color.cs" />
     <Compile Include="Engine\Component.cs" />
     <Compile Include="Engine\Content.cs" />
