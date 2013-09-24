@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tao.Platform.Windows;
 using Tao.OpenGl;
+using Tao.DevIl;
 using Engine;
 using System.Windows.Forms;
 using System.Drawing;
@@ -75,6 +76,12 @@ namespace Engine
             {
                 F.ClientSize = new Size(Screen.Width, Screen.Height);
             }
+
+            // DevIl initialization
+            Il.ilInit();
+            Ilu.iluInit();
+            Ilut.ilutInit();
+            Ilut.ilutRenderer(Ilut.ILUT_OPENGL);
 
             // OpenGL Initialization
             OpenGLControl _openGLControl = new OpenGLControl();
