@@ -10,18 +10,19 @@ namespace Engine
 {
     public static class Content
     {
-        static string[] textureTypes = { ".jpg", ".png" };
-        static string[] audioTypes = { ".mp3", ".wav" };
-        static string directory = null;
-        enum FileType {
+        enum FileType
+        {
             Texture,
             Audio,
             NotSupported
         }
 
+        static string[] textureTypes = { ".jpg", ".png" };
+        static string[] audioTypes = { ".mp3", ".wav" };
+        static string directory = null;
         static Dictionary<string, object> assetList = new Dictionary<string,object>();
         
-        public static void init(string dir = "Content")
+        public static void init(string dir = "Data")
         {
             directory = dir;
             if (Directory.Exists(directory))
@@ -34,17 +35,22 @@ namespace Engine
                         case FileType.Texture:
                             LoadTexture();
                             break;
+                        case FileType.NotSupported:
+                            break;
                     }
                 }
             }
             else
             {
-                string error = "The contend directory  " + directory + " does not exist";
+                string error = "The Data directory  " + directory + " does not exist";
                 System.Diagnostics.Debug.Assert(false, error);
             }
         }
         public static T Load<T>(string asset) {
-            throw new NotImplementedException();
+            if (assetList.ContainsKey(asset))
+                return (T)assetList[asset];
+            else
+                return default(T);
         }
 
         static Texture LoadTexture() {
