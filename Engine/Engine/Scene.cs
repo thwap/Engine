@@ -9,8 +9,10 @@ namespace Engine
     public class Scene:EngineObject,IDisposable
     {
         protected List<GameObject> gameObjectList;
+        
         public Scene(String name)
         {
+            GC.Collect();
             App.scenes.Add(name, this);
         }
 
@@ -18,16 +20,32 @@ namespace Engine
         {
             foreach(GameObject GO in gameObjectList)
             {
-              //  GO.Update();
+                GO.Update();
+            }
+
+            if (App.listToDestroy.Count != 0)
+            {
+                for (int i = App.listToDestroy.Count - 1; i >= 0; i--)
+                {
+                    EngineObject eo = App.listToDestroy[i];
+                    if (eo != null)
+                    {
+                        EngineObject.RemoveObject(eo);
+                    }
+                    App.listToDestroy.RemoveAt(i);
+                }
             }
         }
+
         public virtual void Draw()
         {
             foreach (GameObject GO in gameObjectList)
             {
-               // if (GO.Sprite != null) GO.Render();
+                if (GO.sprite != null) GO.Render();
             }
         }
+
+
         public void Dispose() 
         {
         

@@ -12,16 +12,16 @@ namespace Engine
     /// </summary>
     public class GameObject:EngineObject
     {
-        List<Component>compList = new List<Component>(); 
+        public List<Component>compList = new List<Component>(); 
         public Sprite sprite;
-        void Update()
+        public void Update()
         {
             foreach (Component comp in compList)
             {
                 comp.Update();
             }
         }
-        void Render()
+        public void Render()
         {
             if(sprite!=null)
             sprite.Draw();

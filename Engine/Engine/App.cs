@@ -31,6 +31,7 @@ namespace Engine
     {
         private static Scene current;
         public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
+        public static List<EngineObject> listToDestroy;
 
         public static Scene GetCurrentScene()
         {
@@ -72,9 +73,7 @@ namespace Engine
             }
             else
             {
-                Console.WriteLine("{0}, {1}", Screen.Width, Screen.Height);
                 F.ClientSize = new Size(Screen.Width, Screen.Height);
-                Console.WriteLine("{0}, {1}", F.ClientSize.Width, F.ClientSize.Height);
             }
 
             // OpenGL Initialization
