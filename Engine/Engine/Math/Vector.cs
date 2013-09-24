@@ -658,7 +658,7 @@ namespace Engine
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static float Distance(Vector3 v1, Vector3 v2)
+        public static float Distance(Vector2 v1, Vector2 v2)
         {
             return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y));
         }
