@@ -21,6 +21,39 @@ namespace Engine
         {
             Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
+
+			Gl.glPushMatrix();
+				Gl.glRotatef(Time.time * 50, 0.8f, 0.9f, 1f);
+				Gl.glTranslatef(-50, -50, -50);
+				Gl.glLineWidth(5f);
+				Gl.glBegin(Gl.GL_LINE_LOOP);
+
+					Gl.glColor3f(1, 0, 0);
+						Gl.glVertex3f(0, 0, 0);
+						Gl.glVertex3f(100, 0, 0);
+						Gl.glVertex3f(100, 0, 100);
+						Gl.glVertex3f(0, 0, 100);
+						Gl.glVertex3f(0, 0, 0);
+					Gl.glColor3f(0, 0, 1);
+						Gl.glVertex3f(0, 100, 0);
+						Gl.glVertex3f(100, 100, 0);
+					Gl.glColor3f(1, 0, 0);
+						Gl.glVertex3f(100, 0, 0);
+					Gl.glColor3f(0, 0, 1);
+						Gl.glVertex3f(100, 100, 0);
+						Gl.glVertex3f(100, 100, 100);
+					Gl.glColor3f(1, 0, 0);
+						Gl.glVertex3f(100, 0, 100);
+					Gl.glColor3f(0, 0, 1);
+						Gl.glVertex3f(100, 100, 100);			
+						Gl.glVertex3f(0, 100, 100);
+					Gl.glColor3f(1, 0, 0);
+						Gl.glVertex3f(0, 0, 100);
+					Gl.glColor3f(0, 0, 1);
+						Gl.glVertex3f(0, 100, 100);
+						Gl.glVertex3f(0, 100, 0);
+				Gl.glEnd();
+			Gl.glPopMatrix();
             
             _openGLControl.Refresh();
         }
