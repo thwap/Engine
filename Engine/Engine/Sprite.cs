@@ -23,11 +23,11 @@ namespace Engine
         public void Draw()
         {
         }
-
+/*
         public void ApplyMatrix(compositeMatrix)
         {
         }
-
+*/
         public void SetPosition(Vector3 position)
         {
         }
