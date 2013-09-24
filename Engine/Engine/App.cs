@@ -119,7 +119,7 @@ namespace Engine
             _openGLControl.StencilBits = ((byte)(0));
             _openGLControl.TabIndex = 0;
             return _openGLControl;
-        }g
+        }
         /// <summary>
         /// SetProjection2D defines the size and origin position of the viewport
         /// </summary>
