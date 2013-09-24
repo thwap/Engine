@@ -20,6 +20,12 @@ namespace Engine.Engine
             foreach(GameObject GO in GameObjects){
               //  GO.Update();
             }
+
+            foreach (GameObject GO in GameObjects)
+            {
+                //check for destroyed
+            }
+
         }
         public virtual void Draw()
         {

@@ -483,7 +483,7 @@ namespace Engine
             }
             return value;
         }
-
+         
         /// <summary>
         /// Calculates the factorial n! (1*2*..*n)
         /// </summary>
