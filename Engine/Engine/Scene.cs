@@ -12,6 +12,7 @@ namespace Engine
         
         public Scene(String name)
         {
+            GC.Collect();
             App.scenes.Add(name, this);
         }
 
