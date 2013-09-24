@@ -14,7 +14,6 @@ namespace Engine
     {
         string name;
         int instaceID;
-        bool RemoveObject = false;
 
         static int ID = 0;
 
@@ -52,12 +51,15 @@ namespace Engine
             if (Obj is GameObject)
             {
                 GameObject o = (GameObject)Obj;
-                //o.ClearComponentList();
+                o.compList.Clear();
+
+                o = null;
             }
             else if (Obj is Component)
             {
                 Component comp = (Component)Obj;
 
+                comp = null;
             }
 
         }
@@ -68,15 +70,9 @@ namespace Engine
         /// <param name="Obj"></param>
         public static void Destroy(EngineObject Obj)
         {
-            if (Obj is GameObject)
+            if (Obj != null && Obj is EngineObject)
             {
-                GameObject o = (GameObject)Obj;
-                //o.RemoveObject = true;
-            }
-            else if (Obj is Component)
-            {
-                Component comp = (Component)Obj;
-                //comp.RemoveObject = true;
+                App.listToDestroy.Add(Obj);
             }
         }
 
