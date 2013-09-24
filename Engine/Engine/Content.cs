@@ -35,7 +35,7 @@ namespace Engine
                     switch (CheckExtension(file))
                     {
                         case FileType.Texture:
-                            assetList.Add(Path.GetFileName(file), LoadTexture(file));
+                            assetList.Add(Path.GetFileNameWithoutExtension(file), LoadTexture(file));
                             break;
                         case FileType.NotSupported:
                             break;
