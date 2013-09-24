@@ -24,11 +24,18 @@ namespace Engine
 
             if (App.listToDestroy.Count != 0)
             {
-
+                for (int i = App.listToDestroy.Count - 1; i >= 0; i--)
+                {
+                    EngineObject eo = App.listToDestroy[i];
+                    if (eo != null)
+                    {
+                        EngineObject.RemoveObject(eo);
+                    }
+                    App.listToDestroy.RemoveAt(i);
+                }
             }
-
-
         }
+
         public virtual void Draw()
         {
             foreach (GameObject GO in gameObjectList)
