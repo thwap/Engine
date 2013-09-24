@@ -33,14 +33,10 @@ namespace Engine
         {
             foreach (GameObject GO in gameObjectList)
             {
-                if (GO.Sprite != null) GO.Render();
+                if (GO.sprite != null) GO.Render();
             }
         }
 
-        public void QueueDestroy(EngineObject e)
-        {
-            listToDestroy.Add(e);
-        }
 
         public void Dispose() 
         {
