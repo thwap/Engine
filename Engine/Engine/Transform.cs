@@ -9,11 +9,11 @@ namespace Engine
     public class Transform
     {
         public Vector3 position;
-        public Vector3 rotation;
+        public Vector4 rotation;
         public Vector3 scale;
 
         //Constructor of class
-        public Transform(Vector3 position,Vector3 rotation,Vector3 scale)
+        public Transform(Vector3 position,Vector4 rotation,Vector3 scale)
         {
             this.position = position;
             this.rotation = rotation;
@@ -39,8 +39,7 @@ namespace Engine
         {
             Matrix m = new Matrix();
             m.SetRotateZ(angle);
-            // rotation = rotation * m      // would be a good idea to change rotation vector to vector4
-                                            // so it would be possible to do multiplication
+            rotation = m * rotation;
 
         }
 
