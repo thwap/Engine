@@ -10,16 +10,31 @@ namespace Engine
 {
     public static class Content
     {
+        static string[] textureTypes = { ".jpg", ".png" };
+        static string[] audioTypes = { ".mp3", ".wav" };
+        static string directory = null;
+        enum FileType {
+            Texture,
+            Audio,
+            NotSupported
+        }
+
         static Dictionary<string, object> assetList = new Dictionary<string,object>();
         
-        public static void init(string directory = "Content")
+        public static void init(string dir = "Content")
         {
+            directory = dir;
             if (Directory.Exists(directory))
             {
                 string[] files = Directory.GetFiles(directory);
                 foreach (string file in files)
                 {
-                    //TODO
+                    switch (CheckExtension(file))
+                    {
+                        case FileType.Texture:
+                            LoadTexture();
+                            break;
+                    }
                 }
             }
             else
@@ -34,6 +49,24 @@ namespace Engine
 
         static Texture LoadTexture() {
             throw new NotImplementedException();
+        }
+
+        static FileType CheckExtension(string file)
+        {
+            string extension = Path.GetExtension(file);
+            foreach (string ext in textureTypes)
+            {
+                if (extension == ext)
+                    return FileType.Texture;
+            }
+
+            foreach (string ext in audioTypes)
+            {
+                if (extension == ext)
+                    return FileType.Audio;
+            }
+
+            return FileType.NotSupported;
         }
     }
 }
