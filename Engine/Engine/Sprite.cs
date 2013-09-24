@@ -8,6 +8,13 @@ namespace Engine
 {
     public class Sprite : Component
     {
+        Transform transform;
+        Vector3 vertex;
+        Vector2 vertexUVs;
+        Texture texture;
+        Colorf vertexColor;
+        int vertexAmount;
+
 
         public void InitVertexPositions(Vector3 position, float width, float height)
         {
