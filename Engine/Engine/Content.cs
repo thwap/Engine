@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Tao.DevIl;
+using System.Windows.Forms;
 
 
 namespace Engine
@@ -43,7 +44,7 @@ namespace Engine
             }
             else
             {
-                string error = "The Data directory  " + directory + " does not exist";
+                string error = "The directory  " + Application.StartupPath + "\\" + directory + " does not exist";
                 System.Diagnostics.Debug.Assert(false, error);
             }
         }
