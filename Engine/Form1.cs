@@ -14,6 +14,8 @@ namespace Engine
             InitializeComponent();
             _openGLControl.InitializeContexts();
 
+            Content.init();
+
             App.SetProjection2D(Screen.Width, Screen.Height, Projection.Center);
         }
 
