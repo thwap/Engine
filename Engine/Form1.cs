@@ -8,7 +8,6 @@ namespace Engine
 {
     public partial class Form1 : Form
     {
-        Loop _loop;
         public Form1()
         {
             Loop _loop = new Loop(GameLoop);
