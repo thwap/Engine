@@ -51,7 +51,7 @@ namespace Engine
             if (Obj is GameObject)
             {
                 GameObject o = (GameObject)Obj;
-                o.compList.Clear();
+ //               o.compList.Clear();
 
                 o = null;
             }
