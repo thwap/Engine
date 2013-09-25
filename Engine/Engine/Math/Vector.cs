@@ -300,7 +300,7 @@ namespace Engine
         {
             Vector3 tempVector = new Vector3(target - current);
             if (tempVector.magnitude > step)
-                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than current
             else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
         }
 
@@ -343,7 +343,10 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector3 v1, Vector3 v2)
         {
-            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z));
+            float dx = v1.x - v2.x;
+            float dy = v1.y - v2.y;
+            float dz = v1.z - v2.z;
+            return (float)Math.Sqrt(dx * dx + dy * dy + dz * dz);
         }
 
         #endregion
@@ -623,7 +626,7 @@ namespace Engine
         {
             Vector2 tempVector = new Vector2(target - current);
             if (tempVector.magnitude > step)
-                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+                return (current + (tempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than current
             else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
         }
 
@@ -660,7 +663,9 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector2 v1, Vector2 v2)
         {
-            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y));
+            float dx = v1.x - v2.x;
+            float dy = v1.y - v2.y;
+            return (float)Math.Sqrt(dx * dx + dy * dy);
         }
 
         #endregion
@@ -759,11 +764,11 @@ namespace Engine
         {
             unchecked
             {
-                int hash = 37;
-                hash = hash * 29 * x.GetHashCode();
-                hash = hash * 29 * y.GetHashCode();
-                hash = hash * 29 * z.GetHashCode();
-                hash = hash * 29 * w.GetHashCode();
+                int hash = 17;
+                hash = hash * 23 * x.GetHashCode();
+                hash = hash * 23 * y.GetHashCode();
+                hash = hash * 23 * z.GetHashCode();
+                hash = hash * 23 * w.GetHashCode();
                 return hash;
             }
         }
@@ -931,7 +936,7 @@ namespace Engine
         {
             Vector4 TempVector = new Vector4(target - current);
             if (TempVector.magnitude > step)
-                return (current + (TempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than currenty
+                return (current + (TempVector.Normalized() * step)); // The distance is more than step, so return a point that is step amount closer to target than current
             else return target; // Return target to not overshoot (i.e. go past) the target when step was greater than the remaining distance
         }
 
@@ -967,7 +972,11 @@ namespace Engine
         /// <returns></returns>
         public static float Distance(Vector4 v1, Vector4 v2)
         {
-            return (float)Math.Sqrt((v1.x - v2.x) + (v1.y - v2.y) + (v1.z - v2.z) + (v1.w - v2.w));
+            float dx = v1.x - v2.x;
+            float dy = v1.y - v2.y;
+            float dz = v1.z - v2.z;
+            float dw = v1.w - v2.w;
+            return (float)Math.Sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
         }
 
         #endregion
