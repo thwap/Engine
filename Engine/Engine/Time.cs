@@ -27,9 +27,19 @@ namespace Engine
         /// Gives the time in seconds between this frame and the previous frame
         /// </summary>
         
-        public static float deltaTime;
-        public static float time;
+        private static float deltaTime;
+        private static float time;
         public static float timeScale;
+
+        public static float DeltaTime
+        {
+            get { return deltaTime; }
+        }
+
+        public static float Time
+        {
+            get { return time; }
+        }
 
         public Time()
         {
