@@ -1,7 +1,7 @@
 var searchData=
 [
   ['deg2rad',['Deg2Rad',['../class_engine_1_1_mathf.html#a5e0598d56920b31edcdac9764bd791b1',1,'Engine::Mathf']]],
-  ['deltatime',['deltaTime',['../class_engine_1_1_time.html#aa566463719be155d3405e2f46efacf25',1,'Engine::Time']]],
+  ['deltatime',['DeltaTime',['../class_engine_1_1_time.html#aecdeaf2934ef0c11dee46baa2c42206b',1,'Engine::Time']]],
   ['destroy',['Destroy',['../class_engine_1_1_engine_object.html#a57cd6229795e441bcf5b84980cb02ec5',1,'Engine::EngineObject']]],
   ['determinate',['Determinate',['../class_engine_1_1_matrix.html#a6ae8c411ad62cbfb228bc6b209e6ef3a',1,'Engine::Matrix']]],
   ['dispose',['Dispose',['../class_engine_1_1_scene.html#a26f9f4db61cc8eaa743534bee64c8a91',1,'Engine.Scene.Dispose()'],['../class_engine_1_1_form1.html#ac1c367e7f5a96752e50f17ef18c8c4db',1,'Engine.Form1.Dispose()']]],
