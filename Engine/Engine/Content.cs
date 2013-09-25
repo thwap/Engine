@@ -21,20 +21,20 @@ namespace Engine
 
         static string[] textureTypes = { ".jpg", ".png" };
         static string[] audioTypes = { ".mp3", ".wav" };
-        static string directory = null;
         static Dictionary<string, object> assetList = new Dictionary<string,object>();
         
-        public static void init(string dir = "Data")
+        public static void init(string directory = "Data")
         {
-            directory = dir;
             if (Directory.Exists(directory))
             {
-                string[] files = Directory.GetFiles(directory);
-                foreach (string file in files)
+                foreach (string dir in Directory.GetDirectories(directory))
+                    init(dir);
+                foreach (string file in Directory.GetFiles(directory))
                 {
                     switch (CheckExtension(file))
                     {
                         case FileType.Texture:
+                            Console.WriteLine(Path.GetFileName(file));
                             assetList.Add(Path.GetFileNameWithoutExtension(file), LoadTexture(file));
                             break;
                         case FileType.NotSupported:
