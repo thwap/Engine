@@ -9,6 +9,12 @@ namespace Engine
     public class Scene:EngineObject,IDisposable
     {
         protected List<GameObject> gameObjectList;
+
+        public Scene() 
+        {
+            GC.Collect();
+            App.scenes.Add(this.GetType().Name, this);
+        }
         
         public Scene(String name)
         {
