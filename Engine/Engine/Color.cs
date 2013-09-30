@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    struct Colorf
+    public struct Colorf
     {
         public float r, g, b, a;
         /// <summary>
