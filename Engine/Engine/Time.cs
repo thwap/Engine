@@ -55,8 +55,10 @@ namespace Engine
             QueryPerformanceCounter(ref __time);
             _deltaTime = (float)((double)(__time - _previousElapsedTime) / (double)_ticksPerSecond);
             _previousElapsedTime = __time;
-            _time += _deltaTime;
             _deltaTime *= timeScale;
+			_time += _deltaTime;
+
+			//Console.WriteLine("{0} / {1} / {2}", _time, _deltaTime, timeScale);
         }
     }
 }
