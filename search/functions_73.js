@@ -11,6 +11,7 @@ var searchData=
   ['settime',['SetTime',['../class_engine_1_1_time.html#a15cc5312dcb01679d280001497fa21a7',1,'Engine::Time']]],
   ['settranslation',['SetTranslation',['../class_engine_1_1_matrix.html#a36204a94f0b9a06262534bf1d345f6a1',1,'Engine.Matrix.SetTranslation(Vector3 translation)'],['../class_engine_1_1_matrix.html#ad482613a220a80addaab68aafc0b12ef',1,'Engine.Matrix.SetTranslation(float x, float y, float z)']]],
   ['sin',['Sin',['../class_engine_1_1_mathf.html#a3d1ec51c1ff1183af9b0f2f0f0801793',1,'Engine::Mathf']]],
+  ['sprite',['Sprite',['../class_engine_1_1_sprite.html#aa4b72e92376b352f3963928acd864f1b',1,'Engine::Sprite']]],
   ['sqrt',['Sqrt',['../class_engine_1_1_mathf.html#a1c7f8e3c93db8ac760b989ef75a4b1d3',1,'Engine::Mathf']]],
   ['start',['Start',['../class_engine_1_1_component.html#acf396a6a60849998d39dd70621103c23',1,'Engine::Component']]],
   ['subtract',['Subtract',['../struct_engine_1_1_vector3.html#af6fcd3edd00fc21eedb430adb41ad542',1,'Engine.Vector3.Subtract()'],['../struct_engine_1_1_vector2.html#a1e6f20dbc2f29ca2a294c49af5c585c9',1,'Engine.Vector2.Subtract()'],['../struct_engine_1_1_vector4.html#a641d305fb99cdc68594281226edde04c',1,'Engine.Vector4.Subtract()']]]
