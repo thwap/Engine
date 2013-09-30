@@ -12,14 +12,12 @@ namespace Engine
 
         public Scene() 
         {
-            GC.Collect();
-            App.scenes.Add(this.GetType().Name, this);
+
         }
         
         public Scene(String name)
         {
-            GC.Collect();
-            App.scenes.Add(name, this);
+
         }
 
         public virtual void Update()
