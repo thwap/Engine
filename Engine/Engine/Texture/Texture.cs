@@ -11,7 +11,7 @@ namespace Engine {
         int textureID;
         int width;
         int height;
-        
+
     
         public Texture(int OpenGLID, int textureID, int width, int height):this() {
             this.OpenGLID = OpenGLID;
