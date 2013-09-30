@@ -100,10 +100,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5811971ced02cbf4a57510658d3530d9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a5811971ced02cbf4a57510658d3530d9">AddScene</a> (string name, Type type)</td></tr>
+<tr class="separator:a5811971ced02cbf4a57510658d3530d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adccfc26f0e1b4364d1e2676778c93e3c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_engine_1_1_scene.html">Scene</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#adccfc26f0e1b4364d1e2676778c93e3c">GetCurrentScene</a> ()</td></tr>
 <tr class="separator:adccfc26f0e1b4364d1e2676778c93e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4637a4a78e0ffca651f82902c5ec58f2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a4637a4a78e0ffca651f82902c5ec58f2">LoadScene</a> (Type scene)</td></tr>
+<tr class="separator:a4637a4a78e0ffca651f82902c5ec58f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8de38202a30d1b23f567ea984432962a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a8de38202a30d1b23f567ea984432962a">LoadScene&lt; T &gt;</a> ()</td></tr>
+<tr class="separator:a8de38202a30d1b23f567ea984432962a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27e82336cb87d9946a3c04701718d37"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#ae27e82336cb87d9946a3c04701718d37">LoadScene</a> (string scene)</td></tr>
 <tr class="separator:ae27e82336cb87d9946a3c04701718d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7372e585308f4cded5d945a7a1cc87f2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a7372e585308f4cded5d945a7a1cc87f2">CollectGarbage</a> ()</td></tr>
+<tr class="separator:a7372e585308f4cded5d945a7a1cc87f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1e25f2b616bfc4f6ae65c31e7f879e5"><td class="memItemLeft" align="right" valign="top">static OpenGLControl&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#af1e25f2b616bfc4f6ae65c31e7f879e5">Init</a> (int Width, int Height, bool Fullscreen, <a class="el" href="class_engine_1_1_form1.html">Form1</a> F, string ProjectName=&quot;GameEngine&quot;)</td></tr>
 <tr class="memdesc:af1e25f2b616bfc4f6ae65c31e7f879e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and defines the OpenGLControl object needed to start the application  <a href="#af1e25f2b616bfc4f6ae65c31e7f879e5">More...</a><br/></td></tr>
 <tr class="separator:af1e25f2b616bfc4f6ae65c31e7f879e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,14 +127,71 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a0e2b665572de535f783d4d3415b8dc74"><td class="memItemLeft" align="right" valign="top">static Dictionary&lt; string, <a class="el" href="class_engine_1_1_scene.html">Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a0e2b665572de535f783d4d3415b8dc74">scenes</a> = new Dictionary&lt;string, <a class="el" href="class_engine_1_1_scene.html">Scene</a>&gt;()</td></tr>
-<tr class="separator:a0e2b665572de535f783d4d3415b8dc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f1e5f1a2c063b3934ccf00822fb39d7"><td class="memItemLeft" align="right" valign="top">static Dictionary&lt; string, Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a5f1e5f1a2c063b3934ccf00822fb39d7">scenes</a> = new Dictionary&lt;string, Type&gt;()</td></tr>
+<tr class="separator:a5f1e5f1a2c063b3934ccf00822fb39d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65d0330db28e662a857b2fb9444ae682"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_engine_1_1_engine_object.html">EngineObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_1_1_app.html#a65d0330db28e662a857b2fb9444ae682">listToDestroy</a></td></tr>
 <tr class="separator:a65d0330db28e662a857b2fb9444ae682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_engine_1_1_app.html" title="The App class contains most of the initialization methods for the application. ">App</a> class contains most of the initialization methods for the application. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5811971ced02cbf4a57510658d3530d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Engine.App.AddScene </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7372e585308f4cded5d945a7a1cc87f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Engine.App.CollectGarbage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="adccfc26f0e1b4364d1e2676778c93e3c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -238,6 +303,30 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4637a4a78e0ffca651f82902c5ec58f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Engine.App.LoadScene </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae27e82336cb87d9946a3c04701718d37"></a>
 <div class="memitem">
 <div class="memproto">
@@ -259,6 +348,37 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8de38202a30d1b23f567ea984432962a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="class_engine_1_1_app.html#a4637a4a78e0ffca651f82902c5ec58f2">Engine.App.LoadScene</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b><dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>Scene</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
 
 </div>
 </div>
@@ -390,7 +510,7 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0e2b665572de535f783d4d3415b8dc74"></a>
+<a class="anchor" id="a5f1e5f1a2c063b3934ccf00822fb39d7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -398,7 +518,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Dictionary&lt;string, <a class="el" href="class_engine_1_1_scene.html">Scene</a>&gt; Engine.App.scenes = new Dictionary&lt;string, <a class="el" href="class_engine_1_1_scene.html">Scene</a>&gt;()</td>
+          <td class="memname">Dictionary&lt;string, Type&gt; Engine.App.scenes = new Dictionary&lt;string, Type&gt;()</td>
         </tr>
       </table>
   </td>
@@ -416,7 +536,7 @@ Static Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 30 2013 14:04:41 for Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 30 2013 14:19:41 for Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
