@@ -15,6 +15,7 @@ namespace Engine
         //Constructor of class
         public Transform(Vector3 position,Vector4 rotation,Vector3 scale)
         {
+  
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;

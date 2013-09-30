@@ -18,7 +18,7 @@ namespace Engine {
         Color[] vertexColor {get;set;}
         int vertexAmount {get;set;}
 
-        Sprite() {
+        public Sprite() {
             
         }
 
@@ -43,7 +43,7 @@ namespace Engine {
         }
 
         public void DrawVertex(Vector3 position, Color color, Vector2 uvs) {
-            Gl.glColor4f(color.R, color.G, color.B, color.A);
+            Gl.glColor4f(color.r, color.g, color.b, color.a);
             Gl.glTexCoord2f(uvs.x, uvs.y);
             Gl.glVertex3f(position.x, position.y, position.z);
         }

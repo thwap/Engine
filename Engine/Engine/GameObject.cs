@@ -14,8 +14,18 @@ namespace Engine
     {
         public List<Component>compList = new List<Component>(); 
         public Sprite sprite;
-        string tag;
+        public string tag = "Default";
 
+        /// <summary>
+        /// Default constructor for GameObject, creates a new instance of GameObject
+        /// </summary>
+        public GameObject()
+        {
+            foreach (Component comp in compList)
+            {
+                comp.Start();
+            }
+        }
         public void Update()
         {
             foreach (Component comp in compList)
@@ -28,13 +38,8 @@ namespace Engine
             if(sprite!=null)
             sprite.Draw();
         }
-        GameObject()
-        {
-            foreach (Component comp in compList)
-            {
-                comp.Start();
-            }
-        }
+        
+
         public T AddComponent<T>() where T : Component, new()
         {
             T component = new T();

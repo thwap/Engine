@@ -12,18 +12,37 @@ namespace Engine
     /// </summary>
     public class EngineObject
     {
+        /// <summary>
+        /// Name of the object
+        /// </summary>
         public string name;
-        int instaceID;
+        /// <summary>
+        /// Unique instance number of the object
+        /// </summary>
+        public int instanceID;
 
-        static int ID = 0;
+        private static int ID = 0;
 
 
         //Constructor
+        /// <summary>
+        /// Default constructor for the EngineObject, creates a new EngineObject
+        /// </summary>
         public EngineObject()
         {
             //Give unique id to Object
-            instaceID = ID;
+            instanceID = ID;
             //Increase the ID when new Object is crated
+            ID++;
+        }
+        /// <summary>
+        /// Constructor for the EngineObject, creates a new EngineObject with given name
+        /// </summary>
+        /// <param name="name"></param>
+        public EngineObject(string name)
+        {
+            this.name = name;
+            instanceID = ID;
             ID++;
         }
 
@@ -33,7 +52,7 @@ namespace Engine
         /// <returns>int</returns>
         public int GetInstanceID()
         {
-            return instaceID;
+            return instanceID;
         }
 
 
@@ -41,7 +60,7 @@ namespace Engine
         /// Returns the name of Object
         /// </summary>
         /// <returns>string</returns>
-        public string ToString()
+        public override string ToString()
         {
             return name;
         }
@@ -65,7 +84,7 @@ namespace Engine
         }
 
         /// <summary>
-        /// Destroys the object from scene
+        /// Destroys the object from the scene
         /// </summary>
         /// <param name="Obj"></param>
         public static void Destroy(EngineObject Obj)

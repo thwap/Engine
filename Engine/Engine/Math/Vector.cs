@@ -12,7 +12,18 @@ namespace Engine
     public struct Vector3
     {
         #region MEMBERS
-        public float x, y, z;
+        /// <summary>
+        /// The x component of the vector
+        /// </summary>
+        public float x;
+        /// <summary>
+        /// The y component of the vector
+        /// </summary>
+        public float y;
+        /// <summary>
+        /// The z component of the vector
+        /// </summary>
+        public float z;
 
         /// <summary>
         /// Returns the magnitude of the vector
@@ -49,17 +60,47 @@ namespace Engine
 
         #region STATIC_VECTOR
         // Declaration for vector zero, one, right, left, up, down, forward, back
-        public static readonly Vector3 LEFT     = new Vector3(-1, 0, 0);
-        public static readonly Vector3 RIGHT    = new Vector3(1, 0, 0);
-        public static readonly Vector3 UP       = new Vector3(0, 1, 0);
-        public static readonly Vector3 DOWN     = new Vector3(0, -1, 0);
-        public static readonly Vector3 FORWARD  = new Vector3(0, 0, 1);
-        public static readonly Vector3 BACK     = new Vector3(0, 0, -1);
-        public static readonly Vector3 ZERO     = new Vector3(0, 0, 0);
-        public static readonly Vector3 ONE      = new Vector3(1, 1, 1);
+        /// <summary>
+        /// Shorthand for writing Vector3(-1, 0, 0).
+        /// </summary>
+        public static readonly Vector3 Left     = new Vector3(-1, 0, 0);
+        /// <summary>
+        /// Shorthand for writing Vector3(1, 0, 0).
+        /// </summary>
+        public static readonly Vector3 Right    = new Vector3(1, 0, 0);
+        /// <summary>
+        /// Shorthand for writing Vector3(0, 1, 0).
+        /// </summary>
+        public static readonly Vector3 Up       = new Vector3(0, 1, 0);
+        /// <summary>
+        /// Shorthand for writing Vector3(0, -1, 0).
+        /// </summary>
+        public static readonly Vector3 Down     = new Vector3(0, -1, 0);
+        /// <summary>
+        /// Shorthand for writing Vector3(0, 0, 1).
+        /// </summary>
+        public static readonly Vector3 Forward  = new Vector3(0, 0, 1);
+        /// <summary>
+        /// Shorthand for writing Vector3(0, 0, -1)
+        /// </summary>
+        public static readonly Vector3 Back     = new Vector3(0, 0, -1);
+        /// <summary>
+        /// Shorthand for writing Vector3(0, 0, 0).
+        /// </summary>
+        public static readonly Vector3 Zero     = new Vector3(0, 0, 0);
+        /// <summary>
+        /// Shorthand for writing Vector3(1, 1, 1).
+        /// </summary>
+        public static readonly Vector3 One      = new Vector3(1, 1, 1);
         #endregion
 
         #region CONSTRUCTOR
+        /// <summary>
+        /// Constructor for Vector3, creates a new vector with the given values
+        /// </summary>
+        /// <param name="x">Value for x component</param>
+        /// <param name="y">Value for y component</param>
+        /// <param name="z">Value for z component</param>
         public Vector3(float x, float y, float z = 0)
             : this()
         {
@@ -67,12 +108,27 @@ namespace Engine
             this.y = y;
             this.z = z;
         }
+        /// <summary>
+        /// Constructor for Vector3, creates a new vector with the given values
+        /// </summary>
+        /// <param name="vector">Vector3 for all components</param>
         public Vector3(Vector3 vector)
             : this()
         {
             this.x = vector.x;
             this.y = vector.y;
             this.z = vector.z;
+        }
+        /// <summary>
+        /// Constructor for Vector3, creates a new vector with the given values
+        /// </summary>
+        /// <param name="vector">Vector2 for x and y component, z = 0 by default</param>
+        public Vector3(Vector2 vector, float z = 0)
+            : this()
+        {
+            this.x = vector.x;
+            this.y = vector.y;
+            this.z = 0;
         }
         #endregion
 
@@ -89,7 +145,7 @@ namespace Engine
         /// <summary>
         /// Returns true if the Vector is equal to the parameter
         /// </summary>
-        /// <param name="o"></param>
+        /// <param name="o">The object reference to be compared with the instance</param>
         /// <returns></returns>
         public override bool Equals(object o)
         {
@@ -99,14 +155,21 @@ namespace Engine
             }
             return base.Equals(o);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vec"></param>
+        /// <returns></returns>
         public bool Equals(Vector3 vec)
         {
             if (vec == null)
                 return false;
             return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -123,8 +186,12 @@ namespace Engine
         #endregion
 
         #region OPERATOR
-        
-        // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
             float _x = v1.x - v2.x;
@@ -132,12 +199,21 @@ namespace Engine
             float _z = v1.z - v2.z;
             return new Vector3(_x, _y, _z);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <returns></returns>
         public static Vector3 operator -(Vector3 v1)
         {
             return new Vector3(-v1.x, -v1.y, -v1.z);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
             float _x = v1.x + v2.x;
@@ -145,26 +221,37 @@ namespace Engine
             float _z = v1.z + v2.z;
             return new Vector3(_x, _y, _z);
         }
-
+        /// <summary>
+        /// Multiply the vector by a scalar and returns a Vector3
+        /// </summary>
+        /// <param name="v1">Vector to be multiplied</param>
+        /// <param name="number">Multiplicator</param>
+        /// <returns></returns>
         public static Vector3 operator *(Vector3 v1, float number)
         {
             v1.Scale(number);
             return v1;
         }
-
+        /// <summary>
+        /// Multiply the vector by a scalar and returns a Vector3
+        /// </summary>
+        /// <param name="number">Multiplicator</param>
+        /// <param name="v1">Vector to be multiplied</param>
+        /// <returns></returns>
         public static Vector3 operator *(float number, Vector3 v1)
         {
             v1.Scale(number);
             return v1; 
         }
-
+        /// <summary>
+        /// Returns true if all components of both vectors are equal.
+        /// Returns true if both parameter are the same object
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
-            // Missing some details here for safety
-            /*if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
-                return true;
-            else
-                return false;*/
             if (Object.ReferenceEquals(v1, v2)) // both are actually the same object
             {
                 return true;
@@ -177,7 +264,13 @@ namespace Engine
             // Finally perform verification
             return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z);
         }
-
+        /// <summary>
+        /// Returns true if the two vectors are not equal
+        /// Returns true if both parameter are the same object
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
         public static bool operator !=(Vector3 v1, Vector3 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -307,8 +400,8 @@ namespace Engine
         /// <summary>
         /// Returns a reflection of incoming off a plane defined by normal
         /// </summary>
-        /// <param name="incoming"></param>
-        /// <param name="normal"></param>
+        /// <param name="incoming">Incoming vector</param>
+        /// <param name="normal">Normal vector</param>
         /// <returns></returns>
         public static Vector3 Reflect(Vector3 incoming, Vector3 normal)
         {
@@ -316,14 +409,19 @@ namespace Engine
             Vector3 _reflection = incoming - (normal * _dot);
             return _reflection;
         }
-
+        /// <summary>
+        /// Returns the vector of the projection of the target onto the normal
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static Vector3 Projection(Vector3 target, Vector3 direction)
-        {
-
-            return Dot(target.Normalized(), direction) * target.Normalized();    
+        { 
+            return Dot(target, direction) * target.Normalized();    
         }
         /// <summary>
         /// Returns the angle between v1 and v2
+        /// Angle is between 0 and 180.
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -332,7 +430,6 @@ namespace Engine
         {
             float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
             return Mathf.Acos(prod);
-            // Actually here, best would be to benchmark (test for speed) to see which one goes faster.
         }
 
         /// <summary>
@@ -351,8 +448,6 @@ namespace Engine
 
         #endregion
     }
-
-    // Same for Vector2 and Vector4
     /// <summary>
     /// The class for Vector2. 
     /// Used for 2D vector and UV vector
@@ -642,10 +737,15 @@ namespace Engine
             Vector2 _reflection = incoming - (normal * _dot);
             return _reflection;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static Vector2 Projection(Vector2 target, Vector2 direction)
         {
-			return Dot(target.Normalized(), direction) * target.Normalized(); 
+			return Dot(target, direction) * target.Normalized(); 
         }
 
         public static float Angle(Vector2 v1, Vector2 v2)

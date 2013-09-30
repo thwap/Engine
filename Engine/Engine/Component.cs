@@ -13,6 +13,7 @@ namespace Engine
     public class Component:EngineObject
     {
         public GameObject gameObject;
+
         public virtual void Update()
         { 
         }
