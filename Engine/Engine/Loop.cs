@@ -26,11 +26,11 @@ namespace Engine
 
         public delegate void CallbackLoop();
         CallbackLoop _callback;
-        Time _time;
+        Time _timer;
         public Loop(CallbackLoop callback)
         {
             _callback = callback;
-            _time = new Time();
+            _timer = new Time();
             Application.Idle += new EventHandler(OnApplicationEnterIdle);
         }
 
@@ -39,7 +39,8 @@ namespace Engine
             Message msg;
             while (!PeekMessage(out msg, IntPtr.Zero, 0, 0, 0))
             {
-                _time.SetTime();
+		
+                _timer.SetTime();
                 _callback();
             }
         }

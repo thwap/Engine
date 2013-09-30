@@ -53,7 +53,7 @@ namespace Engine
         {
             long __time = 0;
             QueryPerformanceCounter(ref __time);
-            _deltaTime = (float)((double)(_time - _previousElapsedTime) / (double)_ticksPerSecond);
+            _deltaTime = (float)((double)(__time - _previousElapsedTime) / (double)_ticksPerSecond);
             _previousElapsedTime = __time;
             _time += _deltaTime;
             _deltaTime *= timeScale;
