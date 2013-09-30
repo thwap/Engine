@@ -26,6 +26,9 @@ namespace Engine {
         
         }
 
+        public void DrawVertex(Vector3 position, Colorf color, Vector2 uvs) {
+        
+        }
         public void ApplyMatrix(Matrix compositeMatrix) {
             foreach (Vector3 v in vertex) {
 
