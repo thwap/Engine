@@ -35,7 +35,7 @@ namespace Engine
                 comp.Start();
             }
         }
-        T addComp<T>() where T : Component, new()
+        public T AddComponent<T>() where T : Component, new()
         {
             T component = new T();
             component.gameObject = this;
@@ -44,8 +44,19 @@ namespace Engine
                 sprite = (Sprite)((object)component);
             }
             else
-            compList.Add(component);
+                compList.Add(component);
             return component;
+        }
+        public T GetComponent<T>() where T : Component
+        {
+            foreach (Component comparisonComp in compList)
+            {
+                if (comparisonComp.GetType() == typeof(T))
+                {
+                    return comparisonComp as T;
+                }
+            }
+            return null;
         }
 
         /// <summary>
