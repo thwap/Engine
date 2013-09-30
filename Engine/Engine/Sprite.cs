@@ -8,10 +8,8 @@ using Tao.OpenGl;
 using Tao.Platform.Windows;
 
 
-namespace Engine
-{
-    public class Sprite : Component
-    {
+namespace Engine {
+    public class Sprite : Component {
         Transform transform;
         Vector3[] vertex;
         Vector2[] vertexUVs;
@@ -20,24 +18,22 @@ namespace Engine
         int vertexAmount;
 
 
-        public void InitVertexPositions(Vector3 position, float width, float height)
-        {
+        public void InitVertexPositions(Vector3 position, float width, float height) {
+        
         }
 
-        public void Draw()
-        {
+        public void Draw() {
+        
         }
 
-        public void ApplyMatrix(Matrix compositeMatrix)
-        {
-            foreach (Vector3 v in vertex)
-            {
+        public void ApplyMatrix(Matrix compositeMatrix) {
+            foreach (Vector3 v in vertex) {
 
             }
         }
 
-        public void SetPosition(Vector3 position)
-        {
+        public void SetPosition(Vector3 position) {
+       
         }
     }
 }
