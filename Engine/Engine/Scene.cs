@@ -8,7 +8,7 @@ namespace Engine
 {
     public class Scene:EngineObject,IDisposable
     {
-        protected List<GameObject> gameObjectList;
+        public List<GameObject> gameObjectList;
 
         public Scene() 
         {

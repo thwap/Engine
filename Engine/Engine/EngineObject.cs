@@ -12,7 +12,7 @@ namespace Engine
     /// </summary>
     public class EngineObject
     {
-        string name;
+        public string name;
         int instaceID;
 
         static int ID = 0;
@@ -51,7 +51,7 @@ namespace Engine
             if (Obj is GameObject)
             {
                 GameObject o = (GameObject)Obj;
- //               o.compList.Clear();
+                o.compList.Clear();
 
                 o = null;
             }

@@ -14,6 +14,8 @@ namespace Engine
     {
         public List<Component>compList = new List<Component>(); 
         public Sprite sprite;
+        string tag;
+
         public void Update()
         {
             foreach (Component comp in compList)
@@ -44,6 +46,58 @@ namespace Engine
             else
             compList.Add(component);
             return component;
+        }
+
+        /// <summary>
+        /// Find gameobject with name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static GameObject Find(string name)
+        {
+            foreach (GameObject go in App.GetCurrentScene().gameObjectList)
+            {
+                if (go.name == name)
+                    return go;
+            }
+            
+            return null;
+        }
+
+        /// <summary>
+        /// Find gameobject with tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static GameObject FindGameObjectWithTag(string tag)
+        {
+            foreach (GameObject go in App.GetCurrentScene().gameObjectList)
+            {
+                if (go.tag == tag)
+                    return go;
+            }
+
+            return null;
+        }
+        
+        /// <summary>
+        /// Find array of gameobjects with tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static List<GameObject> FindGameObjectsWithTag(string tag)
+        {
+            List<GameObject> goList = new List<GameObject>();
+
+            foreach (GameObject go in App.GetCurrentScene().gameObjectList)
+            {
+                if (go.tag == tag)
+                {
+                    goList.Add(go);
+                }
+            }
+
+            return goList;
         }
     }
 }
