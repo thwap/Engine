@@ -9,6 +9,7 @@ using Tao.DevIl;
 using Engine;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Reflection;
 
 namespace Engine
 {
@@ -31,25 +32,62 @@ namespace Engine
     public class App
     {
         private static Scene current;
-        public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
+        public static Dictionary<string, Type> scenes = new Dictionary<string, Type>();
         public static List<EngineObject> listToDestroy;
+
+        public static void AddScene(string name, Type type)
+        {
+            scenes.Add(name, type);
+        }
 
         public static Scene GetCurrentScene()
         {
             return current;
         }
 
-        public static void LoadScene(string scene)
+        public static void LoadScene(Type scene)
         {
-            if (scenes.ContainsKey(scene))
-            {
-                current = scenes[scene];
+            if(scene.GetType() == typeof(Scene)) {
+                current = (Scene)Activator.CreateInstance(scene);
+                CollectGarbage();
             }
             else {
                 string error = "The scene " + scene + " does not exist";
                 System.Diagnostics.Debug.Assert(false, error);
             }
         }
+
+        public static void LoadScene<T>() where T : Scene, new()
+        {
+            current = new T();
+            CollectGarbage();
+        }
+
+        public static void LoadScene(string scene)
+        {
+            string str = "Engine." + scene;
+            current = (Scene)Activator.CreateInstance(Type.GetType(str));
+            CollectGarbage();
+        }
+
+        public static void CollectGarbage()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+
+        /*public static void LoadScene(string scene)
+        {
+            if (scenes.ContainsKey(scene))
+            {
+                current = (Scene)Activator.CreateInstance(scenes[scene]);
+                Console.WriteLine(current.GetHashCode());
+            }
+            else {
+                string error = "The scene " + scene + " does not exist";
+                System.Diagnostics.Debug.Assert(false, error);
+            }
+        }*/
 
         /// <summary>
         /// Initializes and defines the OpenGLControl object needed to start the application
