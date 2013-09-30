@@ -27,36 +27,36 @@ namespace Engine
         /// Gives the time in seconds between this frame and the previous frame
         /// </summary>
         
-        private static float deltaTime;
-        private static float time;
+        private static float _deltaTime;
+        private static float _time;
         public static float timeScale;
 
-        public static float DeltaTime
+        public static float deltaTime
         {
-            get { return deltaTime; }
+            get { return _deltaTime; }
         }
 
-        public static float Time
+        public static float time
         {
-            get { return time; }
+            get { return _time; }
         }
 
         public Time()
         {
             QueryPerformanceFrequency(ref _ticksPerSecond);
             SetTime();
-            time = 0;
+            _time = 0;
             timeScale = 1f;
         }
 
         public void SetTime()
         {
-            long _time = 0;
-            QueryPerformanceCounter(ref _time);
-            deltaTime = (float)((double)(_time - _previousElapsedTime) / (double)_ticksPerSecond);
-            _previousElapsedTime = _time;
-            time += deltaTime;
-            deltaTime *= timeScale;
+            long __time = 0;
+            QueryPerformanceCounter(ref __time);
+            _deltaTime = (float)((double)(_time - _previousElapsedTime) / (double)_ticksPerSecond);
+            _previousElapsedTime = __time;
+            _time += _deltaTime;
+            _deltaTime *= timeScale;
         }
     }
 }
