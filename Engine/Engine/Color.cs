@@ -9,6 +9,51 @@ namespace Engine
     public struct Color
     {
         /// <summary>
+        /// returns value of red
+        /// </summary>
+        public float r
+        {
+            get 
+            {
+                return _r;
+            }
+        }
+
+        /// <summary>
+        /// returns value of green
+        /// </summary>
+        public float g
+        {
+            get
+            {
+                return _g;
+            }
+        }
+
+
+        /// <summary>
+        /// returns value of blue
+        /// </summary>
+        public float b
+        {
+            get
+            {
+                return _b;
+            }
+        }
+
+
+        /// <summary>
+        /// returns value of alpha
+        /// </summary>
+        public float a
+        {
+            get
+            {
+                return _a;
+            }
+        }
+        /// <summary>
         /// Colors red value
         /// </summary>
         float _r 
