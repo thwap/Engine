@@ -31,11 +31,18 @@ namespace Engine
         private static float _time;
         public static float timeScale;
 
+
+        /// <summary>
+        /// Time elapsed in seconds between two previous calls to SetTime()
+        /// </summary>
         public static float deltaTime
         {
             get { return _deltaTime; }
         }
 
+        /// <summary>
+        /// Time elapsed in seconds after creation of current instance of Time
+        /// </summary>
         public static float time
         {
             get { return _time; }
