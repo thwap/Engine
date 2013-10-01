@@ -10,7 +10,6 @@ namespace Engine
     {
         public Form1()
         {
-            Loop _loop = new Loop(GameLoop);
             InitializeComponent();
             _openGLControl.InitializeContexts();
 

@@ -12,6 +12,29 @@ namespace Engine
         public Vector4 rotation;
         public Vector3 scale;
 
+        public Transform()
+        {
+            /* // scale by one = its original size
+            scale.x = 1.0f;
+            scale.y = 1.0f;
+            scale.z = 1.0f;
+
+            // translate by identity matrix
+            Matrix m = new Matrix();
+            m = Matrix.Identity;
+            position = m.GetTranslation();
+
+            // rotate by zero1
+            Matrix m2 = new Matrix();
+            m2 = Matrix.Identity;
+            m2.SetRotateZ(0);
+            rotation = m2 * rotation; */
+
+            scale = new Vector3(1, 1, 0);
+            rotation = new Vector4();
+            position = new Vector3();
+        }
+
         //Constructor of class
         public Transform(Vector3 position,Vector4 rotation,Vector3 scale)
         {
