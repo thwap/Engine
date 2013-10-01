@@ -14,6 +14,7 @@ namespace Engine
     {
         public List<Component>compList = new List<Component>(); 
         public Sprite sprite;
+        public Transform transform; 
         public string tag = "Default";
 
         /// <summary>
