@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['magenta',['MAGENTA',['../struct_engine_1_1_color.html#a55459cbade5f454358bccc71f082b52b',1,'Engine::Color']]],
+  ['magenta',['Magenta',['../struct_engine_1_1_color.html#a0409134cb21edf645bdddf90481e2e79',1,'Engine::Color']]],
   ['magnitude',['magnitude',['../struct_engine_1_1_vector3.html#a66f331809cd25cdaf64b869a9285231b',1,'Engine.Vector3.magnitude()'],['../struct_engine_1_1_vector2.html#af30e699adee02ca57f1972e8e4a32712',1,'Engine.Vector2.magnitude()'],['../struct_engine_1_1_vector4.html#aeba98e6a4edd2bbe008cb1965f6e89d1',1,'Engine.Vector4.magnitude()']]],
   ['mathf',['Mathf',['../class_engine_1_1_mathf.html',1,'Engine']]],
   ['mathf_2ecs',['Mathf.cs',['../_mathf_8cs.html',1,'']]],
