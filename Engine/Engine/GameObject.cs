@@ -14,7 +14,8 @@ namespace Engine
     {
         public List<Component>compList = new List<Component>(); 
         public Sprite sprite;
-        public Transform transform; 
+        public Transform transform;
+        public Animation animation;
         public string tag = "Default";
 
         /// <summary>
@@ -48,6 +49,16 @@ namespace Engine
             if (component is Sprite)
             {
                 sprite = (Sprite)((object)component);
+            }
+            else if (component is Transform)
+            {
+                transform = (Transform)((object)component);
+                compList.Add(component);
+            }
+            else if (component is Animation)
+            {
+                animation = (Animation)((object)component);
+                compList.Add(component);
             }
             else
                 compList.Add(component);

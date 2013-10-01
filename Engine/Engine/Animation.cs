@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    class Animation
+    class Animation : Component
     {
         public bool playing = true;
         AnimationClip currentAnimation;
