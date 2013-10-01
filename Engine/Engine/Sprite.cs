@@ -11,11 +11,11 @@ using Tao.Platform.Windows;
 
 namespace Engine {
     public class Sprite : Component {
-        Transform transform { get;set; }
-        Vector3[] _vertexPositions;
-        Vector2[] vertexUVs {get;set;}
-        Texture texture {get;set;}
-        Color[] vertexColor {get;set;}
+        public Transform transform { get;set; }
+        public Vector3[] _vertexPositions;
+        public Vector2[] vertexUVs {get;set;}
+        public Texture texture {get;set;}
+        public Color[] vertexColor {get;set;}
         int vertexAmount {get;set;}
 
         public Sprite() {
