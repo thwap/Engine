@@ -10,12 +10,10 @@ namespace Engine
     /// The GameObject class
     /// Is used as a container for components
     /// </summary>
-    public class GameObject:EngineObject
+    public class GameObject : EngineObject
     {
-        public List<Component>compList = new List<Component>(); 
+        public List<Component> compList = new List<Component>();
         public Sprite sprite;
-        public Transform transform;
-        public Animation animation;
         public string tag = "Default";
 
         /// <summary>
@@ -27,6 +25,17 @@ namespace Engine
             {
                 comp.Start();
             }
+            App.GetCurrentScene().gameObjectList.Add(this);
+        }
+        public GameObject(string name)
+        {
+            this.name = name;
+            foreach (Component comp in compList)
+            {
+                comp.Start();
+            }
+            Scene sc = App.GetCurrentScene();
+            sc.gameObjectList.Add(this);
         }
         public void Update()
         {
@@ -37,10 +46,10 @@ namespace Engine
         }
         public void Render()
         {
-            if(sprite!=null)
-            sprite.Draw();
+            if (sprite != null)
+                sprite.Draw();
         }
-        
+
 
         public T AddComponent<T>() where T : Component, new()
         {
@@ -49,19 +58,9 @@ namespace Engine
             if (component is Sprite)
             {
                 sprite = (Sprite)((object)component);
-            }
-            else if (component is Transform)
-            {
-                transform = (Transform)((object)component);
-                compList.Add(component);
-            }
-            else if (component is Animation)
-            {
-                animation = (Animation)((object)component);
                 compList.Add(component);
             }
             else
-                component.transform = transform;
                 compList.Add(component);
             return component;
         }
@@ -89,7 +88,7 @@ namespace Engine
                 if (go.name == name)
                     return go;
             }
-            
+
             return null;
         }
 
@@ -108,13 +107,13 @@ namespace Engine
 
             return null;
         }
-        
+
         /// <summary>
         /// Find array of gameobjects with tag
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static Array FindGameObjectsWithTag(string tag)
+        public static List<GameObject> FindGameObjectsWithTag(string tag)
         {
             List<GameObject> goList = new List<GameObject>();
 
@@ -126,7 +125,7 @@ namespace Engine
                 }
             }
 
-            return goList.ToArray();
+            return goList;
         }
     }
 }

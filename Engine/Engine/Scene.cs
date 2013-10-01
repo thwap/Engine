@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Scene:EngineObject,IDisposable
+    public class Scene : EngineObject, IDisposable
     {
         public List<GameObject> gameObjectList;
 
-        public Scene() 
+        public Scene()
         {
 
         }
-        
+
         public Scene(String name)
         {
 
         }
+        public virtual void Initialization()
+        {
 
+        }
         public virtual void Update()
         {
-            foreach(GameObject GO in gameObjectList)
+            foreach (GameObject GO in gameObjectList)
             {
                 GO.Update();
             }
@@ -50,27 +53,34 @@ namespace Engine
         }
 
 
-        public void Dispose() 
+        public void Dispose()
         {
-        
+
         }
-        
-        
 
-   }
 
-    class Scene1 : Scene
 
+    }
+
+    public class Scene1 : Scene
     {
+        GameObject obj;
         public Scene1()
             : base("Scene1")
         {
+            gameObjectList = new List<GameObject>();
+        }
+        public override void Initialization()
+        {
+            obj = new GameObject("Dog");
+            obj.AddComponent<Sprite>();
         }
 
         public Scene1(String name)
             : base(name)
         {
         }
+
     }
 
     public class Scene2 : Scene

@@ -32,8 +32,8 @@ namespace Engine
     public class App
     {
         private static Scene current;
-        public static List<EngineObject> listToDestroy;
-        
+        public static List<EngineObject> listToDestroy = new List<EngineObject>();
+
         public static Scene GetCurrentScene()
         {
             return current;
@@ -41,11 +41,13 @@ namespace Engine
 
         public static void LoadScene(Type scene)
         {
-            if(scene.GetType() == typeof(Scene)) {
+            if (scene.GetType() == typeof(Scene))
+            {
                 current = (Scene)Activator.CreateInstance(scene);
                 CollectGarbage();
             }
-            else {
+            else
+            {
                 string error = "The scene " + scene + " does not exist";
                 System.Diagnostics.Debug.Assert(false, error);
             }
@@ -62,6 +64,7 @@ namespace Engine
             string str = "Engine." + scene;
             current = (Scene)Activator.CreateInstance(Type.GetType(str));
             CollectGarbage();
+            current.Initialization();
         }
 
         public static void CollectGarbage()
@@ -87,7 +90,7 @@ namespace Engine
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
         /// <returns></returns>
-        public static OpenGLControl Init(int Width, int Height, bool Fullscreen, Form1 F, CallbackLoop GameLoop, string ProjectName = "GameEngine")
+        public static OpenGLControl Init(int Width, int Height, bool Fullscreen, Form1 F, string ProjectName = "GameEngine")
         {
 
             // Form1 Initialization
@@ -108,8 +111,6 @@ namespace Engine
             {
                 F.ClientSize = new Size(Screen.Width, Screen.Height);
             }
-
-			Loop _loop = new Loop(GameLoop);
 
             // DevIl initialization
             Il.ilInit();
@@ -135,8 +136,6 @@ namespace Engine
             _openGLControl.TabIndex = 0;
             return _openGLControl;
         }
-
-
         /// <summary>
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
