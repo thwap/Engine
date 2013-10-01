@@ -86,6 +86,7 @@
     <Compile Include="Engine\EngineObject.cs" />
     <Compile Include="Engine\Font\Font.cs" />
     <Compile Include="Engine\GameObject.cs" />
+    <Compile Include="Engine\Rect.cs" />
     <Compile Include="Engine\Scene.cs" />
     <Compile Include="Engine\Screen.cs" />
     <Compile Include="Engine\Sprite.cs" />
