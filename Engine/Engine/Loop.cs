@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace Engine
 {
+	public delegate void CallbackLoop();
     [StructLayout(LayoutKind.Sequential)]
     public struct Message
     {
@@ -24,7 +25,6 @@ namespace Engine
             uint MessageFilterMax,
             uint flags);
 
-        public delegate void CallbackLoop();
         CallbackLoop _callback;
         Time _timer;
         public Loop(CallbackLoop callback)

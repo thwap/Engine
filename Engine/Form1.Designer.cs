@@ -33,7 +33,7 @@ namespace Engine
             this.components = new System.ComponentModel.Container();
             this.Text = "Form1";
 
-            _openGLControl = App.Init(300, 300, false, this, "EBIN GAEM ENGINEER!!11one"); // Initializing the Form and OpenGL
+            _openGLControl = App.Init(300, 300, false, this, GameLoop, "EBIN GAEM ENGINEER!!11one"); // Initializing the Form and OpenGL
            
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

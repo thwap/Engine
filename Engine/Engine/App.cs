@@ -87,7 +87,7 @@ namespace Engine
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
         /// <returns></returns>
-        public static OpenGLControl Init(int Width, int Height, bool Fullscreen, Form1 F, string ProjectName = "GameEngine")
+        public static OpenGLControl Init(int Width, int Height, bool Fullscreen, Form1 F, CallbackLoop GameLoop, string ProjectName = "GameEngine")
         {
 
             // Form1 Initialization
@@ -108,6 +108,8 @@ namespace Engine
             {
                 F.ClientSize = new Size(Screen.Width, Screen.Height);
             }
+
+			Loop _loop = new Loop(GameLoop);
 
             // DevIl initialization
             Il.ilInit();
@@ -133,6 +135,8 @@ namespace Engine
             _openGLControl.TabIndex = 0;
             return _openGLControl;
         }
+
+
         /// <summary>
         /// Initializes and defines the OpenGLControl object needed to start the application
         /// </summary>
