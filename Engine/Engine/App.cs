@@ -32,15 +32,8 @@ namespace Engine
     public class App
     {
         private static Scene current;
-        public static Dictionary<string, Type> scenes = new Dictionary<string, Type>();
         public static List<EngineObject> listToDestroy;
         
-
-        public static void AddScene(string name, Type type)
-        {
-            scenes.Add(name, type);
-        }
-
         public static Scene GetCurrentScene()
         {
             return current;
