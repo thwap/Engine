@@ -8,6 +8,9 @@ namespace Engine
 {
     class Animation : Component
     {
+        /// <summary>
+        /// Animation inherits from Component
+        /// </summary>
         public bool playing = true;
         AnimationClip currentAnimation;
         internal static Dictionary<string, AnimationClip> animationList;
@@ -39,6 +42,8 @@ namespace Engine
         public void Stop()
         {
             playing = false;
+            currentAnimation.xCoordinate = currentAnimation.xStart;
+            currentAnimation.yCoordinate = currentAnimation.yStart;
         }
     }
 }

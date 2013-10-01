@@ -61,6 +61,7 @@ namespace Engine
                 compList.Add(component);
             }
             else
+                component.transform = transform;
                 compList.Add(component);
             return component;
         }
