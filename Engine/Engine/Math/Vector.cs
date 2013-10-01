@@ -156,7 +156,7 @@ namespace Engine
             return base.Equals(o);
         }
         /// <summary>
-        /// 
+        //Check if vector is equal to another vector 
         /// </summary>
         /// <param name="vec"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace Engine
             return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z);
         }
         /// <summary>
-        /// 
+        /// Calculate the hash code for the vector.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
@@ -187,7 +187,7 @@ namespace Engine
 
         #region OPERATOR
         /// <summary>
-        /// 
+        //Subs vector from another vector = Difference of two vectors
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -200,7 +200,7 @@ namespace Engine
             return new Vector3(_x, _y, _z);
         }
         /// <summary>
-        /// 
+        //Negation of vector
         /// </summary>
         /// <param name="v1"></param>
         /// <returns></returns>
@@ -209,7 +209,7 @@ namespace Engine
             return new Vector3(-v1.x, -v1.y, -v1.z);
         }
         /// <summary>
-        /// 
+        /// Sum of two vectors
         /// </summary>
         /// <param name="v1"></param>
         /// <param name="v2"></param>
@@ -459,6 +459,7 @@ namespace Engine
 
         public float x, y;
 
+        //Get the magnitude of vector
         public float magnitude
         {
             get
@@ -467,6 +468,7 @@ namespace Engine
             }
         }
 
+        //Get the square of vectors magnitude
         public float sqrMagnitude
         {
             get
@@ -475,6 +477,7 @@ namespace Engine
             }
         }
 
+        //Normalize the vector
         public Vector2 Normalized()
         {
             float mag = magnitude;
@@ -482,7 +485,7 @@ namespace Engine
         }
 
         #endregion
-
+        //Constructors for vector 2
         #region CONSTURCTORS
 
         public Vector2(float x, float y) 
@@ -519,6 +522,7 @@ namespace Engine
             return x + "x, " + y + "y";
         }
 
+        //check if vector is equal to another object
         public override bool Equals(object o)
         {
             if (o is Vector2)
@@ -527,6 +531,7 @@ namespace Engine
                 return base.Equals(o);
         }
 
+        //check if vector equals to another vector
         public bool Equals(Vector2 vec)
         {
             if (vec == null)
@@ -537,6 +542,7 @@ namespace Engine
                 return false;
         }
 
+        //Calculate the hashcode for vector
         public override int GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -555,37 +561,43 @@ namespace Engine
 
         // Override of operator == , !=, + , -, * (float * Vector and Vector * float)
         // Here in order to gain efficiency you may want to perform the action inside
-        public static Vector2 operator -(Vector2 v1, Vector2 v2)    // Difference
+        // Difference
+        public static Vector2 operator -(Vector2 v1, Vector2 v2)    
         {
             float _x = v1.x - v2.x;
             float _y = v1.y - v2.y;
             return new Vector2(_x, _y);
         }
 
-        public static Vector2 operator -(Vector2 v1)                // Negation
+        // Negation
+        public static Vector2 operator -(Vector2 v1)                
         {
             return new Vector2(-v1.x, -v1.y);
         }
 
-        public static Vector2 operator +(Vector2 v1, Vector2 v2)    // Sum
+        // Sum
+        public static Vector2 operator +(Vector2 v1, Vector2 v2)    
         {
             float _x = v1.x + v2.x;
             float _y = v1.y + v2.y;
             return new Vector2(_x, _y);
         }
 
-        public static Vector2 operator *(Vector2 v1, float number)  // Vector times scalar
+        // Vector times scalar
+        public static Vector2 operator *(Vector2 v1, float number)  
         {
             v1.Scale(number);
             return v1;
         }
 
-        public static Vector2 operator *(float number, Vector2 v1)  // Scalar times vector
+        // Scalar times vector
+        public static Vector2 operator *(float number, Vector2 v1)  
         {
             v1.Scale(number);
             return v1;
         }
 
+        //Check if two vectors are equal
         public static bool operator ==(Vector2 v1, Vector2 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -599,6 +611,7 @@ namespace Engine
             return (v1.x == v2.x) && (v1.y == v2.y);
         }
 
+        //Check if two vectors are NOT equal
         public static bool operator !=(Vector2 v1, Vector2 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -738,7 +751,7 @@ namespace Engine
             return _reflection;
         }
         /// <summary>
-        /// 
+        /// Projection of 2D Vector
         /// </summary>
         /// <param name="target"></param>
         /// <param name="direction"></param>
@@ -780,6 +793,7 @@ namespace Engine
         #region MEMBERS
         public float x, y, z, w;
 
+        //Magnitude for vector
         public float magnitude
         {
             get
@@ -789,6 +803,7 @@ namespace Engine
             // Setter omitted for a read-only property
         }
 
+        //Square of vectors magnitude
         public float sqrMagnitude
         {
             get
@@ -798,6 +813,7 @@ namespace Engine
             // Setter omitted for a read-only property
         }
 
+        //Normalize the vector
         public Vector4 Normalized()
         {
             float mag = magnitude;
@@ -807,7 +823,7 @@ namespace Engine
         #endregion
 
         #region CONSTURCTORS
-
+        //Constructors for vector4
         public Vector4(float x, float y, float z, float w) 
         {
             this.x = x;
@@ -846,20 +862,23 @@ namespace Engine
             return x + "x, " + y + "y, " + z + "z, " + w + "w";
         }
 
+        // Check if object is Vector4
         public override bool Equals(object o)
         {
-            if (o is Vector4) // Check if object is Vector4
+            if (o is Vector4) 
             {
                 return Equals((Vector4)o);
             }
             return base.Equals(o);
         }
 
+        //Check if vector is equal to another vector
         public bool Equals(Vector4 vec)
         {
             return (this.x == vec.x) && (this.y == vec.y) && (this.z == vec.z) && (this.w == vec.w);
         }
 
+        //Get the hash code for the vector
         public override int GetHashCode()
         {
             unchecked
@@ -877,6 +896,7 @@ namespace Engine
 
         #region OPERATOR
 
+        //Subs vector from another vector = Difference of two vectors
         public static Vector4 operator -(Vector4 v1, Vector4 v2)
         {
             float _x = v1.x - v2.x;
@@ -886,11 +906,13 @@ namespace Engine
             return new Vector4(_x, _y, _z, _w);
         }
 
+        //Negation of vector
         public static Vector4 operator -(Vector4 v1)
         {
             return new Vector4(-v1.x, -v1.y, -v1.z, -v1.w);
         }
 
+        //Sum of two vectors
         public static Vector4 operator +(Vector4 v1, Vector4 v2)
         {
             float _x = v1.x + v2.x;
@@ -900,18 +922,21 @@ namespace Engine
             return new Vector4(_x, _y, _z, _w);
         }
 
+        // Vector times scalar
         public static Vector4 operator *(Vector4 v1, float number)
         {
             v1.Scale(number);
             return v1;
         }
 
+        // Scalar times vector
         public static Vector4 operator *(float number, Vector4 v1)
         {
             v1.Scale(number);
             return v1;
         }
 
+        //Check if two vectors are equal
         public static bool operator ==(Vector4 v1, Vector4 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -925,6 +950,7 @@ namespace Engine
             return (v1.x == v2.x) && (v1.y == v2.y) && (v1.z == v2.z) && (v1.w == v2.w);
         }
 
+        //Check if two vectors are NOT equal
         public static bool operator !=(Vector4 v1, Vector4 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -1053,11 +1079,13 @@ namespace Engine
             return _reflection;
         }
 
+        //Projection of vector
         public static Vector4 Projection(Vector4 target, Vector4 position, Vector4 direction)
         {
             throw new NotImplementedException();
         }
 
+        //Calculates angle between two vectors
         public static float Angle(Vector4 v1, Vector4 v2)
         {
             float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
