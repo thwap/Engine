@@ -12,33 +12,38 @@ using Tao.Platform.Windows;
 namespace Engine {
     public class Sprite : Component {
         Transform transform { get;set; }
-        Vector3[] vertex;
+        Vector3[] _vertexPositions;
         Vector2[] vertexUVs {get;set;}
         Texture texture {get;set;}
         Color[] vertexColor {get;set;}
         int vertexAmount {get;set;}
 
         public Sprite() {
-            
-        }
-
-        public void InitVertexPositions(Vector3 position, float width, float height)
-        {
-            vertex = new Vector3[6];
-            vertex[3] = vertex[0] =
-                new Vector3(width / 2, height / 2, 0) + position; // upperright
-            vertex[1] =
-                new Vector3(width / 2, -height / 2, 0) + position; // lowerright
-            vertex[4] = vertex[2] =
-                new Vector3(-width / 2, -height / 2, 0) + position; // lowerleft
-            vertex[5] =
-                new Vector3(-width / 2, +height / 2, 0);  //topleft
+            InitVertexPositions(new Vector3(0, 0, 0), 2, 2);
+            Gl.glEnable(Gl.GL_TEXTURE_2D);
+            Gl.glEnable(Gl.GL_BLEND);
+            Gl.glBlendFunc(Gl.GL_SRC_ALPHA, Gl.GL_ONE_MINUS_SRC_ALPHA);
 
         }
 
-        public void Draw() {
-            foreach (Vector3 vertx in vertex) {
+        public void InitVertexPositions(Vector3 position, float width, float height) {
 
+            float halfWidth = width / 2;
+            float halfHeight = height / 2;
+            _vertexPositions = new Vector3[6];
+
+            _vertexPositions[0] =_vertexPositions[3]  = new Vector3(position.x - halfWidth, position.y + halfHeight, position.z); //topleft
+            _vertexPositions[1] = new Vector3(position.x + halfWidth, position.y + halfHeight, position.z); //topright
+            _vertexPositions[2] = _vertexPositions[5] = new Vector3(position.x - halfWidth, position.y - halfHeight, position.z); //bottomleft
+            _vertexPositions[4] = new Vector3(position.x + halfWidth, position.y - halfHeight, position.z); //bottomright
+         
+           
+
+        }
+
+        internal void Draw() {
+            foreach (Vector3 vertx in _vertexPositions) {
+              //  Classic openGL drawing
             }
         }
 
@@ -48,7 +53,7 @@ namespace Engine {
             Gl.glVertex3f(position.x, position.y, position.z);
         }
         public void ApplyMatrix(Matrix compositeMatrix) {
-            foreach (Vector3 v in vertex) {
+            foreach (Vector3 v in _vertexPositions) {
 
             }
         }
