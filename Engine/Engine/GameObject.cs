@@ -61,6 +61,7 @@ namespace Engine
                 compList.Add(component);
             }
             else
+                component.transform = transform;
                 compList.Add(component);
             return component;
         }
@@ -113,7 +114,7 @@ namespace Engine
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public static List<GameObject> FindGameObjectsWithTag(string tag)
+        public static Array FindGameObjectsWithTag(string tag)
         {
             List<GameObject> goList = new List<GameObject>();
 
@@ -125,7 +126,7 @@ namespace Engine
                 }
             }
 
-            return goList;
+            return goList.ToArray();
         }
     }
 }

@@ -9,6 +9,9 @@ namespace Engine
 {
     class AnimationClip
     {
+        /// <summary>
+        /// Only has constructors.
+        /// </summary>
         public int columns;
         public int rows;
         public bool loop;

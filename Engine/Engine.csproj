@@ -76,6 +76,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Animation.cs" />
+    <Compile Include="Engine\AnimationClip.cs" />
     <Compile Include="Engine\App.cs" />
     <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\Color.cs" />
