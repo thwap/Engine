@@ -14,7 +14,7 @@ namespace Engine
 
         public Transform()
         {
-            // scale by one = its original size
+            /* // scale by one = its original size
             scale.x = 1.0f;
             scale.y = 1.0f;
             scale.z = 1.0f;
@@ -24,14 +24,15 @@ namespace Engine
             m = Matrix.Identity;
             position = m.GetTranslation();
 
-            // rotate by zero
+            // rotate by zero1
             Matrix m2 = new Matrix();
             m2 = Matrix.Identity;
             m2.SetRotateZ(0);
-            rotation = m2 * rotation;
-            
+            rotation = m2 * rotation; */
 
-
+            scale = new Vector3(1, 1, 0);
+            rotation = new Vector4();
+            position = new Vector3();
         }
 
         //Constructor of class
