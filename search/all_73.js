@@ -20,7 +20,7 @@ var searchData=
   ['sin',['Sin',['../class_engine_1_1_mathf.html#a3d1ec51c1ff1183af9b0f2f0f0801793',1,'Engine::Mathf']]],
   ['speed',['speed',['../class_engine_1_1_animation_clip.html#ae03d0b48678c258ee4ff802effc75fb8',1,'Engine::AnimationClip']]],
   ['sprite',['Sprite',['../class_engine_1_1_sprite.html',1,'Engine']]],
-  ['sprite',['sprite',['../class_engine_1_1_animation_clip.html#a4457c3a40584f83a28193603435718fd',1,'Engine.AnimationClip.sprite()'],['../class_engine_1_1_game_object.html#aa8dba0e532c9d1299fc61eae273cb495',1,'Engine.GameObject.sprite()'],['../class_engine_1_1_sprite.html#aa4b72e92376b352f3963928acd864f1b',1,'Engine.Sprite.Sprite()']]],
+  ['sprite',['Sprite',['../class_engine_1_1_sprite.html#aa4b72e92376b352f3963928acd864f1b',1,'Engine.Sprite.Sprite()'],['../class_engine_1_1_animation_clip.html#a4457c3a40584f83a28193603435718fd',1,'Engine.AnimationClip.sprite()'],['../class_engine_1_1_game_object.html#aa8dba0e532c9d1299fc61eae273cb495',1,'Engine.GameObject.sprite()']]],
   ['sprite_2ecs',['Sprite.cs',['../_sprite_8cs.html',1,'']]],
   ['sqrmagnitude',['sqrMagnitude',['../struct_engine_1_1_vector3.html#ab57e7c3bf34edb840b78147df9915953',1,'Engine.Vector3.sqrMagnitude()'],['../struct_engine_1_1_vector2.html#a5fda89e1aefb8333c390fda6457ee8d2',1,'Engine.Vector2.sqrMagnitude()'],['../struct_engine_1_1_vector4.html#a44323eaa1c6544cdf159e02ae4bc2105',1,'Engine.Vector4.sqrMagnitude()']]],
   ['sqrt',['Sqrt',['../class_engine_1_1_mathf.html#a1c7f8e3c93db8ac760b989ef75a4b1d3',1,'Engine::Mathf']]],
