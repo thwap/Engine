@@ -12,38 +12,47 @@ namespace Engine
         /// Animation inherits from Component
         /// </summary>
         public bool playing = true;
-        AnimationClip currentAnimation;
+        public AnimationClip clip;
         internal static Dictionary<string, AnimationClip> animationList;
 
-        public void Play(string name)
+        public override void Update()
         {
-            currentAnimation = animationList[name];
-            if (Time.time > currentAnimation.prevDeltatime + currentAnimation.speed)
+            if (!playing)
+                return;
+            Play();
+        }
+        public void Play()
+        {
+            if (Time.time > clip.prevDeltatime + clip.speed)
             {
-                currentAnimation.prevDeltatime = Time.time;
+                clip.prevDeltatime = Time.time;
 
-                currentAnimation.sprite.texture = Il.ilBlit(currentAnimation.texture, 0, 0, 0, currentAnimation.yCoordinate, currentAnimation.xCoordinate, 0, currentAnimation.widthOne, currentAnimation.heightOne, 1);
-                currentAnimation.xCoordinate += currentAnimation.widthOne;
-                if (currentAnimation.xCoordinate == currentAnimation.texture.width)
+                clip.sprite.texture = Il.ilBlit(clip.texture, 0, 0, 0, clip.yCoordinate, clip.xCoordinate, 0, clip.widthOne, clip.heightOne, 1);
+                clip.xCoordinate += clip.widthOne;
+                if (clip.xCoordinate == clip.texture.width)
                 {
-                    currentAnimation.yCoordinate += currentAnimation.heightOne;
-                    currentAnimation.xCoordinate = 0;
+                    clip.yCoordinate += clip.heightOne;
+                    clip.xCoordinate = 0;
                 }
-                if (currentAnimation.yCoordinate == currentAnimation.texture.height)
+                if (clip.yCoordinate == clip.texture.height)
                 {
-                    if (currentAnimation.loop == true)
+                    if (clip.loop == true)
                     {
-                        currentAnimation.yCoordinate = currentAnimation.yStart;
-                        currentAnimation.xCoordinate = currentAnimation.xStart;
+                        clip.yCoordinate = clip.yStart;
+                        clip.xCoordinate = clip.xStart;
                     }
                 }
             }
         }
+        public void Play(string name)
+        {
+            clip = animationList[name];
+        }
         public void Stop()
         {
             playing = false;
-            currentAnimation.xCoordinate = currentAnimation.xStart;
-            currentAnimation.yCoordinate = currentAnimation.yStart;
+            clip.xCoordinate = clip.xStart;
+            clip.yCoordinate = clip.yStart;
         }
     }
 }
