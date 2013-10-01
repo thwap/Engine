@@ -50,7 +50,7 @@ namespace Engine
         /// <summary>
         /// Returns an unit vector with the same direction
         /// </summary>
-        /// <returns></returns>
+        /// <returns>New vector</returns>
         public Vector3 Normalized()
         {
             float mag = magnitude;
@@ -136,7 +136,7 @@ namespace Engine
         /// <summary>
         /// Returns the vector information as a string
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Vector values as string</returns>
         public override string ToString()
         {
             return x + "x, "+ y + "y, "+ z + "z";
@@ -146,7 +146,7 @@ namespace Engine
         /// Returns true if the Vector is equal to the parameter
         /// </summary>
         /// <param name="o">The object reference to be compared with the instance</param>
-        /// <returns></returns>
+        /// <returns>False or true</returns>
         public override bool Equals(object o)
         {
             if(o is Vector3) // Check if object is Vector3
@@ -158,8 +158,8 @@ namespace Engine
         /// <summary>
         //Check if vector is equal to another vector 
         /// </summary>
-        /// <param name="vec"></param>
-        /// <returns></returns>
+        /// <param name="vec">Vector</param>
+        /// <returns>True or False</returns>
         public bool Equals(Vector3 vec)
         {
             if (vec == null)
@@ -169,7 +169,7 @@ namespace Engine
         /// <summary>
         /// Calculate the hash code for the vector.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Hashcode</returns>
         public override int GetHashCode()
         {
             unchecked // Overflow is fine, just wrap
@@ -189,9 +189,9 @@ namespace Engine
         /// <summary>
         //Subs vector from another vector = Difference of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Difference of vectors</returns>
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
             float _x = v1.x - v2.x;
@@ -202,8 +202,8 @@ namespace Engine
         /// <summary>
         //Negation of vector
         /// </summary>
-        /// <param name="v1"></param>
-        /// <returns></returns>
+        /// <param name="v1">vector</param>
+        /// <returns>New vector that is negation of original</returns>
         public static Vector3 operator -(Vector3 v1)
         {
             return new Vector3(-v1.x, -v1.y, -v1.z);
@@ -211,9 +211,9 @@ namespace Engine
         /// <summary>
         /// Sum of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Sum of two vectors</returns>
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
             float _x = v1.x + v2.x;
@@ -226,7 +226,7 @@ namespace Engine
         /// </summary>
         /// <param name="v1">Vector to be multiplied</param>
         /// <param name="number">Multiplicator</param>
-        /// <returns></returns>
+        /// <returns>Multiplied vector</returns>
         public static Vector3 operator *(Vector3 v1, float number)
         {
             v1.Scale(number);
@@ -237,7 +237,7 @@ namespace Engine
         /// </summary>
         /// <param name="number">Multiplicator</param>
         /// <param name="v1">Vector to be multiplied</param>
-        /// <returns></returns>
+        /// <returns>Multiplied vector</returns>
         public static Vector3 operator *(float number, Vector3 v1)
         {
             v1.Scale(number);
@@ -247,9 +247,9 @@ namespace Engine
         /// Returns true if all components of both vectors are equal.
         /// Returns true if both parameter are the same object
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>True or false</returns>
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
             if (Object.ReferenceEquals(v1, v2)) // both are actually the same object
@@ -268,9 +268,9 @@ namespace Engine
         /// Returns true if the two vectors are not equal
         /// Returns true if both parameter are the same object
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>True or False</returns>
         public static bool operator !=(Vector3 v1, Vector3 v2)
         {
             if (Object.ReferenceEquals(v1, v2))
@@ -292,8 +292,8 @@ namespace Engine
         /// <summary>
         /// Returns the sum vector of this and the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New vector</returns>
         public Vector3 Add(Vector3 vector)
         {
             float _x = x + vector.x;
@@ -306,8 +306,8 @@ namespace Engine
         /// <summary>
         /// Returns a vector that is this minus the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New vector</returns>
         public Vector3 Subtract(Vector3 vector)
         {
             float _x = x - vector.x;
@@ -320,7 +320,7 @@ namespace Engine
         /// <summary>
         /// Scales this vector by given amount
         /// </summary>
-        /// <param name="scale"></param>
+        /// <param name="scale">Scale</param>
         public void Scale(float scale)
         {
             x = x * scale;
@@ -342,9 +342,9 @@ namespace Engine
         /// <summary>
         /// Returns the dot product of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Dot product of two vectors</returns>
         public static float Dot(Vector3 v1, Vector3 v2)
         {
             return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
@@ -353,9 +353,9 @@ namespace Engine
         /// <summary>
         /// Returns the cross product of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">Fist vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Crossproduct of two vectors</returns>
         public static Vector3 Cross(Vector3 v1, Vector3 v2)
         {
             float _x = v1.y * v2.z - v2.y * v1.z;
@@ -369,10 +369,10 @@ namespace Engine
         /// Interpolates between current and target, 0 being
         /// equal to current and 1 being equal to target
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="ratio"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target vector</param>
+        /// <param name="ratio">ratio</param>
+        /// <returns>New vector</returns>
         public static Vector3 Interpolate(Vector3 current, Vector3 target, float ratio)
         {
             float _x = current.x + (target.x - current.x) * ratio;
@@ -385,10 +385,10 @@ namespace Engine
         /// Returns a vector that is closer to target from current by an amount
         /// defined by step. If step is greater than distance, target is returned.
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="step"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target vector</param>
+        /// <param name="step">Step lenght</param>
+        /// <returns>New position</returns>
         public static Vector3 MoveStep(Vector3 current, Vector3 target, float step)
         {
             Vector3 tempVector = new Vector3(target - current);
@@ -402,7 +402,7 @@ namespace Engine
         /// </summary>
         /// <param name="incoming">Incoming vector</param>
         /// <param name="normal">Normal vector</param>
-        /// <returns></returns>
+        /// <returns>Reflection of two vectors</returns>
         public static Vector3 Reflect(Vector3 incoming, Vector3 normal)
         {
             float _dot = Dot(incoming, normal) * 2f;
@@ -412,9 +412,9 @@ namespace Engine
         /// <summary>
         /// Returns the vector of the projection of the target onto the normal
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="direction"></param>
-        /// <returns></returns>
+        /// <param name="target">Target vector</param>
+        /// <param name="direction">Direction as vector</param>
+        /// <returns>Projection of target vector and direction</returns>
         public static Vector3 Projection(Vector3 target, Vector3 direction)
         { 
             return Dot(target, direction) * target.Normalized();    
@@ -423,9 +423,9 @@ namespace Engine
         /// Returns the angle between v1 and v2
         /// Angle is between 0 and 180.
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Angle of two vectors</returns>
         public static float Angle(Vector3 v1, Vector3 v2)
         {
             float prod = Dot(v1, v2) / (v1.magnitude * v2.magnitude);
@@ -435,9 +435,9 @@ namespace Engine
         /// <summary>
         /// Returns the distance between two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Distance of two vectors</returns>
         public static float Distance(Vector3 v1, Vector3 v2)
         {
             float dx = v1.x - v2.x;
@@ -634,8 +634,8 @@ namespace Engine
         /// <summary>
         /// Returns the sum vector of this and the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New vector</returns>
         public Vector2 Add(Vector2 vector)
         {
             float _x = x + vector.x;
@@ -646,8 +646,8 @@ namespace Engine
         /// <summary>
         /// Returns a vector that is this minus the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New vector</returns>
         public Vector2 Subtract(Vector2 vector)
         {
             float _x = x - vector.x;
@@ -658,7 +658,7 @@ namespace Engine
         /// <summary>
         /// Scales this vector by given amount
         /// </summary>
-        /// <param name="scale"></param>
+        /// <param name="scale">Scale</param>
         public void Scale(float scale)
         {
             x = x * scale;
@@ -678,9 +678,9 @@ namespace Engine
         /// <summary>
         /// Returns the dot product of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Dot product of two vectors</returns>
         public static float Dot(Vector2 v1, Vector2 v2)
         {
             return v1.x * v2.x + v1.y * v2.y;
@@ -689,9 +689,9 @@ namespace Engine
         /// <summary>
         /// Returns the cross product of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Cross product of two vectors</returns>
         public static Vector3 Cross(Vector2 v1, Vector2 v2)
         {
             // This rotates it exactly 90 degrees CCW
@@ -711,10 +711,10 @@ namespace Engine
         /// Interpolates between current and target, 0 being
         /// equal to current and 1 being equal to target
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="ratio"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target vector</param>
+        /// <param name="ratio">Ratio</param>
+        /// <returns>New vector</returns>
         public static Vector2 Interpolate(Vector2 current, Vector2 target, float ratio)
         {
             float _x = current.x + (target.x - current.x) * ratio;
@@ -726,10 +726,10 @@ namespace Engine
         /// Returns a vector that is closer to target from current by an amount
         /// defined by step. If step is greater than distance, target is returned.
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="step"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target as vector</param>
+        /// <param name="step">Step lenght</param>
+        /// <returns>New position</returns>
         public static Vector2 MoveStep(Vector2 current, Vector2 target, float step)
         {
             Vector2 tempVector = new Vector2(target - current);
@@ -741,9 +741,9 @@ namespace Engine
         /// <summary>
         /// Returns a reflection of incoming off a plane defined by normal
         /// </summary>
-        /// <param name="incoming"></param>
-        /// <param name="normal"></param>
-        /// <returns></returns>
+        /// <param name="incoming">Incoming vector</param>
+        /// <param name="normal">Normal vector</param>
+        /// <returns>Reflection of two vectors</returns>
         public static Vector2 Reflect(Vector2 incoming, Vector2 normal)
         {
             float _dot = Dot(incoming, normal) * 2f;
@@ -753,9 +753,9 @@ namespace Engine
         /// <summary>
         /// Projection of 2D Vector
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="direction"></param>
-        /// <returns></returns>
+        /// <param name="target">Target vector</param>
+        /// <param name="direction">Distance as vector</param>
+        /// <returns>Projection of 2D Vector</returns>
         public static Vector2 Projection(Vector2 target, Vector2 direction)
         {
 			return Dot(target, direction) * target.Normalized(); 
@@ -771,9 +771,9 @@ namespace Engine
         /// <summary>
         /// Returns the distance between two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Distance between two vectors</returns>
         public static float Distance(Vector2 v1, Vector2 v2)
         {
             float dx = v1.x - v2.x;
@@ -973,8 +973,8 @@ namespace Engine
         /// <summary>
         /// Returns the sum vector of this vector and the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New vector</returns>
         public Vector4 Add(Vector4 vector)
         {
             float _x = x + vector.x;
@@ -987,8 +987,8 @@ namespace Engine
         /// <summary>
         /// Returns a vector that is this vector minus the parameter
         /// </summary>
-        /// <param name="vector"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector</param>
+        /// <returns>New Vector that is substracted</returns>
         public Vector4 Subtract(Vector4 vector)
         {
             float _x = x - vector.x;
@@ -1001,7 +1001,7 @@ namespace Engine
         /// <summary>
         /// Scales this vector by given amount
         /// </summary>
-        /// <param name="scale"></param>
+        /// <param name="scale">Scale</param>
         public void Scale(float scale)
         {
             x = x * scale;
@@ -1025,9 +1025,9 @@ namespace Engine
         /// <summary>
         /// Returns the dot product of two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Dot product of two vectors</returns>
         public static float Dot(Vector4 v1, Vector4 v2)
         {
             return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
@@ -1037,10 +1037,10 @@ namespace Engine
         /// Interpolates between current and target, 0 being
         /// equal to current and 1 being equal to target
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="ratio"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target vector</param>
+        /// <param name="ratio">Ratio</param>
+        /// <returns>New vector</returns>
         public static Vector4 Interpolate(Vector4 current, Vector4 target, float ratio)
         {
             float _x = current.x + (target.x - current.x) * ratio;
@@ -1054,10 +1054,10 @@ namespace Engine
         /// Returns a vector that is closer to target from current by an amount
         /// defined by step. If step is greater than distance, target is returned.
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="target"></param>
-        /// <param name="step"></param>
-        /// <returns></returns>
+        /// <param name="current">Current vector</param>
+        /// <param name="target">Target as vector</param>
+        /// <param name="step">Step lenght</param>
+        /// <returns>New position</returns>
         public static Vector4 MoveStep(Vector4 current, Vector4 target, float step)
         {
             Vector4 TempVector = new Vector4(target - current);
@@ -1069,9 +1069,9 @@ namespace Engine
         /// <summary>
         /// Returns a reflection of incoming off a plane defined by normal
         /// </summary>
-        /// <param name="incoming"></param>
-        /// <param name="normal"></param>
-        /// <returns></returns>
+        /// <param name="incoming">Incoming vector</param>
+        /// <param name="normal">Normal vector</param>
+        /// <returns>Reflection of two vectors</returns>
         public static Vector4 Reflect(Vector4 incoming, Vector4 normal)
         {
             float _dot = Dot(incoming, normal) * 2f;
@@ -1095,9 +1095,9 @@ namespace Engine
         /// <summary>
         /// Returns the distance between two vectors
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns>Distance between two vectors</returns>
         public static float Distance(Vector4 v1, Vector4 v2)
         {
             float dx = v1.x - v2.x;
