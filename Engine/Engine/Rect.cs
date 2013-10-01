@@ -19,15 +19,46 @@ namespace Engine
 		// Make sure a negative value cannot be given
 		
 
-		// Ctor
+		/// <summary>
+		/// Create Rectangle
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
         public Rect(float x, float y, float width, float height) : this() 
 		{
-            //ToDO
+            _x = x;
+            _y = y;
+            _width = width;
+            _height = height;
         }
+        
+        /// <summary>
+        /// Create Rectangle
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="dimension"></param>
         public Rect(Vector2 position, Vector2 dimension):this() 
 		{
-            //ToDO
+            _x = position.x;
+            _y = position.y;
+            _width = dimension.x;
+            _height = dimension.y;
         }
+
+        /// <summary>
+        /// Create Rectangle
+        /// </summary>
+        /// <param name="rect"></param>
+        public Rect(Vector4 rect): this()
+        {
+            _x = rect.x;
+            _y = rect.y;
+            _width = rect.z;
+            _height = rect.w;
+        }
+
 
         /// <summary>
         /// Returns true if the x and y components of position is a point inside this rectangle.
