@@ -8,10 +8,13 @@ namespace Engine
 {
     public partial class Form1 : Form
     {
+        Input input;
         public Form1()
         {
             InitializeComponent();
             _openGLControl.InitializeContexts();
+
+            input = new Input(_openGLControl);
 
             Content.init();
 
@@ -22,6 +25,11 @@ namespace Engine
         {
             Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
+
+            if (input.GetKeys.HasFlag(Keys.Escape))
+            {
+                Application.Exit();
+            }
 
 			Gl.glPushMatrix();
 				Gl.glRotatef(Time.time * 50, 0.8f, 0.9f, 1f);

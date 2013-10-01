@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tao.DevIl;
 
 namespace Engine
 {
-    class Animation : Component
+    public class Animation : Component
     {
         /// <summary>
         /// Animation inherits from Component
@@ -27,7 +28,7 @@ namespace Engine
             {
                 clip.prevDeltatime = Time.time;
 
-                clip.sprite.texture = Il.ilBlit(clip.texture, 0, 0, 0, clip.yCoordinate, clip.xCoordinate, 0, clip.widthOne, clip.heightOne, 1);
+                Il.ilBlit(clip.texture.openGLID, 0, 0, 0, clip.yCoordinate, clip.xCoordinate, 0, clip.widthOne, clip.heightOne, 1);
                 clip.xCoordinate += clip.widthOne;
                 if (clip.xCoordinate == clip.texture.width)
                 {

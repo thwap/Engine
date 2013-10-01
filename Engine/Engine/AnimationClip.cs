@@ -7,7 +7,7 @@ using Tao.DevIl;
 
 namespace Engine
 {
-    class AnimationClip
+    public class AnimationClip
     {
         /// <summary>
         /// Only has constructors.

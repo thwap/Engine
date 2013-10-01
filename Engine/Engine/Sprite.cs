@@ -9,6 +9,7 @@ using Tao.OpenGl;
 using Tao.Platform.Windows;
 
 
+<<<<<<< HEAD
 namespace Engine
 {
     public class Sprite : Component
@@ -18,6 +19,16 @@ namespace Engine
         public Texture texture { get; set; }
         Color[] vertexColor { get; set; }
         int vertexAmount { get; set; }
+=======
+namespace Engine {
+    public class Sprite : Component {
+        public Transform transform { get;set; }
+        public Vector3[] _vertexPositions;
+        public Vector2[] vertexUVs {get;set;}
+        public Texture texture {get;set;}
+        public Color[] vertexColor {get;set;}
+        int vertexAmount {get;set;}
+>>>>>>> ff87d46204d97192a4eeae28dfdc87abe8bf1d3d
 
         public Sprite()
             : base()
