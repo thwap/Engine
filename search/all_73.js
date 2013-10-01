@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['scale',['Scale',['../struct_engine_1_1_vector3.html#a6f036d805c82c68f76fd8f2ebb3984a3',1,'Engine.Vector3.Scale()'],['../struct_engine_1_1_vector2.html#a9f43231549445b5d0449aad67cec9ec1',1,'Engine.Vector2.Scale()'],['../struct_engine_1_1_vector4.html#a7c9051137b9f281524babaa579205346',1,'Engine.Vector4.Scale()'],['../class_engine_1_1_transform.html#ace10e7b698c1d99e27ef0dccd9532a68',1,'Engine.Transform.Scale(float amount)'],['../class_engine_1_1_transform.html#a50704c314c5d8da71c92f62635859d16',1,'Engine.Transform.scale()']]],
+  ['scale',['scale',['../class_engine_1_1_transform.html#a50704c314c5d8da71c92f62635859d16',1,'Engine.Transform.scale()'],['../struct_engine_1_1_vector3.html#a6f036d805c82c68f76fd8f2ebb3984a3',1,'Engine.Vector3.Scale()'],['../struct_engine_1_1_vector2.html#a9f43231549445b5d0449aad67cec9ec1',1,'Engine.Vector2.Scale()'],['../struct_engine_1_1_vector4.html#a7c9051137b9f281524babaa579205346',1,'Engine.Vector4.Scale()'],['../class_engine_1_1_transform.html#ace10e7b698c1d99e27ef0dccd9532a68',1,'Engine.Transform.Scale()']]],
   ['scene',['Scene',['../class_engine_1_1_scene.html',1,'Engine']]],
   ['scene',['Scene',['../class_engine_1_1_scene.html#a6773c1fe4a7010b7aac0d1f829c13a1f',1,'Engine.Scene.Scene()'],['../class_engine_1_1_scene.html#ae6828912661479cb3bb7583e3ad6e6f5',1,'Engine.Scene.Scene(String name)']]],
   ['scene_2ecs',['Scene.cs',['../_scene_8cs.html',1,'']]],
@@ -8,7 +8,6 @@ var searchData=
   ['scene1',['Scene1',['../class_engine_1_1_scene1.html#ab2882f0a8cb09f41b55d23dc88b3765c',1,'Engine.Scene1.Scene1()'],['../class_engine_1_1_scene1.html#aed6f06969d6a42f96576d90c174e43a8',1,'Engine.Scene1.Scene1(String name)']]],
   ['scene2',['Scene2',['../class_engine_1_1_scene2.html',1,'Engine']]],
   ['scene2',['Scene2',['../class_engine_1_1_scene2.html#ae4fcbe8dc5874a145df7fee6149a4dda',1,'Engine::Scene2']]],
-  ['scenes',['scenes',['../class_engine_1_1_app.html#a5f1e5f1a2c063b3934ccf00822fb39d7',1,'Engine::App']]],
   ['screen',['Screen',['../class_engine_1_1_screen.html',1,'Engine']]],
   ['screen_2ecs',['Screen.cs',['../_screen_8cs.html',1,'']]],
   ['setposition',['SetPosition',['../class_engine_1_1_sprite.html#a0346726479afa41c1ed05a01343345f2',1,'Engine::Sprite']]],
@@ -19,8 +18,8 @@ var searchData=
   ['settings_2edesigner_2ecs',['Settings.Designer.cs',['../_settings_8_designer_8cs.html',1,'']]],
   ['settranslation',['SetTranslation',['../class_engine_1_1_matrix.html#a36204a94f0b9a06262534bf1d345f6a1',1,'Engine.Matrix.SetTranslation(Vector3 translation)'],['../class_engine_1_1_matrix.html#ad482613a220a80addaab68aafc0b12ef',1,'Engine.Matrix.SetTranslation(float x, float y, float z)']]],
   ['sin',['Sin',['../class_engine_1_1_mathf.html#a3d1ec51c1ff1183af9b0f2f0f0801793',1,'Engine::Mathf']]],
-  ['sprite',['sprite',['../class_engine_1_1_game_object.html#aa8dba0e532c9d1299fc61eae273cb495',1,'Engine.GameObject.sprite()'],['../class_engine_1_1_sprite.html#aa4b72e92376b352f3963928acd864f1b',1,'Engine.Sprite.Sprite()']]],
   ['sprite',['Sprite',['../class_engine_1_1_sprite.html',1,'Engine']]],
+  ['sprite',['Sprite',['../class_engine_1_1_sprite.html#aa4b72e92376b352f3963928acd864f1b',1,'Engine.Sprite.Sprite()'],['../class_engine_1_1_game_object.html#aa8dba0e532c9d1299fc61eae273cb495',1,'Engine.GameObject.sprite()']]],
   ['sprite_2ecs',['Sprite.cs',['../_sprite_8cs.html',1,'']]],
   ['sqrmagnitude',['sqrMagnitude',['../struct_engine_1_1_vector3.html#ab57e7c3bf34edb840b78147df9915953',1,'Engine.Vector3.sqrMagnitude()'],['../struct_engine_1_1_vector2.html#a5fda89e1aefb8333c390fda6457ee8d2',1,'Engine.Vector2.sqrMagnitude()'],['../struct_engine_1_1_vector4.html#a44323eaa1c6544cdf159e02ae4bc2105',1,'Engine.Vector4.sqrMagnitude()']]],
   ['sqrt',['Sqrt',['../class_engine_1_1_mathf.html#a1c7f8e3c93db8ac760b989ef75a4b1d3',1,'Engine::Mathf']]],
